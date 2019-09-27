@@ -1,20 +1,18 @@
 ﻿using Meadow;
 using Meadow.Devices;
 using Meadow.Foundation.Leds;
-using System;
-using System.Collections.Generic;
 using System.Threading;
 
 namespace Simon
 {
-    public class App : App<F7Micro, App>
+    public class MeadowApp : App<F7Micro, MeadowApp>
     {
         Led ledRed;
         Led ledGreen;
         Led ledBlue;
         Led ledYellow;
 
-        public App()
+        public MeadowApp()
         {
             ledRed    = new Led(Device.CreateDigitalOutputPort(Device.Pins.D10));
             ledGreen  = new Led(Device.CreateDigitalOutputPort(Device.Pins.D09));

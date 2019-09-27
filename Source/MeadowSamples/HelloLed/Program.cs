@@ -1,6 +1,6 @@
 ﻿using Meadow;
 
-namespace BasicMeadow
+namespace HelloLed
 {
     class Program
     {

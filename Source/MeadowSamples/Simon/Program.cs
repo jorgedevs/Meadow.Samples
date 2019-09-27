@@ -1,16 +1,16 @@
 ﻿using Meadow;
-using System.Threading;
 
 namespace Simon
 {
     class Program
     {
         static IApp app;
-
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
-            app = new App();
-            Thread.Sleep(Timeout.Infinite);
+            if (args.Length > 0 && args[0] == "--exitOnDebug") return;
+
+            // instantiate and run new meadow app
+            app = new MeadowApp();
         }
     }
 }
