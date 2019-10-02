@@ -1,6 +1,6 @@
 ﻿using Meadow;
 
-namespace SSD1306_Sample
+namespace Meadow.Foundation.Servos_Sample
 {
     class Program
     {

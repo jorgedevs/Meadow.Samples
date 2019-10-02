@@ -1,6 +1,6 @@
 ﻿using Meadow;
 
-namespace CharacterDisplayTest
+namespace Displays.Lcd.CharacterDisplay_Sample
 {
     class Program
     {

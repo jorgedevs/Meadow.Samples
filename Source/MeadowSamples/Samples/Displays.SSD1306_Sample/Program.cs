@@ -1,6 +1,6 @@
 ﻿using Meadow;
 
-namespace DisplayGraphicsTest
+namespace Displays.SSD1306_Sample
 {
     class Program
     {

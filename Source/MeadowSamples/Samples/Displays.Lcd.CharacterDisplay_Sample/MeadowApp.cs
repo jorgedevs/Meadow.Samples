@@ -2,7 +2,7 @@
 using Meadow.Devices;
 using Meadow.Foundation.Displays.Lcd;
 
-namespace CharacterDisplayTest
+namespace Displays.Lcd.CharacterDisplay_Sample
 {
     public class MeadowApp : App<F7Micro, MeadowApp>
     {

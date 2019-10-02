@@ -6,7 +6,7 @@ using Meadow.Foundation.Displays.Tft;
 using Meadow.Foundation.Graphics;
 using Meadow.Hardware;
 
-namespace DisplayGraphicsTest
+namespace Displays.Tft.ILI9163_Sample
 {
     public class MeadowApp : App<F7Micro, MeadowApp>
     {
@@ -14,8 +14,8 @@ namespace DisplayGraphicsTest
 
         protected ISpiBus spiBus;
         protected ILI9163 iLI9163;
-        protected GraphicsLibrary display;        
-        protected int hour, minute, second, tick;        
+        protected GraphicsLibrary display;
+        protected int hour, minute, second, tick;
 
         public MeadowApp()
         {
@@ -33,7 +33,7 @@ namespace DisplayGraphicsTest
 
             DrawClock();
         }
-        
+
         protected void DrawClock()
         {
             hour = 8;

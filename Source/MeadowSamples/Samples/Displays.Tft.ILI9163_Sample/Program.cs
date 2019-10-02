@@ -1,6 +1,6 @@
 ﻿using Meadow;
 
-namespace ServoTest
+namespace Displays.Tft.ILI9163_Sample
 {
     class Program
     {

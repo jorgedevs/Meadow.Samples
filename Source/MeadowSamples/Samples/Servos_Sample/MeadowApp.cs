@@ -4,7 +4,7 @@ using Meadow;
 using Meadow.Devices;
 using Meadow.Hardware;
 
-namespace ServoTest
+namespace Meadow.Foundation.Servos_Sample
 {
     public class MeadowApp : App<F7Micro, MeadowApp>
     {
@@ -22,8 +22,8 @@ namespace ServoTest
         {
             Console.WriteLine("Creating Outputs...");
             redLed = Device.CreateDigitalOutputPort(Device.Pins.OnboardLedRed);
-            //blueLed = Device.CreateDigitalOutputPort(Device.Pins.OnboardLedBlue);
-            //greenLed = Device.CreateDigitalOutputPort(Device.Pins.OnboardLedGreen);
+            blueLed = Device.CreateDigitalOutputPort(Device.Pins.OnboardLedBlue);
+            greenLed = Device.CreateDigitalOutputPort(Device.Pins.OnboardLedGreen);
         }
 
         public void BlinkLeds()
@@ -40,10 +40,10 @@ namespace ServoTest
 
                 redLed.State = state;
                 Thread.Sleep(wait);
-                //blueLed.State = state;
-                //Thread.Sleep(wait);
-                //greenLed.State = state;
-                //Thread.Sleep(wait);
+                blueLed.State = state;
+                Thread.Sleep(wait);
+                greenLed.State = state;
+                Thread.Sleep(wait);
             }
         }
     }

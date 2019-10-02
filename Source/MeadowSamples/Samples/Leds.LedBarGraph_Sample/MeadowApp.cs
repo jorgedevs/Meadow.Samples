@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Threading;
-using Meadow;
 using Meadow.Devices;
-using Meadow.Foundation.Leds;
 using Meadow.Hardware;
 
-namespace LedBarGraphTest
+namespace Meadow.Foundation.Leds.LedBarGraph_Sample
 {
     public class MeadowApp : App<F7Micro, MeadowApp>
     {

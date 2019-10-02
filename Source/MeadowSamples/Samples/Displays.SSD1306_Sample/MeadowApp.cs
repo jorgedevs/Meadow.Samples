@@ -5,7 +5,7 @@ using Meadow.Devices;
 using Meadow.Foundation.Displays;
 using Meadow.Foundation.Graphics;
 
-namespace SSD1306_Sample
+namespace Displays.SSD1306_Sample
 {
     public class MeadowApp : App<F7Micro, MeadowApp>
     {
@@ -13,8 +13,8 @@ namespace SSD1306_Sample
         protected GraphicsLibrary graphics;
 
         public MeadowApp()
-        {            
-            var i2CBus = Device.CreateI2cBus();         
+        {
+            var i2CBus = Device.CreateI2cBus();
             display = new SSD1306(i2CBus, 60, SSD1306.DisplayType.OLED128x32);
             graphics = new GraphicsLibrary(display);
 
@@ -40,7 +40,7 @@ namespace SSD1306_Sample
             display.Show();
         }
 
-        void TestDisplayGraphicsAPI() 
+        void TestDisplayGraphicsAPI()
         {
             graphics.Clear();
 
