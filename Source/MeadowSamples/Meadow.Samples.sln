@@ -35,6 +35,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RTCs.DS1307_Sample", "Sampl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Relays.Relay_Sample", "Samples\Relays.Relay_Sample\Relays.Relay_Sample.csproj", "{401F4EF3-5183-4450-BA19-B7BD5DFD5BB5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ICs.IOExpanders.HT16K33_Sample", "Samples\ICs.IOExpanders.HT16K33_Sample\ICs.IOExpanders.HT16K33_Sample.csproj", "{71E0674E-3D53-4D43-BD33-4610C6957DFD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -123,6 +125,12 @@ Global
 		{401F4EF3-5183-4450-BA19-B7BD5DFD5BB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{401F4EF3-5183-4450-BA19-B7BD5DFD5BB5}.Release|Any CPU.Build.0 = Release|Any CPU
 		{401F4EF3-5183-4450-BA19-B7BD5DFD5BB5}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{71E0674E-3D53-4D43-BD33-4610C6957DFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71E0674E-3D53-4D43-BD33-4610C6957DFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71E0674E-3D53-4D43-BD33-4610C6957DFD}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{71E0674E-3D53-4D43-BD33-4610C6957DFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71E0674E-3D53-4D43-BD33-4610C6957DFD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{71E0674E-3D53-4D43-BD33-4610C6957DFD}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -141,6 +149,7 @@ Global
 		{B37DB1FF-69A4-4386-9E0B-55CFA000B2CB} = {38D2D700-9509-4A02-B985-2A95C2844E6C}
 		{5A32FAEB-4A54-483F-9A4E-4B53B640AF0B} = {38D2D700-9509-4A02-B985-2A95C2844E6C}
 		{401F4EF3-5183-4450-BA19-B7BD5DFD5BB5} = {38D2D700-9509-4A02-B985-2A95C2844E6C}
+		{71E0674E-3D53-4D43-BD33-4610C6957DFD} = {38D2D700-9509-4A02-B985-2A95C2844E6C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9105841E-2E41-4992-AC47-1AB23EF8DC57}
