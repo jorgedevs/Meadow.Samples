@@ -29,6 +29,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Leds.RgbPwmLed_Sample", "Sa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Leds.RgbLed_Sample", "Samples\Leds.RgbLed_Sample\Leds.RgbLed_Sample.csproj", "{573E8B5A-815E-4B93-96C1-0D2C862D3D2D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Audio.Piezo_Sample", "Audio.Piezo_Sample\Audio.Piezo_Sample.csproj", "{B37DB1FF-69A4-4386-9E0B-55CFA000B2CB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -99,6 +101,12 @@ Global
 		{573E8B5A-815E-4B93-96C1-0D2C862D3D2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{573E8B5A-815E-4B93-96C1-0D2C862D3D2D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{573E8B5A-815E-4B93-96C1-0D2C862D3D2D}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{B37DB1FF-69A4-4386-9E0B-55CFA000B2CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B37DB1FF-69A4-4386-9E0B-55CFA000B2CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B37DB1FF-69A4-4386-9E0B-55CFA000B2CB}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{B37DB1FF-69A4-4386-9E0B-55CFA000B2CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B37DB1FF-69A4-4386-9E0B-55CFA000B2CB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B37DB1FF-69A4-4386-9E0B-55CFA000B2CB}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -114,6 +122,7 @@ Global
 		{A47D689A-BC7F-4D55-A2D5-87AF59214B12} = {38D2D700-9509-4A02-B985-2A95C2844E6C}
 		{34ACCD83-DDF4-41E4-A155-765DE95E47C7} = {38D2D700-9509-4A02-B985-2A95C2844E6C}
 		{573E8B5A-815E-4B93-96C1-0D2C862D3D2D} = {38D2D700-9509-4A02-B985-2A95C2844E6C}
+		{B37DB1FF-69A4-4386-9E0B-55CFA000B2CB} = {38D2D700-9509-4A02-B985-2A95C2844E6C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9105841E-2E41-4992-AC47-1AB23EF8DC57}
