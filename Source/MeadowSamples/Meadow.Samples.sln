@@ -25,6 +25,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leds.Led_Sample", "Samples\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Leds.PwmLed_Sample", "Samples\Leds.PwmLed_Sample\Leds.PwmLed_Sample.csproj", "{A47D689A-BC7F-4D55-A2D5-87AF59214B12}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Leds.RgbPwmLed_Sample", "Samples\Leds.RgbPwmLed_Sample\Leds.RgbPwmLed_Sample.csproj", "{34ACCD83-DDF4-41E4-A155-765DE95E47C7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -83,6 +85,12 @@ Global
 		{A47D689A-BC7F-4D55-A2D5-87AF59214B12}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A47D689A-BC7F-4D55-A2D5-87AF59214B12}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A47D689A-BC7F-4D55-A2D5-87AF59214B12}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{34ACCD83-DDF4-41E4-A155-765DE95E47C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34ACCD83-DDF4-41E4-A155-765DE95E47C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{34ACCD83-DDF4-41E4-A155-765DE95E47C7}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{34ACCD83-DDF4-41E4-A155-765DE95E47C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34ACCD83-DDF4-41E4-A155-765DE95E47C7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{34ACCD83-DDF4-41E4-A155-765DE95E47C7}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -96,6 +104,7 @@ Global
 		{34AA9A90-387F-4414-92B8-8C6DE9B9B34B} = {38D2D700-9509-4A02-B985-2A95C2844E6C}
 		{56E945D3-B4FC-4F1B-AB3F-D3B8AAD1E235} = {38D2D700-9509-4A02-B985-2A95C2844E6C}
 		{A47D689A-BC7F-4D55-A2D5-87AF59214B12} = {38D2D700-9509-4A02-B985-2A95C2844E6C}
+		{34ACCD83-DDF4-41E4-A155-765DE95E47C7} = {38D2D700-9509-4A02-B985-2A95C2844E6C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9105841E-2E41-4992-AC47-1AB23EF8DC57}
