@@ -42,3 +42,5 @@ Source/MeadowSamples/Audio.Piezo_Sample/bin/
 Source/MeadowSamples/Audio.Piezo_Sample/obj/
 Source/MeadowSamples/Samples/RTCs.DS1307_Sample/bin/
 Source/MeadowSamples/Samples/RTCs.DS1307_Sample/obj/
+Source/MeadowSamples/Samples/Relays.Relay_Sample/obj/
+Source/MeadowSamples/Samples/Relays.Relay_Sample/bin/
