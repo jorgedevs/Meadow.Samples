@@ -23,21 +23,21 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Projects", "Projects", "{86
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leds.Led_Sample", "Samples\Leds.Led_Sample\Leds.Led_Sample.csproj", "{56E945D3-B4FC-4F1B-AB3F-D3B8AAD1E235}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Leds.PwmLed_Sample", "Samples\Leds.PwmLed_Sample\Leds.PwmLed_Sample.csproj", "{A47D689A-BC7F-4D55-A2D5-87AF59214B12}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leds.PwmLed_Sample", "Samples\Leds.PwmLed_Sample\Leds.PwmLed_Sample.csproj", "{A47D689A-BC7F-4D55-A2D5-87AF59214B12}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Leds.RgbPwmLed_Sample", "Samples\Leds.RgbPwmLed_Sample\Leds.RgbPwmLed_Sample.csproj", "{34ACCD83-DDF4-41E4-A155-765DE95E47C7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leds.RgbPwmLed_Sample", "Samples\Leds.RgbPwmLed_Sample\Leds.RgbPwmLed_Sample.csproj", "{34ACCD83-DDF4-41E4-A155-765DE95E47C7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Leds.RgbLed_Sample", "Samples\Leds.RgbLed_Sample\Leds.RgbLed_Sample.csproj", "{573E8B5A-815E-4B93-96C1-0D2C862D3D2D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leds.RgbLed_Sample", "Samples\Leds.RgbLed_Sample\Leds.RgbLed_Sample.csproj", "{573E8B5A-815E-4B93-96C1-0D2C862D3D2D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Audio.Piezo_Sample", "Audio.Piezo_Sample\Audio.Piezo_Sample.csproj", "{B37DB1FF-69A4-4386-9E0B-55CFA000B2CB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Audio.Piezo_Sample", "Audio.Piezo_Sample\Audio.Piezo_Sample.csproj", "{B37DB1FF-69A4-4386-9E0B-55CFA000B2CB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RTCs.DS1307_Sample", "Samples\RTCs.DS1307_Sample\RTCs.DS1307_Sample.csproj", "{5A32FAEB-4A54-483F-9A4E-4B53B640AF0B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RTCs.DS1307_Sample", "Samples\RTCs.DS1307_Sample\RTCs.DS1307_Sample.csproj", "{5A32FAEB-4A54-483F-9A4E-4B53B640AF0B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Relays.Relay_Sample", "Samples\Relays.Relay_Sample\Relays.Relay_Sample.csproj", "{401F4EF3-5183-4450-BA19-B7BD5DFD5BB5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Relays.Relay_Sample", "Samples\Relays.Relay_Sample\Relays.Relay_Sample.csproj", "{401F4EF3-5183-4450-BA19-B7BD5DFD5BB5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ICs.IOExpanders.HT16K33_Sample", "Samples\ICs.IOExpanders.HT16K33_Sample\ICs.IOExpanders.HT16K33_Sample.csproj", "{71E0674E-3D53-4D43-BD33-4610C6957DFD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ICs.IOExpanders.HT16K33_Sample", "Samples\ICs.IOExpanders.HT16K33_Sample\ICs.IOExpanders.HT16K33_Sample.csproj", "{71E0674E-3D53-4D43-BD33-4610C6957DFD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MemoryGame", "Projects\MemoryGame\MemoryGame.csproj", "{C282B57F-21BC-4A4D-B3CE-9214471DFFAC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MemoryGame", "Projects\MemoryGame\MemoryGame.csproj", "{C282B57F-21BC-4A4D-B3CE-9214471DFFAC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
