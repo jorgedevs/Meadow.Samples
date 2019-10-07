@@ -1,6 +1,7 @@
 ﻿using System.Threading;
 using Meadow;
 using Meadow.Devices;
+using Meadow.Foundation.Motors;
 
 namespace Motors.HBridgeMotor_Sample
 {
