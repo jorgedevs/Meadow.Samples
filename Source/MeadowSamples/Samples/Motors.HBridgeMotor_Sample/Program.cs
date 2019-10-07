@@ -1,6 +1,6 @@
 ﻿using Meadow;
 
-namespace Motors.HBridgeMotor
+namespace Motors.HBridgeMotor_Sample
 {
     class Program
     {

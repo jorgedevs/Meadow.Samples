@@ -1,49 +1,52 @@
-﻿using System;
-using System.Threading;
+﻿using System.Threading;
 using Meadow;
 using Meadow.Devices;
-using Meadow.Hardware;
 
 namespace RemoteCar
 {
     public class MeadowApp : App<F7Micro, MeadowApp>
     {
-        IDigitalOutputPort redLed;
-        IDigitalOutputPort blueLed;
-        IDigitalOutputPort greenLed;
+        HBridgeMotor motorLeft;
+        HBridgeMotor motorRight;
 
         public MeadowApp()
         {
             ConfigurePorts();
-            BlinkLeds();
+            TestMotors();
         }
 
         public void ConfigurePorts()
         {
-            Console.WriteLine("Creating Outputs...");
-            redLed = Device.CreateDigitalOutputPort(Device.Pins.OnboardLedRed);
-            blueLed = Device.CreateDigitalOutputPort(Device.Pins.OnboardLedBlue);
-            greenLed = Device.CreateDigitalOutputPort(Device.Pins.OnboardLedGreen);
+            motorRight = new HBridgeMotor
+            (
+                a1Pin: Device.CreatePwmPort(Device.Pins.D02),
+                a2Pin: Device.CreatePwmPort(Device.Pins.D03),
+                enablePin: Device.CreateDigitalOutputPort(Device.Pins.D04)
+            );
+
+            motorLeft = new HBridgeMotor
+            (
+                a1Pin: Device.CreatePwmPort(Device.Pins.D07),
+                a2Pin: Device.CreatePwmPort(Device.Pins.D08),
+                enablePin: Device.CreateDigitalOutputPort(Device.Pins.D09)
+            );
         }
 
-        public void BlinkLeds()
+        public void TestMotors()
         {
-            var state = false;
-
             while (true)
             {
-                int wait = 200;
+                motorLeft.Speed = 1f;
+                motorRight.Speed = 1f;
+                Thread.Sleep(1000);
 
-                state = !state;
+                motorLeft.Speed = 0f;
+                motorRight.Speed = 0f;
+                Thread.Sleep(500);
 
-                Console.WriteLine($"State: {state}");
-
-                redLed.State = state;
-                Thread.Sleep(wait);
-                blueLed.State = state;
-                Thread.Sleep(wait);
-                greenLed.State = state;
-                Thread.Sleep(wait);
+                motorLeft.Speed = -1f;
+                motorRight.Speed = -1f;
+                Thread.Sleep(1000);
             }
         }
     }

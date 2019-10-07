@@ -41,9 +41,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MemoryGame", "Projects\Memo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ICs.IOExpanders.MCP23008_Sample", "Samples\ICs.IOExpanders.MCP23008_Sample\ICs.IOExpanders.MCP23008_Sample.csproj", "{206B8931-F821-4D2E-9122-0AEF9E608B12}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RemoteCar", "Projects\RemoteCar\RemoteCar.csproj", "{A386874D-AF0D-4459-95C1-B93D99D425DE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RemoteCar", "Projects\RemoteCar\RemoteCar.csproj", "{A386874D-AF0D-4459-95C1-B93D99D425DE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Motors.HBridgeMotor", "Samples\Motors.HBridgeMotor\Motors.HBridgeMotor.csproj", "{B527A7EA-E13F-4472-8776-91081BB638D9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Motors.HBridgeMotor_Sample", "Samples\Motors.HBridgeMotor_Sample\Motors.HBridgeMotor_Sample.csproj", "{B527A7EA-E13F-4472-8776-91081BB638D9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
