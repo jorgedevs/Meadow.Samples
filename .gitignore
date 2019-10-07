@@ -50,3 +50,8 @@ Source/MeadowSamples/Projects/MemoryGame/bin/
 Source/MeadowSamples/Projects/MemoryGame/obj/
 Source/MeadowSamples/Samples/ICs.IOExpanders.MCP23008_Sample/bin/
 Source/MeadowSamples/Samples/ICs.IOExpanders.MCP23008_Sample/obj/
+Source/MeadowSamples/Projects/RemoteCar/bin/
+Source/MeadowSamples/Projects/RemoteCar/obj/
+Source/MeadowSamples/Samples/Audio.Piezo_Sample/bin/
+Source/MeadowSamples/Samples/Audio.Piezo_Sample/obj/
+Source/MeadowSamples/Samples/Motors.HBridgeMotor/obj/
