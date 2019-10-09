@@ -39,7 +39,7 @@ namespace ICs.IOExpanders.MCP23008_Sample
             IDigitalOutputPort[] ports = new IDigitalOutputPort[8];
             for (byte i = 0; i <= 7; i++)
             {
-                ports[i] = mcp23008.CreateOutputPort(mcp23008, (byte)i, false);
+                //ports[i] = mcp23008.CreateOutputPort(mcp23008, (byte)i, false);
             }
 
             Console.WriteLine("Ports Inititalized.");
