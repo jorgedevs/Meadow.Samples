@@ -5,17 +5,25 @@ using Meadow.Devices;
 using Meadow.Foundation.Displays;
 using Meadow.Foundation.Graphics;
 
-namespace Displays.SSD1306_Sample
+namespace Displays.PCD8544_Sample
 {
     public class MeadowApp : App<F7Micro, MeadowApp>
     {
-        protected SSD1306 display;
-        protected GraphicsLibrary graphics;
+        PCD8544 display;
+        GraphicsLibrary graphics;
 
         public MeadowApp()
         {
-            var i2CBus = Device.CreateI2cBus();
-            display = new SSD1306(i2CBus, 60, SSD1306.DisplayType.OLED128x32);
+            var spiBus = Device.CreateSpiBus();
+
+            display = new PCD8544
+            (
+                device: Device,
+                spiBus: spiBus,
+                chipSelectPin: Device.Pins.D01,
+                dcPin: Device.Pins.D00,
+                resetPin: Device.Pins.D02
+            );
             graphics = new GraphicsLibrary(display);
 
             Console.WriteLine("Test display API");
@@ -26,28 +34,22 @@ namespace Displays.SSD1306_Sample
             TestDisplayGraphicsAPI();
         }
 
-        void TestRawDisplayAPI()
+        void TestRawDisplayAPI() 
         {
-            display.Clear(true);
-
-            for (int i = 0; i < 30; i++)
+            for (int i = 0; i < 35; i++)
             {
                 display.DrawPixel(i, i, true);
-                display.DrawPixel(30 + i, i, true);
-                display.DrawPixel(60 + i, i, true);
             }
 
             display.Show();
         }
 
-        void TestDisplayGraphicsAPI()
+        void TestDisplayGraphicsAPI() 
         {
-            graphics.Clear();
-
+            graphics.Clear(true);
             graphics.CurrentFont = new Font8x12();
-            graphics.DrawText(0, 0, "Hello, Meadow F7");
+            graphics.DrawText(0, 0, "Meadow F7");
             graphics.DrawRectangle(5, 14, 30, 10, true);
-
             graphics.Show();
         }
     }

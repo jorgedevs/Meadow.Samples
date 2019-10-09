@@ -47,7 +47,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Motors.HBridgeMotor_Sample"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sensors.Moisture.Capacitive_Sample", "Samples\Sensors.Moisture.Capacitive_Sample\Sensors.Moisture.Capacitive_Sample.csproj", "{1ABFC688-5577-44D0-99AC-5A61CCAA5648}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RemoteTank", "Projects\RemoteTank\RemoteTank.csproj", "{11A4CA21-A342-42AA-BD79-E6790262F7C2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RemoteTank", "Projects\RemoteTank\RemoteTank.csproj", "{11A4CA21-A342-42AA-BD79-E6790262F7C2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Displays.PCD8544_Sample", "Samples\Displays.PCD8544_Sample\Displays.PCD8544_Sample.csproj", "{1B7EB312-2844-486D-9A86-C31AF8AC631D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -179,6 +181,12 @@ Global
 		{11A4CA21-A342-42AA-BD79-E6790262F7C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{11A4CA21-A342-42AA-BD79-E6790262F7C2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{11A4CA21-A342-42AA-BD79-E6790262F7C2}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{1B7EB312-2844-486D-9A86-C31AF8AC631D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B7EB312-2844-486D-9A86-C31AF8AC631D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B7EB312-2844-486D-9A86-C31AF8AC631D}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{1B7EB312-2844-486D-9A86-C31AF8AC631D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B7EB312-2844-486D-9A86-C31AF8AC631D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B7EB312-2844-486D-9A86-C31AF8AC631D}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -204,6 +212,7 @@ Global
 		{B527A7EA-E13F-4472-8776-91081BB638D9} = {38D2D700-9509-4A02-B985-2A95C2844E6C}
 		{1ABFC688-5577-44D0-99AC-5A61CCAA5648} = {38D2D700-9509-4A02-B985-2A95C2844E6C}
 		{11A4CA21-A342-42AA-BD79-E6790262F7C2} = {8669A0F2-54CB-4191-8468-EFE25611A005}
+		{1B7EB312-2844-486D-9A86-C31AF8AC631D} = {38D2D700-9509-4A02-B985-2A95C2844E6C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9105841E-2E41-4992-AC47-1AB23EF8DC57}
