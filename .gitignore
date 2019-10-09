@@ -57,3 +57,7 @@ Source/MeadowSamples/Samples/Audio.Piezo_Sample/obj/
 Source/MeadowSamples/Samples/Motors.HBridgeMotor/obj/
 Source/MeadowSamples/Samples/Motors.HBridgeMotor_Sample/bin/
 Source/MeadowSamples/Samples/Motors.HBridgeMotor_Sample/obj/
+Source/MeadowSamples/Samples/Sensors.Moisture.Capacitive_Sample/obj/
+Source/MeadowSamples/Samples/Sensors.Moisture.Capacitive_Sample/bin/
+Source/MeadowSamples/Projects/RemoteTank/obj/
+Source/MeadowSamples/Projects/RemoteTank/bin/

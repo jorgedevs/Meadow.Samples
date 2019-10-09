@@ -45,6 +45,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RemoteCar", "Projects\Remot
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Motors.HBridgeMotor_Sample", "Samples\Motors.HBridgeMotor_Sample\Motors.HBridgeMotor_Sample.csproj", "{B527A7EA-E13F-4472-8776-91081BB638D9}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sensors.Moisture.Capacitive_Sample", "Samples\Sensors.Moisture.Capacitive_Sample\Sensors.Moisture.Capacitive_Sample.csproj", "{1ABFC688-5577-44D0-99AC-5A61CCAA5648}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RemoteTank", "Projects\RemoteTank\RemoteTank.csproj", "{11A4CA21-A342-42AA-BD79-E6790262F7C2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -163,6 +167,18 @@ Global
 		{B527A7EA-E13F-4472-8776-91081BB638D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B527A7EA-E13F-4472-8776-91081BB638D9}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B527A7EA-E13F-4472-8776-91081BB638D9}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{1ABFC688-5577-44D0-99AC-5A61CCAA5648}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1ABFC688-5577-44D0-99AC-5A61CCAA5648}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1ABFC688-5577-44D0-99AC-5A61CCAA5648}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{1ABFC688-5577-44D0-99AC-5A61CCAA5648}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1ABFC688-5577-44D0-99AC-5A61CCAA5648}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1ABFC688-5577-44D0-99AC-5A61CCAA5648}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{11A4CA21-A342-42AA-BD79-E6790262F7C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11A4CA21-A342-42AA-BD79-E6790262F7C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11A4CA21-A342-42AA-BD79-E6790262F7C2}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{11A4CA21-A342-42AA-BD79-E6790262F7C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11A4CA21-A342-42AA-BD79-E6790262F7C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11A4CA21-A342-42AA-BD79-E6790262F7C2}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -186,6 +202,8 @@ Global
 		{206B8931-F821-4D2E-9122-0AEF9E608B12} = {38D2D700-9509-4A02-B985-2A95C2844E6C}
 		{A386874D-AF0D-4459-95C1-B93D99D425DE} = {8669A0F2-54CB-4191-8468-EFE25611A005}
 		{B527A7EA-E13F-4472-8776-91081BB638D9} = {38D2D700-9509-4A02-B985-2A95C2844E6C}
+		{1ABFC688-5577-44D0-99AC-5A61CCAA5648} = {38D2D700-9509-4A02-B985-2A95C2844E6C}
+		{11A4CA21-A342-42AA-BD79-E6790262F7C2} = {8669A0F2-54CB-4191-8468-EFE25611A005}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9105841E-2E41-4992-AC47-1AB23EF8DC57}
