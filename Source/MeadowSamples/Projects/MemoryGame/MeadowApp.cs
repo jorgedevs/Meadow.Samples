@@ -9,7 +9,8 @@ using Meadow.Hardware;
 namespace MemoryGame
 {
     public class MeadowApp : App<F7Micro, MeadowApp>
-    {        
+    {
+        protected SSD1306 display;
         protected GraphicsLibrary graphics;
 
         protected int currentColumn;
@@ -30,9 +31,9 @@ namespace MemoryGame
             option1 = option2 = -1;
 
             InitializePeripherals();
-            LoadMemoryBoard();
+            //LoadMemoryBoard();
             StartGameAnimation();
-            CyclingColumnVDD();
+            //CyclingColumnVDD();
         }
 
         protected bool IsLevelComplete()
@@ -52,14 +53,15 @@ namespace MemoryGame
         }
 
         protected void InitializePeripherals()
-        {            
-            var display = new SSD1306(Device.CreateI2cBus(), 60, SSD1306.DisplayType.OLED128x32);
-            graphics = new GraphicsLibrary(display);
+        {
+            var i2CBus = Device.CreateI2cBus();
+            display = new SSD1306(i2CBus, 60, SSD1306.DisplayType.OLED128x32);
+            graphics = new GraphicsLibrary(display);            
 
-            rowPorts[0] = Device.CreateDigitalInputPort(Device.Pins.D14, InterruptMode.EdgeFalling, ResistorMode.PullDown, 250);
-            rowPorts[1] = Device.CreateDigitalInputPort(Device.Pins.D13, InterruptMode.EdgeFalling, ResistorMode.PullDown, 250);
-            rowPorts[2] = Device.CreateDigitalInputPort(Device.Pins.D12, InterruptMode.EdgeFalling, ResistorMode.PullDown, 250);
-            rowPorts[3] = Device.CreateDigitalInputPort(Device.Pins.D11, InterruptMode.EdgeFalling, ResistorMode.PullDown, 250);
+            //rowPorts[0] = Device.CreateDigitalInputPort(Device.Pins.D14, InterruptMode.EdgeFalling, ResistorMode.Disabled, 250);
+            //rowPorts[1] = Device.CreateDigitalInputPort(Device.Pins.D13, InterruptMode.EdgeFalling, ResistorMode.Disabled, 250);
+            //rowPorts[2] = Device.CreateDigitalInputPort(Device.Pins.D12, InterruptMode.EdgeFalling, ResistorMode.Disabled, 250);
+            //rowPorts[3] = Device.CreateDigitalInputPort(Device.Pins.D11, InterruptMode.EdgeFalling, ResistorMode.Disabled, 250);
 
             columnPorts[0] = Device.CreateDigitalOutputPort(Device.Pins.D10);
             columnPorts[1] = Device.CreateDigitalOutputPort(Device.Pins.D09);
@@ -104,11 +106,11 @@ namespace MemoryGame
         protected void StartGameAnimation()
         {
             DisplayText("MEMORY GAME", 20);
-            Thread.Sleep(1000);
-            DisplayText("Ready?", 40);
-            Thread.Sleep(1000);
+            Thread.Sleep(2000);
+            DisplayText("Ready?", 40); 
+            Thread.Sleep(2000);
             DisplayText("Start!", 40);
-            Thread.Sleep(1000);
+            Thread.Sleep(2000);
             DisplayText("Select Button");
         }
 
