@@ -7,46 +7,43 @@ namespace RemoteCar
 {
     public class MeadowApp : App<F7Micro, MeadowApp>
     {
-        HBridgeMotor motorLeft;
-        HBridgeMotor motorRight;
+        protected CarController carController;
 
         public MeadowApp()
         {
-            ConfigurePorts();
-            TestMotors();
+            Initialize();
+            TestCar();
         }
 
-        public void ConfigurePorts()
+        protected void Initialize() 
         {
-            motorRight = new HBridgeMotor
+            var motorLeft = new HBridgeMotor
+            (
+                a1Pin: Device.CreatePwmPort(Device.Pins.D07),
+                a2Pin: Device.CreatePwmPort(Device.Pins.D08),
+                enablePin: Device.CreateDigitalOutputPort(Device.Pins.D09)
+            );
+            var motorRight = new HBridgeMotor
             (
                 a1Pin: Device.CreatePwmPort(Device.Pins.D02),
                 a2Pin: Device.CreatePwmPort(Device.Pins.D03),
                 enablePin: Device.CreateDigitalOutputPort(Device.Pins.D04)
             );
 
-            motorLeft = new HBridgeMotor
-            (
-                a1Pin: Device.CreatePwmPort(Device.Pins.D07),
-                a2Pin: Device.CreatePwmPort(Device.Pins.D08),
-                enablePin: Device.CreateDigitalOutputPort(Device.Pins.D09)
-            );
+            carController = new CarController(motorLeft, motorRight);
         }
 
-        public void TestMotors()
+        protected void TestCar()
         {
             while (true)
             {
-                motorLeft.Speed = 1f;
-                motorRight.Speed = 1f;
+                carController.MoveForward();
                 Thread.Sleep(1000);
 
-                motorLeft.Speed = 0f;
-                motorRight.Speed = 0f;
+                carController.Stop();
                 Thread.Sleep(500);
 
-                motorLeft.Speed = -1f;
-                motorRight.Speed = -1f;
+                carController.MoveBackward();
                 Thread.Sleep(1000);
             }
         }
