@@ -1,49 +1,49 @@
-﻿using System;
-using System.Threading;
+﻿using System.Threading;
 using Meadow;
 using Meadow.Devices;
-using Meadow.Hardware;
 
 namespace RobotArm
 {
     public class MeadowApp : App<F7Micro, MeadowApp>
     {
-        IDigitalOutputPort redLed;
-        IDigitalOutputPort blueLed;
-        IDigitalOutputPort greenLed;
+        protected RobotArmController robotArmController;
 
         public MeadowApp()
         {
-            ConfigurePorts();
-            BlinkLeds();
+            robotArmController = new RobotArmController(
+                pwmServoBase: Device.CreatePwmPort(Device.Pins.D05),
+                pwmShoulder1: Device.CreatePwmPort(Device.Pins.D06),
+                pwmShoulder2: Device.CreatePwmPort(Device.Pins.D07),
+                pwmGripper: Device.CreatePwmPort(Device.Pins.D08)
+            );
+
+            TestRobotArm();
         }
 
-        public void ConfigurePorts()
+        public void TestRobotArm()
         {
-            Console.WriteLine("Creating Outputs...");
-            redLed = Device.CreateDigitalOutputPort(Device.Pins.OnboardLedRed);
-            blueLed = Device.CreateDigitalOutputPort(Device.Pins.OnboardLedBlue);
-            greenLed = Device.CreateDigitalOutputPort(Device.Pins.OnboardLedGreen);
-        }
-
-        public void BlinkLeds()
-        {
-            var state = false;
+            int speed = 100;
+            int angle = 0;
 
             while (true)
             {
-                int wait = 200;
+                while (angle < 180)
+                {
+                    robotArmController.RotateBase(angle);
+                    robotArmController.RotateShoulder(angle);
+                    robotArmController.RotateGripper(angle);
+                    Thread.Sleep(speed);
+                    angle++;
+                }
 
-                state = !state;
-
-                Console.WriteLine($"State: {state}");
-
-                redLed.State = state;
-                Thread.Sleep(wait);
-                blueLed.State = state;
-                Thread.Sleep(wait);
-                greenLed.State = state;
-                Thread.Sleep(wait);
+                while (angle > 0)
+                {
+                    robotArmController.RotateBase(angle);
+                    robotArmController.RotateShoulder(angle);
+                    robotArmController.RotateGripper(angle);
+                    Thread.Sleep(speed);
+                    angle--;
+                }
             }
         }
     }
