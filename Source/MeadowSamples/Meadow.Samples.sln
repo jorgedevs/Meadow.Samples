@@ -55,6 +55,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TunePlayer", "Projects\Tune
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Peripherals_Samples", "Peripherals_Samples", "{FDD94EF3-7231-4EA6-8C0C-59400D8C61F4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlantMonitor", "Projects\PlantMonitor\PlantMonitor.csproj", "{912D42CE-0A4E-425E-9C8D-3C01B89AA038}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -197,6 +199,12 @@ Global
 		{BA18EAD2-237D-41E6-A0BB-F7B8B6A0FCF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BA18EAD2-237D-41E6-A0BB-F7B8B6A0FCF1}.Release|Any CPU.Build.0 = Release|Any CPU
 		{BA18EAD2-237D-41E6-A0BB-F7B8B6A0FCF1}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{912D42CE-0A4E-425E-9C8D-3C01B89AA038}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{912D42CE-0A4E-425E-9C8D-3C01B89AA038}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{912D42CE-0A4E-425E-9C8D-3C01B89AA038}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{912D42CE-0A4E-425E-9C8D-3C01B89AA038}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{912D42CE-0A4E-425E-9C8D-3C01B89AA038}.Release|Any CPU.Build.0 = Release|Any CPU
+		{912D42CE-0A4E-425E-9C8D-3C01B89AA038}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -224,6 +232,7 @@ Global
 		{1B7EB312-2844-486D-9A86-C31AF8AC631D} = {FDD94EF3-7231-4EA6-8C0C-59400D8C61F4}
 		{6CFD8273-42E5-4A42-B484-A52BCD00B8BB} = {8669A0F2-54CB-4191-8468-EFE25611A005}
 		{BA18EAD2-237D-41E6-A0BB-F7B8B6A0FCF1} = {8669A0F2-54CB-4191-8468-EFE25611A005}
+		{912D42CE-0A4E-425E-9C8D-3C01B89AA038} = {8669A0F2-54CB-4191-8468-EFE25611A005}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9105841E-2E41-4992-AC47-1AB23EF8DC57}

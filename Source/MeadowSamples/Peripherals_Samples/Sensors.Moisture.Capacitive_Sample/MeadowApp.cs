@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Threading;
-using System.Threading.Tasks;
 using Meadow;
 using Meadow.Devices;
-using Meadow.Hardware;
+using Meadow.Foundation.Sensors.Moisture;
 
 namespace Sensors.Moisture.Capacitive_Sample
 {
@@ -13,16 +12,40 @@ namespace Sensors.Moisture.Capacitive_Sample
 
         public MeadowApp()
         {
-            capacitive = new Capacitive(Device.CreateAnalogInputPort(Device.Pins.A00));
+            Console.WriteLine("Initializing...");
 
-            test();
+            capacitive = new Capacitive(Device.CreateAnalogInputPort(Device.Pins.A01));
+
+            TestCapacitiveSensor();
         }
 
-        async Task test() 
+        void TestCapacitiveSensor()
         {
+            Console.WriteLine("TestCapacitiveSensor...");
+
+            // Use ReadRaw(); to get dry and moist values
+            for (int i = 0; i < 10; i++)
+            {
+                Console.WriteLine(capacitive.ReadRaw());
+                Thread.Sleep(1000);
+            }
+
+            // Update boundary values when determined
+            capacitive.MinimumMoisture = 2.84f; // On open air
+            capacitive.MaximumMoisture = 1.37f; // Dipped in water
+
+            // Use Read(); to get soil moisture value from 0 - 100
             while (true)
             {
-                Console.WriteLine($"======================== raw value: {capacitive.AnalogPort.Read().Result}");
+                int moisture = (int)capacitive.Read();
+
+                if (moisture > 100)
+                    moisture = 100;
+                else
+                if (moisture < 0)
+                    moisture = 0;
+
+                Console.WriteLine($"Raw: {capacitive.Moisture} | Moisture {moisture}%");
                 Thread.Sleep(1000);
             }
         }
