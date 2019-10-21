@@ -7,6 +7,5 @@
   <ItemGroup>
     <PackageReference Include="Meadow.Foundation.Displays.GraphicsLibrary" Version="0.8.2" />
     <PackageReference Include="Meadow.Foundation.Displays.TftSpi" Version="0.6.2" />
-    <PackageReference Include="WildernessLabs.Meadow.Assemblies" Version="0.1.1" />
   </ItemGroup>
 </Project>
