@@ -1,0 +1,15 @@
+C:\Projects\Meadow.Samples\Source\MeadowSamples\Peripherals_Samples\Displays.Lcd.CharacterDisplay_Sample\bin\Debug\net472\App.exe.config
+C:\Projects\Meadow.Samples\Source\MeadowSamples\Peripherals_Samples\Displays.Lcd.CharacterDisplay_Sample\bin\Debug\net472\App.exe
+C:\Projects\Meadow.Samples\Source\MeadowSamples\Peripherals_Samples\Displays.Lcd.CharacterDisplay_Sample\bin\Debug\net472\App.pdb
+C:\Projects\Meadow.Samples\Source\MeadowSamples\Peripherals_Samples\Displays.Lcd.CharacterDisplay_Sample\bin\Debug\net472\Meadow.dll
+C:\Projects\Meadow.Samples\Source\MeadowSamples\Peripherals_Samples\Displays.Lcd.CharacterDisplay_Sample\bin\Debug\net472\Meadow.Foundation.dll
+C:\Projects\Meadow.Samples\Source\MeadowSamples\Peripherals_Samples\Displays.Lcd.CharacterDisplay_Sample\bin\Debug\net472\CharacterDisplay.dll
+C:\Projects\Meadow.Samples\Source\MeadowSamples\Peripherals_Samples\Displays.Lcd.CharacterDisplay_Sample\bin\Debug\net472\System.Core.dll
+C:\Projects\Meadow.Samples\Source\MeadowSamples\Peripherals_Samples\Displays.Lcd.CharacterDisplay_Sample\bin\Debug\net472\System.dll
+C:\Projects\Meadow.Samples\Source\MeadowSamples\Peripherals_Samples\Displays.Lcd.CharacterDisplay_Sample\bin\Debug\net472\mscorlib.dll
+C:\Projects\Meadow.Samples\Source\MeadowSamples\Peripherals_Samples\Displays.Lcd.CharacterDisplay_Sample\obj\Debug\net472\Displays.Lcd.CharacterDisplay_Sample.csprojAssemblyReference.cache
+C:\Projects\Meadow.Samples\Source\MeadowSamples\Peripherals_Samples\Displays.Lcd.CharacterDisplay_Sample\obj\Debug\net472\Displays.Lcd.CharacterDisplay_Sample.AssemblyInfoInputs.cache
+C:\Projects\Meadow.Samples\Source\MeadowSamples\Peripherals_Samples\Displays.Lcd.CharacterDisplay_Sample\obj\Debug\net472\Displays.Lcd.CharacterDisplay_Sample.AssemblyInfo.cs
+C:\Projects\Meadow.Samples\Source\MeadowSamples\Peripherals_Samples\Displays.Lcd.CharacterDisplay_Sample\obj\Debug\net472\Displays.Lcd.CharacterDisplay_Sample.csproj.CopyComplete
+C:\Projects\Meadow.Samples\Source\MeadowSamples\Peripherals_Samples\Displays.Lcd.CharacterDisplay_Sample\obj\Debug\net472\App.exe
+C:\Projects\Meadow.Samples\Source\MeadowSamples\Peripherals_Samples\Displays.Lcd.CharacterDisplay_Sample\obj\Debug\net472\App.pdb

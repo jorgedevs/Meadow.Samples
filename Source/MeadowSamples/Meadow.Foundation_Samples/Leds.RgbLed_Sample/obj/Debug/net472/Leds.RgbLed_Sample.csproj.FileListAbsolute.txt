@@ -1,0 +1,13 @@
+C:\Projects\Meadow.Samples\Source\MeadowSamples\Meadow.Foundation_Samples\Leds.RgbLed_Sample\bin\Debug\net472\App.exe.config
+C:\Projects\Meadow.Samples\Source\MeadowSamples\Meadow.Foundation_Samples\Leds.RgbLed_Sample\bin\Debug\net472\App.exe
+C:\Projects\Meadow.Samples\Source\MeadowSamples\Meadow.Foundation_Samples\Leds.RgbLed_Sample\bin\Debug\net472\App.pdb
+C:\Projects\Meadow.Samples\Source\MeadowSamples\Meadow.Foundation_Samples\Leds.RgbLed_Sample\bin\Debug\net472\Meadow.dll
+C:\Projects\Meadow.Samples\Source\MeadowSamples\Meadow.Foundation_Samples\Leds.RgbLed_Sample\bin\Debug\net472\Meadow.Foundation.dll
+C:\Projects\Meadow.Samples\Source\MeadowSamples\Meadow.Foundation_Samples\Leds.RgbLed_Sample\bin\Debug\net472\System.Core.dll
+C:\Projects\Meadow.Samples\Source\MeadowSamples\Meadow.Foundation_Samples\Leds.RgbLed_Sample\bin\Debug\net472\System.dll
+C:\Projects\Meadow.Samples\Source\MeadowSamples\Meadow.Foundation_Samples\Leds.RgbLed_Sample\bin\Debug\net472\mscorlib.dll
+C:\Projects\Meadow.Samples\Source\MeadowSamples\Meadow.Foundation_Samples\Leds.RgbLed_Sample\obj\Debug\net472\Leds.RgbLed_Sample.AssemblyInfoInputs.cache
+C:\Projects\Meadow.Samples\Source\MeadowSamples\Meadow.Foundation_Samples\Leds.RgbLed_Sample\obj\Debug\net472\Leds.RgbLed_Sample.AssemblyInfo.cs
+C:\Projects\Meadow.Samples\Source\MeadowSamples\Meadow.Foundation_Samples\Leds.RgbLed_Sample\obj\Debug\net472\Leds.RgbLed_Sample.csproj.CopyComplete
+C:\Projects\Meadow.Samples\Source\MeadowSamples\Meadow.Foundation_Samples\Leds.RgbLed_Sample\obj\Debug\net472\App.exe
+C:\Projects\Meadow.Samples\Source\MeadowSamples\Meadow.Foundation_Samples\Leds.RgbLed_Sample\obj\Debug\net472\App.pdb
