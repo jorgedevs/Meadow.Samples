@@ -158,7 +158,6 @@
   },
   "projectFileDependencyGroups": {
     ".NETFramework,Version=v4.7.2": [
-      "Meadow.Foundation >= 0.10.5",
       "Meadow.Foundation.Servo >= 0.8.1"
     ]
   },
@@ -204,10 +203,6 @@
     "frameworks": {
       "net472": {
         "dependencies": {
-          "Meadow.Foundation": {
-            "target": "Package",
-            "version": "[0.10.5, )"
-          },
           "Meadow.Foundation.Servo": {
             "target": "Package",
             "version": "[0.8.1, )"

@@ -122,8 +122,7 @@
   },
   "projectFileDependencyGroups": {
     ".NETFramework,Version=v4.7.2": [
-      "Meadow.Foundation >= 0.10.5",
-      "WildernessLabs.Meadow.Assemblies >= 0.1.1"
+      "Meadow.Foundation >= 0.10.5"
     ]
   },
   "packageFolders": {
@@ -171,10 +170,6 @@
           "Meadow.Foundation": {
             "target": "Package",
             "version": "[0.10.5, )"
-          },
-          "WildernessLabs.Meadow.Assemblies": {
-            "target": "Package",
-            "version": "[0.1.1, )"
           }
         },
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"

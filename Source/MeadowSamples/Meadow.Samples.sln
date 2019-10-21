@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HelloLed", "HelloLed\HelloL
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Meadow.Foundation_Samples", "Meadow.Foundation_Samples", "{38D2D700-9509-4A02-B985-2A95C2844E6C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Servos_Sample", "Peripherals_Samples\Servos_Sample\Servos_Sample.csproj", "{7781F7F7-4A99-4228-8C89-6AE5E3372D2B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Servos.Servo_Sample", "Peripherals_Samples\Servos_Sample\Servos.Servo_Sample.csproj", "{7781F7F7-4A99-4228-8C89-6AE5E3372D2B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leds.LedBarGraph_Sample", "Meadow.Foundation_Samples\Leds.LedBarGraph_Sample\Leds.LedBarGraph_Sample.csproj", "{C4EB0552-3660-4DEF-B2AD-DA7AD98DD41B}"
 EndProject

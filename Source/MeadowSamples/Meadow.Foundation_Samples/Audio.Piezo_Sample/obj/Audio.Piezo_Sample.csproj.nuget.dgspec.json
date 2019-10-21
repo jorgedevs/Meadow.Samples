@@ -45,10 +45,6 @@
             "Meadow.Foundation": {
               "target": "Package",
               "version": "[0.10.5, )"
-            },
-            "WildernessLabs.Meadow.Assemblies": {
-              "target": "Package",
-              "version": "[0.1.1, )"
             }
           },
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"

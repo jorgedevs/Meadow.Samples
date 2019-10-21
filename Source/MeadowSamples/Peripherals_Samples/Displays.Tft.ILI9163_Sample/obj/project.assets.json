@@ -195,8 +195,7 @@
   "projectFileDependencyGroups": {
     ".NETFramework,Version=v4.7.2": [
       "Meadow.Foundation.Displays.GraphicsLibrary >= 0.8.2",
-      "Meadow.Foundation.Displays.TftSpi >= 0.6.2",
-      "WildernessLabs.Meadow.Assemblies >= 0.1.1"
+      "Meadow.Foundation.Displays.TftSpi >= 0.6.2"
     ]
   },
   "packageFolders": {
@@ -248,10 +247,6 @@
           "Meadow.Foundation.Displays.TftSpi": {
             "target": "Package",
             "version": "[0.6.2, )"
-          },
-          "WildernessLabs.Meadow.Assemblies": {
-            "target": "Package",
-            "version": "[0.1.1, )"
           }
         },
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"

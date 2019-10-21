@@ -158,9 +158,7 @@
   },
   "projectFileDependencyGroups": {
     ".NETFramework,Version=v4.7.2": [
-      "Meadow >= 0.8.5",
-      "Meadow.Foundation.Servo >= 0.8.1",
-      "WildernessLabs.Meadow.Assemblies >= 0.1.1"
+      "Meadow.Foundation.Servo >= 0.8.1"
     ]
   },
   "packageFolders": {
@@ -170,9 +168,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Projects\\Meadow.Samples\\Source\\MeadowSamples\\Peripherals_Samples\\Servos_Sample\\Servos_Sample.csproj",
+      "projectUniqueName": "C:\\Projects\\Meadow.Samples\\Source\\MeadowSamples\\Peripherals_Samples\\Servos_Sample\\Servos.Servo_Sample.csproj",
       "projectName": "App",
-      "projectPath": "C:\\Projects\\Meadow.Samples\\Source\\MeadowSamples\\Peripherals_Samples\\Servos_Sample\\Servos_Sample.csproj",
+      "projectPath": "C:\\Projects\\Meadow.Samples\\Source\\MeadowSamples\\Peripherals_Samples\\Servos_Sample\\Servos.Servo_Sample.csproj",
       "packagesPath": "C:\\Users\\ramir\\.nuget\\packages\\",
       "outputPath": "C:\\Projects\\Meadow.Samples\\Source\\MeadowSamples\\Peripherals_Samples\\Servos_Sample\\obj\\",
       "projectStyle": "PackageReference",
@@ -205,17 +203,9 @@
     "frameworks": {
       "net472": {
         "dependencies": {
-          "Meadow": {
-            "target": "Package",
-            "version": "[0.8.5, )"
-          },
           "Meadow.Foundation.Servo": {
             "target": "Package",
             "version": "[0.8.1, )"
-          },
-          "WildernessLabs.Meadow.Assemblies": {
-            "target": "Package",
-            "version": "[0.1.1, )"
           }
         },
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"

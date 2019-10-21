@@ -45,10 +45,6 @@
             "Meadow.Foundation.RTCs.DS1307": {
               "target": "Package",
               "version": "[0.7.1, )"
-            },
-            "WildernessLabs.Meadow.Assemblies": {
-              "target": "Package",
-              "version": "[0.1.1, )"
             }
           },
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"

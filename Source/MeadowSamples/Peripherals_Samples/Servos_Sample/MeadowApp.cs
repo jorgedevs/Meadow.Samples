@@ -4,7 +4,7 @@ using Meadow;
 using Meadow.Devices;
 using Meadow.Hardware;
 
-namespace Meadow.Foundation.Servos_Sample
+namespace Servos.Servo_Sample
 {
     public class MeadowApp : App<F7Micro, MeadowApp>
     {

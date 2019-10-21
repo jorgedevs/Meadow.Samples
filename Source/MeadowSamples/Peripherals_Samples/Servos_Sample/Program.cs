@@ -1,6 +1,6 @@
 ﻿using Meadow;
 
-namespace Meadow.Foundation.Servos_Sample
+namespace Servos.Servo_Sample
 {
     class Program
     {

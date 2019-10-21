@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Threading;
+using Meadow;
 using Meadow.Devices;
+using Meadow.Foundation.Leds;
 using Meadow.Hardware;
 
-namespace Meadow.Foundation.Leds.LedBarGraph_Sample
+namespace Leds.LedBarGraph_Sample
 {
     public class MeadowApp : App<F7Micro, MeadowApp>
     {
@@ -29,7 +31,7 @@ namespace Meadow.Foundation.Leds.LedBarGraph_Sample
             TestLedBarGraph();
         }
 
-        public void TestLedBarGraph()
+        void TestLedBarGraph()
         {
             float percentage = 0;
 

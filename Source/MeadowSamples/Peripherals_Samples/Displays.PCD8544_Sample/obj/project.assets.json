@@ -194,7 +194,6 @@
   },
   "projectFileDependencyGroups": {
     ".NETFramework,Version=v4.7.2": [
-      "Meadow.Foundation >= 0.10.5",
       "Meadow.Foundation.Displays.GraphicsLibrary >= 0.8.2",
       "Meadow.Foundation.Displays.PCD8544 >= 0.5.1"
     ]
@@ -241,10 +240,6 @@
     "frameworks": {
       "net472": {
         "dependencies": {
-          "Meadow.Foundation": {
-            "target": "Package",
-            "version": "[0.10.5, )"
-          },
           "Meadow.Foundation.Displays.GraphicsLibrary": {
             "target": "Package",
             "version": "[0.8.2, )"

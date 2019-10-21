@@ -34,7 +34,7 @@ namespace Leds.PwmLed_Sample
             TestPwmLeds();
         }
 
-        protected void TestPwmLeds()
+        void TestPwmLeds()
         {
             Console.WriteLine("TestPwmLeds...");
 

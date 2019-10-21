@@ -1,6 +1,6 @@
 ﻿using Meadow;
 
-namespace Meadow.Foundation.Leds.LedBarGraph_Sample
+namespace Leds.LedBarGraph_Sample
 {
     class Program
     {

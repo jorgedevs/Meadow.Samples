@@ -49,10 +49,6 @@
             "Meadow.Foundation.Displays.TftSpi": {
               "target": "Package",
               "version": "[0.6.2, )"
-            },
-            "WildernessLabs.Meadow.Assemblies": {
-              "target": "Package",
-              "version": "[0.1.1, )"
             }
           },
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
