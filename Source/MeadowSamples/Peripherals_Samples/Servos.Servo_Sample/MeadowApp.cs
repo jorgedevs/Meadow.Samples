@@ -2,48 +2,40 @@
 using System.Threading;
 using Meadow;
 using Meadow.Devices;
-using Meadow.Hardware;
+using Meadow.Foundation.Servos;
 
 namespace Servos.Servo_Sample
 {
     public class MeadowApp : App<F7Micro, MeadowApp>
     {
-        IDigitalOutputPort redLed;
-        IDigitalOutputPort blueLed;
-        IDigitalOutputPort greenLed;
+        Servo servo;
 
         public MeadowApp()
         {
-            ConfigurePorts();
-            BlinkLeds();
+            Console.WriteLine("Initializing...");
+
+            servo = new Servo(Device.CreatePwmPort(Device.Pins.D04), NamedServoConfigs.Ideal180Servo);
+
+            TestServo();
         }
 
-        public void ConfigurePorts()
+        void TestServo()
         {
-            Console.WriteLine("Creating Outputs...");
-            redLed = Device.CreateDigitalOutputPort(Device.Pins.OnboardLedRed);
-            blueLed = Device.CreateDigitalOutputPort(Device.Pins.OnboardLedBlue);
-            greenLed = Device.CreateDigitalOutputPort(Device.Pins.OnboardLedGreen);
-        }
-
-        public void BlinkLeds()
-        {
-            var state = false;
+            Console.WriteLine("TestServo...");
 
             while (true)
             {
-                int wait = 200;
-
-                state = !state;
-
-                Console.WriteLine($"State: {state}");
-
-                redLed.State = state;
-                Thread.Sleep(wait);
-                blueLed.State = state;
-                Thread.Sleep(wait);
-                greenLed.State = state;
-                Thread.Sleep(wait);
+                if (servo.Angle <= servo.Config.MinimumAngle)
+                {
+                    Console.WriteLine($"Rotating to {servo.Config.MaximumAngle}");
+                    servo.RotateTo(servo.Config.MaximumAngle);
+                }
+                else
+                {
+                    Console.WriteLine($"Rotating to {servo.Config.MinimumAngle}");
+                    servo.RotateTo(servo.Config.MinimumAngle);
+                }
+                Thread.Sleep(5000);
             }
         }
     }
