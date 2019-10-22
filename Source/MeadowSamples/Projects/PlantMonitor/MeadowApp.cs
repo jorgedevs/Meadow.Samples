@@ -2,48 +2,61 @@
 using System.Threading;
 using Meadow;
 using Meadow.Devices;
+using Meadow.Foundation.Leds;
+using Meadow.Foundation.Sensors.Moisture;
 using Meadow.Hardware;
 
 namespace PlantMonitor
 {
     public class MeadowApp : App<F7Micro, MeadowApp>
     {
-        IDigitalOutputPort redLed;
-        IDigitalOutputPort blueLed;
-        IDigitalOutputPort greenLed;
+        LedBarGraph ledBarGraph;
+        Capacitive capacitive;
 
         public MeadowApp()
         {
-            ConfigurePorts();
-            BlinkLeds();
+            Initialize();
+            Run();
         }
 
-        public void ConfigurePorts()
+        public void Initialize()
         {
             Console.WriteLine("Creating Outputs...");
-            redLed = Device.CreateDigitalOutputPort(Device.Pins.OnboardLedRed);
-            blueLed = Device.CreateDigitalOutputPort(Device.Pins.OnboardLedBlue);
-            greenLed = Device.CreateDigitalOutputPort(Device.Pins.OnboardLedGreen);
+
+            IDigitalOutputPort[] ports =
+            {
+                 Device.CreateDigitalOutputPort(Device.Pins.D05),
+                 Device.CreateDigitalOutputPort(Device.Pins.D06),
+                 Device.CreateDigitalOutputPort(Device.Pins.D07),
+                 Device.CreateDigitalOutputPort(Device.Pins.D08),
+                 Device.CreateDigitalOutputPort(Device.Pins.D09),
+                 Device.CreateDigitalOutputPort(Device.Pins.D10),
+                 Device.CreateDigitalOutputPort(Device.Pins.D11),
+                 Device.CreateDigitalOutputPort(Device.Pins.D12),
+                 Device.CreateDigitalOutputPort(Device.Pins.D13),
+                 Device.CreateDigitalOutputPort(Device.Pins.D14)
+            };
+            ledBarGraph = new LedBarGraph(ports);
+
+            capacitive = new Capacitive(Device.CreateAnalogInputPort(Device.Pins.A00), 2.84f, 1.37f);
         }
 
-        public void BlinkLeds()
+        public void Run()
         {
-            var state = false;
-
             while (true)
             {
-                int wait = 200;
+                float moisture = capacitive.Read();
 
-                state = !state;
+                if (moisture > 100)
+                    moisture = 100.0f;
+                else
+                if (moisture < 0)
+                    moisture = 0.0f;
 
-                Console.WriteLine($"State: {state}");
+                ledBarGraph.Percentage = moisture / 100f;
 
-                redLed.State = state;
-                Thread.Sleep(wait);
-                blueLed.State = state;
-                Thread.Sleep(wait);
-                greenLed.State = state;
-                Thread.Sleep(wait);
+                Console.WriteLine($"Raw: {capacitive.Moisture} | Moisture {moisture}%");
+                Thread.Sleep(1000);
             }
         }
     }
