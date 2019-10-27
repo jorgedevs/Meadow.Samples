@@ -1,4 +1,5 @@
 ﻿using Meadow;
+using System.Threading;
 
 namespace RobotArm
 {
@@ -11,6 +12,7 @@ namespace RobotArm
 
             // instantiate and run new meadow app
             app = new MeadowApp();
+            Thread.Sleep(Timeout.Infinite);
         }
     }
 }
