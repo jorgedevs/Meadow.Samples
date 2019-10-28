@@ -14,7 +14,14 @@ namespace Servos.Servo_Sample
         {
             Console.WriteLine("Initializing...");
 
-            servo = new Servo(Device.CreatePwmPort(Device.Pins.D04), NamedServoConfigs.Ideal180Servo);
+            ServoConfig config = new ServoConfig(
+                minimumAngle: 0, 
+                maximumAngle: 180,
+                minimumPulseDuration: 700,
+                maximumPulseDuration: 3000,
+                frequency: 50);
+
+            servo = new Servo(Device.CreatePwmPort(Device.Pins.D05), config);
 
             TestServo();
         }
@@ -23,19 +30,17 @@ namespace Servos.Servo_Sample
         {
             Console.WriteLine("TestServo...");
 
+            int angle = 0;
+            servo.RotateTo(angle);
+            Thread.Sleep(3000);
+
             while (true)
             {
-                if (servo.Angle <= servo.Config.MinimumAngle)
-                {
-                    Console.WriteLine($"Rotating to {servo.Config.MaximumAngle}");
-                    servo.RotateTo(servo.Config.MaximumAngle);
-                }
-                else
-                {
-                    Console.WriteLine($"Rotating to {servo.Config.MinimumAngle}");
-                    servo.RotateTo(servo.Config.MinimumAngle);
-                }
-                Thread.Sleep(5000);
+                servo.RotateTo(servo.Config.MaximumAngle);
+                Thread.Sleep(3000);
+
+                servo.RotateTo(servo.Config.MinimumAngle);
+                Thread.Sleep(3000);
             }
         }
     }
