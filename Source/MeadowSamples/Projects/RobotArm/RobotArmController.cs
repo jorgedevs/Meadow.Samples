@@ -9,9 +9,6 @@ namespace RobotArm
     {
         public const int GRIP_OPEN = 70;
         public const int GRIP_CLOSE = 140;
-        public const int BASE_LEFT = 0;
-        public const int BASE_RIGHT = 180;
-
 
         int _baseAngle;
         Servo _base;
@@ -19,8 +16,10 @@ namespace RobotArm
         int _gripAngle;
         Servo _grip;
 
+        int _verticalAngle;
         Servo _vertical;
 
+        int _horizontalAngle;
         Servo _horizontal;
 
         public RobotArmController(IPwmPort pwmBase, IPwmPort pwmGrip, IPwmPort pwmVertical, IPwmPort pwmHorizontal)
@@ -42,9 +41,12 @@ namespace RobotArm
 
         public void Initialize() 
         {
-            _base.RotateTo(90);
-            _grip.RotateTo(70);
-            //_vertical.RotateTo(90);
+            //_base.RotateTo(90);
+            //_grip.RotateTo(70);
+
+            _verticalAngle = 0;
+            _vertical.RotateTo(_verticalAngle);
+
             //_horizontal.RotateTo(90);
         }
 
@@ -83,16 +85,58 @@ namespace RobotArm
             _gripAngle = angle;
         }
 
-        public void MoveVertical(int angle)
+        public void MoveVerticalUp()
         {
-            Console.WriteLine("MoveVertical...");
-            _vertical.RotateTo(angle);
+            Console.WriteLine($"MoveVerticalUp...{_verticalAngle + 10}");
+            if (_verticalAngle < _vertical.Config.MaximumAngle)
+            {
+                for (int i = 0; i < 10; i++)
+                {
+                    _verticalAngle++;
+                    _vertical.RotateTo(_verticalAngle);
+                    Thread.Sleep(500);
+                }
+            }
+        }
+        public void MoveVerticalDown()
+        {
+            Console.WriteLine($"MoveVerticalDown...{_verticalAngle - 10}");
+            if (_verticalAngle > _vertical.Config.MinimumAngle)
+            {
+                for (int i = 0; i < 10; i++)
+                {
+                    _verticalAngle--;
+                    _vertical.RotateTo(_verticalAngle);
+                    Thread.Sleep(500);
+                }
+            }
         }
 
-        public void MoveHorizontal(int angle)
+        public void MoveHorizontalForward()
         {
-            Console.WriteLine("MoveHorizontal...");
-            _horizontal.RotateTo(angle);
+            Console.WriteLine($"MoveHorizontalForward...{_horizontalAngle + 10}");
+            if (_horizontalAngle < _horizontal.Config.MaximumAngle)
+            {
+                for (int i = 0; i < 10; i++)
+                {
+                    _horizontalAngle++;
+                    _horizontal.RotateTo(_horizontalAngle);
+                    Thread.Sleep(500);
+                }
+            }
+        }
+        public void MoveHorizontalBackward()
+        {
+            Console.WriteLine($"MoveHorizontalBackward...{_horizontalAngle - 10}");
+            if (_horizontalAngle > _horizontal.Config.MinimumAngle)
+            {
+                for (int i = 0; i < 10; i++)
+                {
+                    _horizontalAngle--;
+                    _horizontal.RotateTo(_horizontalAngle);
+                    Thread.Sleep(500);
+                }
+            }
         }
     }
 }
