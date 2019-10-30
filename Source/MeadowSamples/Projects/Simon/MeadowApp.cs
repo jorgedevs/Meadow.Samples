@@ -1,5 +1,6 @@
 ﻿using Meadow;
 using Meadow.Devices;
+using Meadow.Foundation.Audio;
 using Meadow.Foundation.Leds;
 using Meadow.Foundation.Sensors.Buttons;
 using Meadow.Hardware;
@@ -11,13 +12,12 @@ namespace Simon
     public class MeadowApp : App<F7Micro, MeadowApp>
     {
         int ANIMATION_DELAY = 200;
+        float[] notes = new float[] { 261.63f, 329.63f, 392, 523.25f };
 
         Led[] leds = new Led[4];
+        PushButton[] pushButtons = new PushButton[4];
 
-        PushButton buttonRed;
-        PushButton buttonGreen;
-        PushButton buttonBlue;
-        PushButton buttonYellow;
+        PiezoSpeaker speaker;
 
         bool isAnimating = false;
         SimonGame game = new SimonGame();
@@ -29,17 +29,16 @@ namespace Simon
             leds[2] = new Led(Device.CreateDigitalOutputPort(Device.Pins.D08));
             leds[3] = new Led(Device.CreateDigitalOutputPort(Device.Pins.D07));
 
-            buttonRed = new PushButton(Device.CreateDigitalInputPort(Device.Pins.D01, InterruptMode.EdgeBoth, ResistorMode.Disabled));
-            buttonRed.Clicked += ButtonRedClicked;
+            pushButtons[0] = new PushButton(Device.CreateDigitalInputPort(Device.Pins.D01, InterruptMode.EdgeBoth, ResistorMode.Disabled));
+            pushButtons[0].Clicked += ButtonRedClicked;
+            pushButtons[1] = new PushButton(Device.CreateDigitalInputPort(Device.Pins.D02, InterruptMode.EdgeBoth, ResistorMode.Disabled));
+            pushButtons[1].Clicked += ButtonGreenClicked;
+            pushButtons[2] = new PushButton(Device.CreateDigitalInputPort(Device.Pins.D03, InterruptMode.EdgeBoth, ResistorMode.Disabled));
+            pushButtons[2].Clicked += ButtonBlueClicked;
+            pushButtons[3] = new PushButton(Device.CreateDigitalInputPort(Device.Pins.D04, InterruptMode.EdgeBoth, ResistorMode.Disabled));
+            pushButtons[3].Clicked += ButtonYellowClicked;
 
-            buttonGreen = new PushButton(Device.CreateDigitalInputPort(Device.Pins.D02, InterruptMode.EdgeBoth, ResistorMode.Disabled));
-            buttonGreen.Clicked += ButtonGreenClicked;
-
-            buttonBlue = new PushButton(Device.CreateDigitalInputPort(Device.Pins.D03, InterruptMode.EdgeBoth, ResistorMode.Disabled));
-            buttonBlue.Clicked += ButtonBlueClicked;
-
-            buttonYellow = new PushButton(Device.CreateDigitalInputPort(Device.Pins.D04, InterruptMode.EdgeBoth, ResistorMode.Disabled));
-            buttonYellow.Clicked += ButtonYellowClicked;
+            speaker = new PiezoSpeaker(Device.CreatePwmPort(Device.Pins.D11));
 
             Console.WriteLine("Welcome to Simon");
             SetAllLEDs(true);
@@ -105,7 +104,7 @@ namespace Simon
         void TurnOnLED(int index, int duration = 400)
         {
             leds[index].IsOn = true;
-            Thread.Sleep(duration);
+            speaker.PlayTone(notes[index], duration);
             leds[index].IsOn = false;
         }
 
@@ -172,7 +171,7 @@ namespace Simon
             if (isAnimating)
                 return;
             isAnimating = true;
-            
+            speaker.PlayTone(123.47f, 750);
             for (int i = 0; i < 20; i++)
             {
                 SetAllLEDs(false);
