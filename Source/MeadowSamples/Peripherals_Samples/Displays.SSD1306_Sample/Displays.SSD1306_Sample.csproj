@@ -6,6 +6,6 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Meadow.Foundation.Displays.GraphicsLibrary" Version="0.8.3" />
-    <PackageReference Include="Meadow.Foundation.Displays.SSD1306" Version="0.10.2" />
+    <PackageReference Include="Meadow.Foundation.Displays.SSD1306" Version="0.10.3" />
   </ItemGroup>
 </Project>
