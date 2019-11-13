@@ -4,7 +4,6 @@ using Meadow.Devices;
 using Meadow.Foundation;
 using Meadow.Foundation.Displays.Tft;
 using Meadow.Foundation.Graphics;
-using Meadow.Hardware;
 
 namespace Displays.Tft.ILI9163_Sample
 {
@@ -12,30 +11,110 @@ namespace Displays.Tft.ILI9163_Sample
     {
         readonly Color WatchBackgroundColor = Color.White;
 
-        protected ISpiBus spiBus;
-        protected ILI9163 iLI9163;
-        protected GraphicsLibrary display;
-        protected int hour, minute, second, tick;
+        ILI9163 iLI9163;
+        GraphicsLibrary display;
+        int hour, minute, second, tick;
 
         public MeadowApp()
         {
-            spiBus = Device.CreateSpiBus();// Device.Pins.SCK, Device.Pins.MOSI, Device.Pins.MISO, 2000);
-
-            iLI9163 = new ILI9163(device: Device, spiBus: spiBus,
+            iLI9163 = new ILI9163
+            (
+                device: Device, 
+                spiBus: Device.CreateSpiBus(),
                 chipSelectPin: Device.Pins.D02,
                 dcPin: Device.Pins.D01,
                 resetPin: Device.Pins.D00,
-                width: 128, height: 160);
+                width: 128, height: 160
+            );
             iLI9163.ClearScreen(31);
             iLI9163.Refresh();
 
             display = new GraphicsLibrary(iLI9163);
 
+            DrawShapes();
+            DrawTexts();
             DrawClock();
         }
 
-        protected void DrawClock()
+        void DrawShapes()
         {
+            display.Clear(true);
+
+            // Filled Rectangles
+            display.DrawRectangle(3, 3, 26, 26, Color.Red, true);
+            display.DrawRectangle(37, 6, 20, 20, Color.Red, true);
+            display.DrawRectangle(65, 9, 14, 14, Color.Red, true);
+            display.DrawRectangle(87, 12, 8, 8, Color.Red, true);
+            display.DrawRectangle(103, 15, 2, 2, Color.Red, true);
+            display.Show();
+
+            // Empty Rectangles
+            display.DrawRectangle(3, 32, 26, 26, Color.Red);
+            display.DrawRectangle(37, 35, 20, 20, Color.Red);
+            display.DrawRectangle(65, 38, 14, 14, Color.Red);
+            display.DrawRectangle(87, 41, 8, 8, Color.Red);
+            display.DrawRectangle(103, 44, 2, 2, Color.Red);
+            display.Show();
+
+            // Filled Circles
+            display.DrawCircle(16, 73, 13, Color.Green, true);
+            display.DrawCircle(47, 73, 10, Color.Green, true);
+            display.DrawCircle(72, 73, 7, Color.Green, true);
+            display.DrawCircle(91, 73, 4, Color.Green, true);
+            display.DrawCircle(104, 73, 1, Color.Green, true);
+            display.Show();
+
+            // Empty Circles
+            display.DrawCircle(16, 103, 13, Color.Green);
+            display.DrawCircle(47, 103, 10, Color.Green);
+            display.DrawCircle(72, 103, 7, Color.Green);
+            display.DrawCircle(91, 103, 4, Color.Green);
+            display.DrawCircle(104, 103, 1, Color.Green);
+            display.Show();
+
+            // Horizontal, vertical and specific lines
+            for (int i = 0; i < 9; i++)
+                display.DrawHorizontalLine(3, 123 + (i * 4), 26, Color.Blue);
+            for (int i = 0; i < 7; i++)
+                display.DrawVerticalLine(37 + (i * 4), 123, 33, Color.Blue);
+            display.DrawLine(70, 131, 94, 147, Color.Blue);
+            display.DrawLine(70, 123, 94, 155, Color.Blue);
+            display.DrawLine(78, 123, 86, 155, Color.Blue);
+            display.DrawLine(86, 123, 78, 155, Color.Blue);
+            display.DrawLine(94, 123, 70, 155, Color.Blue);
+            display.DrawLine(94, 131, 70, 147, Color.Blue);
+            display.DrawLine(70, 139, 94, 139, Color.Blue);
+            display.Show();
+            Thread.Sleep(5000);
+        }
+
+        void DrawTexts()
+        {
+            display.Clear(true);
+
+            display.CurrentFont = new Font8x12();
+            display.DrawText(4, 4, "abcdefghijklm", Color.White);
+            display.DrawText(4, 18, "nopqrstuvwxyz", Color.White);
+            display.DrawText(4, 32, "`1234567890-=", Color.White);
+            display.DrawText(4, 46, "~!@#$%^&*()_+", Color.White);
+            display.DrawText(4, 60, "[]\\;',./", Color.White);
+            display.DrawText(4, 74, "{}|:\"<>?", Color.White);
+            display.DrawText(4, 88, "ABCDEFGHIJKLM", Color.White);
+            display.DrawText(4, 102, "NOPQRSTUVWXYZ", Color.White);
+
+            display.CurrentFont = new Font4x8();
+            display.DrawText(4, 116, "ABCDEFGHIJKLMNOPQRSTUVWXYZ", Color.White);
+            display.DrawText(4, 126, "abcdefghijklmnopqrstuvwxyz", Color.White);
+            display.DrawText(4, 136, "01234567890!@#$%^&*()_+-=", Color.White);
+            display.DrawText(4, 146, "\\|;:'\",<.>/?[]{}", Color.White);
+            display.Show();
+            Thread.Sleep(5000);
+        }
+
+        void DrawClock()
+        {
+            display.Clear(true);
+
             hour = 8;
             minute = 54;
             DrawWatchFace();
@@ -46,7 +125,7 @@ namespace Displays.Tft.ILI9163_Sample
                 UpdateClock(second: tick % 60);
             }
         }
-        protected void DrawWatchFace()
+        void DrawWatchFace()
         {
             display.Clear();
             int xCenter = 64;
@@ -66,7 +145,7 @@ namespace Displays.Tft.ILI9163_Sample
                     display.DrawPixel(x, y, Color.Black);
             }
         }
-        protected void UpdateClock(int second = 0)
+        void UpdateClock(int second = 0)
         {
             int xCenter = 64, yCenter = 80;
             int x, y, xT, yT;
