@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading;
+using System.Threading.Tasks;
 using Meadow;
 using Meadow.Devices;
 using Meadow.Foundation.Leds;
@@ -15,14 +16,6 @@ namespace PlantMonitor
 
         public MeadowApp()
         {
-            Initialize();
-            Run();
-        }
-
-        public void Initialize()
-        {
-            Console.WriteLine("Creating Outputs...");
-
             IDigitalOutputPort[] ports =
             {
                  Device.CreateDigitalOutputPort(Device.Pins.D05),
@@ -38,14 +31,19 @@ namespace PlantMonitor
             };
             ledBarGraph = new LedBarGraph(ports);
 
-            capacitive = new Capacitive(Device.CreateAnalogInputPort(Device.Pins.A00), 2.84f, 1.37f);
+            capacitive = new Capacitive(
+                analogPort: Device.CreateAnalogInputPort(Device.Pins.A00), 
+                minimumVoltageCalibration: 2.84f, 
+                maximumVoltageCalibration: 1.37f);
+
+            Run();
         }
 
-        public void Run()
+        public async Task Run()
         {
             while (true)
             {
-                float moisture = capacitive.Read();
+                float moisture = await capacitive.Read();
 
                 if (moisture > 100)
                     moisture = 100.0f;
