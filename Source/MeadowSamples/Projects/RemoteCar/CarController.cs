@@ -4,8 +4,10 @@ namespace RemoteCar
 {
     public class CarController
     {
-        protected HBridgeMotor motorLeft;
-        protected HBridgeMotor motorRight;
+        float SPEED = 0.75f;
+
+        HBridgeMotor motorLeft;
+        HBridgeMotor motorRight;
 
         public CarController(HBridgeMotor motorLeft, HBridgeMotor motorRight)
         {
@@ -21,26 +23,26 @@ namespace RemoteCar
 
         public void TurnLeft()
         {
-            motorLeft.Speed = 1f;
-            motorRight.Speed = -1f;
+            motorLeft.Speed = SPEED;
+            motorRight.Speed = -SPEED;
         }
 
         public void TurnRight()
         {
-            motorLeft.Speed = -1f;
-            motorRight.Speed = 1f;
+            motorLeft.Speed = -SPEED;
+            motorRight.Speed = SPEED;
         }
 
         public void MoveForward()
         {
-            motorLeft.Speed = -1f;
-            motorRight.Speed = -1f;
+            motorLeft.Speed = -SPEED;
+            motorRight.Speed = -SPEED;
         }
 
         public void MoveBackward()
         {
-            motorLeft.Speed = 1f;
-            motorRight.Speed = 1f;
+            motorLeft.Speed = SPEED;
+            motorRight.Speed = SPEED;
         }
     }
 }
