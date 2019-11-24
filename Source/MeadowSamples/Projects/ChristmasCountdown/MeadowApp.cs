@@ -8,15 +8,16 @@ using Meadow.Foundation.RTCs;
 namespace ChristmasCountdown
 {
     public class MeadowApp : App<F7Micro, MeadowApp>
-    {
+    {        
         DS1307 rtc;
-        //DateTime rtc;
+        DateTime currentDate;
         CharacterDisplay display;
 
         public MeadowApp()
         {
             rtc = new DS1307(Device.CreateI2cBus());
-            rtc.SetTime(new DateTime(2019, 11, 23, 20, 19, 20));
+            // Uncomment only when setting the time
+            // rtc.SetTime(new DateTime(2019, 11, 23, 22, 55, 20));
 
             display = new CharacterDisplay
             (
@@ -32,30 +33,34 @@ namespace ChristmasCountdown
             StartCountdown();
         }
 
-        //DateTime GetTime() 
-        //{
-        //    return DateTime.Now;
-        //}
-
         void StartCountdown() 
         {
-            DateTime ChristmasDate = new DateTime(rtc.GetTime().Year, 12, 25);
+            currentDate = rtc.GetTime();
+
             display.WriteLine("Current Date:", 0);
-            display.WriteLine(rtc.GetTime().Month + "/" + rtc.GetTime().Day + "/" + rtc.GetTime().Year, 1);
+            display.WriteLine($"{currentDate.Month}/{currentDate.Day}/{currentDate.Year}", 1);
             display.WriteLine("Christmas Countdown:", 2);
 
             while (true)
-            {
-                var date = ChristmasDate.Subtract(rtc.GetTime());
-                UpdateCountdown(date);
+            {                
+                UpdateCountdown();
                 Thread.Sleep(60000);
             }
         }
 
-        void UpdateCountdown(TimeSpan date)
+        void UpdateCountdown()
         {
-            display.ClearLine(3);
-            display.WriteLine(date.Days + "d" + date.Hours + "h" + date.Minutes + "m to go!", 3);
+            var date = rtc.GetTime();
+            var christmasDate = new DateTime(date.Year, 12, 25);
+
+            if (currentDate.Day != date.Day)
+            {
+                currentDate = date;
+                display.WriteLine(currentDate.Month + "/" + currentDate.Day + "/" + currentDate.Year, 1);
+            }
+            
+            var countdown = christmasDate.Subtract(date);
+            display.WriteLine(countdown.Days + "d" + countdown.Hours + "h" + countdown.Minutes + "m to go!", 3);
         }
     }
 }
