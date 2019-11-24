@@ -45,15 +45,15 @@ namespace PlantMonitor
             {
                 float moisture = await capacitive.Read();
 
-                if (moisture > 100)
-                    moisture = 100.0f;
+                if (moisture > 1)
+                    moisture = 1f;
                 else
                 if (moisture < 0)
-                    moisture = 0.0f;
+                    moisture = 0f;
 
-                ledBarGraph.Percentage = moisture / 100f;
+                ledBarGraph.Percentage = moisture;
 
-                Console.WriteLine($"Raw: {capacitive.Moisture} | Moisture {moisture}%");
+                Console.WriteLine($"Raw: {capacitive.Moisture} | Moisture {moisture * 100}%");
                 Thread.Sleep(1000);
             }
         }
