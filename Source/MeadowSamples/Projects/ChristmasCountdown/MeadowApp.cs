@@ -9,13 +9,14 @@ namespace ChristmasCountdown
 {
     public class MeadowApp : App<F7Micro, MeadowApp>
     {
-        //DS1307 rtc;
-        DateTime rtc;
+        DS1307 rtc;
+        //DateTime rtc;
         CharacterDisplay display;
 
         public MeadowApp()
         {
-            //rtc = new DS1307(Device.CreateI2cBus());            
+            rtc = new DS1307(Device.CreateI2cBus());
+            rtc.SetTime(new DateTime(2019, 11, 23, 20, 19, 20));
 
             display = new CharacterDisplay
             (
@@ -31,21 +32,21 @@ namespace ChristmasCountdown
             StartCountdown();
         }
 
-        DateTime GetTime() 
-        {
-            return DateTime.Now;
-        }
+        //DateTime GetTime() 
+        //{
+        //    return DateTime.Now;
+        //}
 
         void StartCountdown() 
         {
-            DateTime ChristmasDate = new DateTime(GetTime().Year, 12, 25);
+            DateTime ChristmasDate = new DateTime(rtc.GetTime().Year, 12, 25);
             display.WriteLine("Current Date:", 0);
-            display.WriteLine(GetTime().Month + "/" + GetTime().Day + "/" + GetTime().Year, 1);
+            display.WriteLine(rtc.GetTime().Month + "/" + rtc.GetTime().Day + "/" + rtc.GetTime().Year, 1);
             display.WriteLine("Christmas Countdown:", 2);
 
             while (true)
             {
-                var date = ChristmasDate.Subtract(GetTime());
+                var date = ChristmasDate.Subtract(rtc.GetTime());
                 UpdateCountdown(date);
                 Thread.Sleep(60000);
             }
