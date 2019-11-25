@@ -66,7 +66,7 @@ namespace RadioPlayer
             {
                 DisplayText("      >>>>      ", 0);
                 currentStation++;
-                radio.SelectFrequency(stations[currentStation]);                
+                radio.SelectFrequency(stations[currentStation]);
                 DisplayText($"<- FM {stations[currentStation]} ->");
             }
         }
@@ -77,7 +77,7 @@ namespace RadioPlayer
             {
                 DisplayText("      <<<<      ", 0);
                 currentStation--;
-                radio.SelectFrequency(stations[currentStation]);                
+                radio.SelectFrequency(stations[currentStation]);
                 DisplayText($"<- FM {stations[currentStation]} ->");
             }
         }
