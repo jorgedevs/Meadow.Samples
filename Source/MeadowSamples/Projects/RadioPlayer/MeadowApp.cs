@@ -89,6 +89,6 @@ namespace RadioPlayer
             graphics.DrawRectangle(0, 0, 128, 32);
             graphics.DrawText(x, 12, text);
             graphics.Show();
-        }       
+        }
     }
 }
