@@ -3,7 +3,7 @@ using System.Threading;
 using Meadow;
 using Meadow.Devices;
 using Meadow.Foundation.Leds;
-using Meadow.Hardware;
+using Meadow.Foundation.Sensors.Motion;
 
 namespace RotationDetector
 {
@@ -13,39 +13,47 @@ namespace RotationDetector
         Led down; 
         Led left;
         Led right;
+        GY521 gY521;
 
         public MeadowApp()
         {
-            Console.WriteLine("Initializing...");
-
             up = new Led(Device.CreateDigitalOutputPort(Device.Pins.D15));
             down = new Led(Device.CreateDigitalOutputPort(Device.Pins.D12));
             left = new Led(Device.CreateDigitalOutputPort(Device.Pins.D14));
             right = new Led(Device.CreateDigitalOutputPort(Device.Pins.D13));
-           
-            BlinkLeds();
+            gY521 = new GY521(Device.CreateI2cBus());
+
+            TestGY521();
         }
 
-        public void BlinkLeds()
+        void TestGY521()
         {
-            var state = false;
+            gY521.Wake();
 
             while (true)
             {
-                int wait = 200;
+                gY521.Refresh();
+                Thread.Sleep(100);
 
-                state = !state;
+                if (gY521.AccelerationY > 1000 && gY521.AccelerationY < 16000)
+                    up.IsOn = true;
+                else
+                    up.IsOn = false;
 
-                Console.WriteLine($"State: {state}");
+                if (gY521.AccelerationY > 49000 && gY521.AccelerationY < 64535)
+                    down.IsOn = true;
+                else
+                    down.IsOn = false;
 
-                up.IsOn = state;
-                Thread.Sleep(wait);
-                down.IsOn = state;
-                Thread.Sleep(wait);
-                left.IsOn = state;
-                Thread.Sleep(wait);
-                right.IsOn = state;
-                Thread.Sleep(wait);
+                if (gY521.AccelerationX > 1000 && gY521.AccelerationX < 16000)
+                    right.IsOn = true;
+                else
+                    right.IsOn = false;
+
+                if (gY521.AccelerationX > 49000 && gY521.AccelerationX < 64535)
+                    left.IsOn = true;
+                else
+                    left.IsOn = false;
             }
         }
     }
