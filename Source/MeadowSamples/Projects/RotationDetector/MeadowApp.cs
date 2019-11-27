@@ -13,7 +13,7 @@ namespace RotationDetector
         Led down; 
         Led left;
         Led right;
-        GY521 gY521;
+        Mpu6050 mpu6050;
 
         public MeadowApp()
         {
@@ -21,36 +21,36 @@ namespace RotationDetector
             down = new Led(Device.CreateDigitalOutputPort(Device.Pins.D12));
             left = new Led(Device.CreateDigitalOutputPort(Device.Pins.D14));
             right = new Led(Device.CreateDigitalOutputPort(Device.Pins.D13));
-            gY521 = new GY521(Device.CreateI2cBus());
+            mpu6050 = new Mpu6050(Device.CreateI2cBus());
 
-            TestGY521();
+            Start();
         }
 
-        void TestGY521()
+        void Start()
         {
-            gY521.Wake();
+            mpu6050.Wake();
 
             while (true)
             {
-                gY521.Refresh();
+                mpu6050.Refresh();
                 Thread.Sleep(100);
 
-                if (gY521.AccelerationY > 1000 && gY521.AccelerationY < 16000)
+                if (mpu6050.AccelerationY > 1000 && mpu6050.AccelerationY < 16000)
                     up.IsOn = true;
                 else
                     up.IsOn = false;
 
-                if (gY521.AccelerationY > 49000 && gY521.AccelerationY < 64535)
+                if (mpu6050.AccelerationY > 49000 && mpu6050.AccelerationY < 64535)
                     down.IsOn = true;
                 else
                     down.IsOn = false;
 
-                if (gY521.AccelerationX > 1000 && gY521.AccelerationX < 16000)
+                if (mpu6050.AccelerationX > 1000 && mpu6050.AccelerationX < 16000)
                     right.IsOn = true;
                 else
                     right.IsOn = false;
 
-                if (gY521.AccelerationX > 49000 && gY521.AccelerationX < 64535)
+                if (mpu6050.AccelerationX > 49000 && mpu6050.AccelerationX < 64535)
                     left.IsOn = true;
                 else
                     left.IsOn = false;
