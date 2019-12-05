@@ -24,7 +24,7 @@ namespace ServoButton
             servo = new Servo(Device.CreatePwmPort(Device.Pins.D03), servoConfig);
             servo.RotateTo(0);
 
-            button = new PushButton(Device.CreateDigitalInputPort(Device.Pins.D04, InterruptMode.EdgeBoth, ResistorMode.Disabled));
+            button = new PushButton(Device, Device.Pins.D04);
             button.Clicked += ButtonClicked;
 
             // Keeps the app running
@@ -36,7 +36,6 @@ namespace ServoButton
             servo.RotateTo(75);
             Thread.Sleep(1000);
             servo.RotateTo(0);
-            Thread.Sleep(1000);
         }
     }
 }
