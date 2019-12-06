@@ -16,11 +16,11 @@ namespace LedDice
             leds = new PwmLed[7];
             leds[0] = new PwmLed(Device.CreatePwmPort(Device.Pins.D06), TypicalForwardVoltage.Red);
             leds[1] = new PwmLed(Device.CreatePwmPort(Device.Pins.D07), TypicalForwardVoltage.Red);
-            leds[2] = new PwmLed(Device.CreatePwmPort(Device.Pins.D09), TypicalForwardVoltage.Red);
-            leds[3] = new PwmLed(Device.CreatePwmPort(Device.Pins.D10), TypicalForwardVoltage.Red);
-            leds[4] = new PwmLed(Device.CreatePwmPort(Device.Pins.D11), TypicalForwardVoltage.Red);
-            leds[5] = new PwmLed(Device.CreatePwmPort(Device.Pins.D12), TypicalForwardVoltage.Red);
-            leds[6] = new PwmLed(Device.CreatePwmPort(Device.Pins.D13), TypicalForwardVoltage.Red);
+            leds[2] = new PwmLed(Device.CreatePwmPort(Device.Pins.D08), TypicalForwardVoltage.Red);
+            leds[3] = new PwmLed(Device.CreatePwmPort(Device.Pins.D09), TypicalForwardVoltage.Red);
+            leds[4] = new PwmLed(Device.CreatePwmPort(Device.Pins.D10), TypicalForwardVoltage.Red);
+            leds[5] = new PwmLed(Device.CreatePwmPort(Device.Pins.D11), TypicalForwardVoltage.Red);
+            leds[6] = new PwmLed(Device.CreatePwmPort(Device.Pins.D12), TypicalForwardVoltage.Red);
             
             BlinkLeds();
         }
