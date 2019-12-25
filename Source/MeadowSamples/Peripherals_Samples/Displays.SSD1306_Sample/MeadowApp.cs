@@ -9,13 +9,13 @@ namespace Displays.SSD1306_Sample
 {
     public class MeadowApp : App<F7Micro, MeadowApp>
     {
-        protected SSD1306 display;
-        protected GraphicsLibrary graphics;
+        Ssd1306 display;
+        GraphicsLibrary graphics;
 
         public MeadowApp()
         {
             var i2CBus = Device.CreateI2cBus();
-            display = new SSD1306(i2CBus, 60, SSD1306.DisplayType.OLED128x32);
+            display = new Ssd1306(i2CBus, 60, Ssd1306.DisplayType.OLED128x32);
             graphics = new GraphicsLibrary(display);
 
             Console.WriteLine("Test display API");

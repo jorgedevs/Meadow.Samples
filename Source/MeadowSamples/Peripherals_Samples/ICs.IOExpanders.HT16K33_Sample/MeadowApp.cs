@@ -9,7 +9,7 @@ namespace ICs.IOExpanders.HT16K33_Sample
 {
     public class MeadowApp : App<F7Micro, MeadowApp>
     {
-        HT16K33 ht16k33;
+        Ht16K33 ht16k33;
 
         public MeadowApp()
         {
@@ -17,7 +17,7 @@ namespace ICs.IOExpanders.HT16K33_Sample
             var i2cBus = Device.CreateI2cBus();
 
             Console.WriteLine("Create HT16K33");
-            ht16k33 = new HT16K33(i2cBus);
+            ht16k33 = new Ht16K33(i2cBus);
 
             int index = 0;
             bool on = true;

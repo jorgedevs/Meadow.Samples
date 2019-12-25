@@ -10,7 +10,7 @@ namespace MemoryGame
 {
     public class MeadowApp : App<F7Micro, MeadowApp>
     {
-        protected SSD1306 display;
+        protected Ssd1306 display;
         protected GraphicsLibrary graphics;
 
         protected int currentColumn;
@@ -55,7 +55,7 @@ namespace MemoryGame
         protected void InitializePeripherals()
         {
             var i2CBus = Device.CreateI2cBus();
-            display = new SSD1306(i2CBus, 60, SSD1306.DisplayType.OLED128x32);
+            display = new Ssd1306(i2CBus, 60, Ssd1306.DisplayType.OLED128x32);
             graphics = new GraphicsLibrary(display);            
 
             //rowPorts[0] = Device.CreateDigitalInputPort(Device.Pins.D14, InterruptMode.EdgeFalling, ResistorMode.Disabled, 250);

@@ -16,8 +16,8 @@ namespace RadioPlayer
         List<float> stations;
         int currentStation = 0;
 
-        TEA5767 radio;
-        SSD1306 display;
+        Tea5767 radio;
+        Ssd1306 display;
         GraphicsLibrary graphics;
         PushButton btnNext;
         PushButton btnPrevious;
@@ -47,9 +47,9 @@ namespace RadioPlayer
 
             var i2CBus = Device.CreateI2cBus();
 
-            radio = new TEA5767(i2CBus);
+            radio = new Tea5767(i2CBus);
 
-            display = new SSD1306(i2CBus, 60, SSD1306.DisplayType.OLED128x32);
+            display = new Ssd1306(i2CBus, 60, Ssd1306.DisplayType.OLED128x32);
             graphics = new GraphicsLibrary(display);
             graphics.Rotation = GraphicsLibrary.RotationType._180Degrees;
 

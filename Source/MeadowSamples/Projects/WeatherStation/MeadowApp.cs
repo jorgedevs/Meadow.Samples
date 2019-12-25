@@ -17,14 +17,14 @@ namespace WeatherStation
         {
             var config = new SpiClockConfiguration(6000, SpiClockConfiguration.Mode.Mode3);
             var spiBus = Device.CreateSpiBus(Device.Pins.SCK, Device.Pins.MOSI, Device.Pins.MISO, config);
-            var display = new ST7789(device: Device, spiBus: spiBus,
+            var display = new St7789(device: Device, spiBus: spiBus,
                 chipSelectPin: Device.Pins.D02,
                 dcPin: Device.Pins.D01,
                 resetPin: Device.Pins.D00,
                 width: 240, height: 240);
 
             graphics = new GraphicsLibrary(display);
-            graphics.CurrentRotation = GraphicsLibrary.Rotation._270Degrees;
+            graphics.Rotation = GraphicsLibrary.RotationType._270Degrees;
             graphics.CurrentFont = new Font8x12();
 
             graphics.Clear();

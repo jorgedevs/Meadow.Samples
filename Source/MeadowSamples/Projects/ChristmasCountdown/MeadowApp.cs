@@ -9,13 +9,13 @@ namespace ChristmasCountdown
 {
     public class MeadowApp : App<F7Micro, MeadowApp>
     {        
-        DS1307 rtc;
+        Ds1307 rtc;
         DateTime currentDate;
         CharacterDisplay display;
 
         public MeadowApp()
         {
-            rtc = new DS1307(Device.CreateI2cBus());
+            rtc = new Ds1307(Device.CreateI2cBus());
             // Uncomment only when setting the time
             // rtc.SetTime(new DateTime(2019, 11, 23, 22, 55, 20));
 

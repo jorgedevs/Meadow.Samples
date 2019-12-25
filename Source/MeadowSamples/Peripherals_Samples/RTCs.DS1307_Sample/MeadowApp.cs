@@ -22,7 +22,7 @@ namespace RTCs.DS1307_Sample
         {
             Console.WriteLine("+DS1307 Test");
 
-            var rtc = new DS1307(i2c);
+            var rtc = new Ds1307(i2c);
 
             Console.Write(" Checking IsRunning...");
             var running = rtc.IsRunning;

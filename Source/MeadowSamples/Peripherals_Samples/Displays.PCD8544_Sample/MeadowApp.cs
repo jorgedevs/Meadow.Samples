@@ -9,14 +9,14 @@ namespace Displays.PCD8544_Sample
 {
     public class MeadowApp : App<F7Micro, MeadowApp>
     {
-        PCD8544 display;
+        Pcd8544 display;
         GraphicsLibrary graphics;
 
         public MeadowApp()
         {
             var spiBus = Device.CreateSpiBus();
 
-            display = new PCD8544
+            display = new Pcd8544
             (
                 device: Device,
                 spiBus: spiBus,
