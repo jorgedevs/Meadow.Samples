@@ -37,8 +37,8 @@ namespace MeadowClockGraphics
             graphics = new GraphicsLibrary(st7789);
             graphics.Rotation = GraphicsLibrary.RotationType._270Degrees;
 
-            //DrawShapes();
-            //DrawTexts();
+            DrawShapes();
+            DrawTexts();
             DrawClock();
         }
 
@@ -95,7 +95,6 @@ namespace MeadowClockGraphics
 
         void DrawTexts()
         {
-            Console.WriteLine("DrawTexts...");
             graphics.Clear(true);
 
             int indent = 20;
@@ -117,7 +116,6 @@ namespace MeadowClockGraphics
             graphics.Show();
 
             Thread.Sleep(5000);
-            Console.WriteLine("done!");
         }
 
         void DrawClock()
