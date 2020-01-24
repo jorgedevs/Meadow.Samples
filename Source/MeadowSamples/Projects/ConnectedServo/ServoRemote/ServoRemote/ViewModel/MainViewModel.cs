@@ -1,10 +1,10 @@
-﻿using ServoRemote.Client;
+﻿using Maple;
+using ServoRemote.Client;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
@@ -128,7 +128,10 @@ namespace ServoRemote.ViewModel
 
             HostList.Clear();
 
-            var servers = await servoControllerClient.FindMapleServersAsync();
+            var x = await servoControllerClient.FindMapleServersAsync();
+
+            var servers = new List<ServerItem>();
+            servers.Add(new ServerItem() { Name = "ServoHost (192.168.0.30)", IpAddress = "192.168.0.30" });
 
             foreach (var server in servers)
             {
