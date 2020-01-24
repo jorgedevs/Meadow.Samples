@@ -16,7 +16,7 @@ namespace LedJoystick
         //PwmLed down;
 
         IAnalogInputPort analogX;
-        //IAnalogInputPort analogY;
+        IAnalogInputPort analogY;
 
         public MeadowApp()
         {
@@ -28,7 +28,7 @@ namespace LedJoystick
             //down = new PwmLed(Device.CreatePwmPort(Device.Pins.D04), TypicalForwardVoltage.Red);
 
             analogX = Device.CreateAnalogInputPort(Device.Pins.A01);
-            //analogY = Device.CreateAnalogInputPort(Device.Pins.A00);
+            analogY = Device.CreateAnalogInputPort(Device.Pins.A00);
 
             PulseRgbPwmLed();
         }
@@ -44,13 +44,13 @@ namespace LedJoystick
                 //left.SetBrightness(0);
                 //right.SetBrightness(0);
 
-                float x = await analogX.Read();
-                //float y = await analogY.Read();
+                float x = await analogX.Read(1);
+                float y = await analogY.Read(1);
 
                 float brightnessLeftX = x / 1.58f;
 
                 if (brightnessLeftX > 1f)
-                    brightnessLeftX = 1f;                
+                    brightnessLeftX = 1f;
                 left.SetBrightness(1f - brightnessLeftX);
 
                 //if (x < 1.57)

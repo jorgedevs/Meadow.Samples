@@ -129,3 +129,11 @@ Source/MeadowSamples/Projects/LedJoystick/bin/
 Source/MeadowSamples/Projects/LedJoystick/obj/
 Source/MeadowSamples/Projects/MeadowClockGraphics/bin/
 Source/MeadowSamples/Projects/MeadowClockGraphics/obj/
+Source/MeadowSamples/Projects/ConnectedServo/ServoRemote/ServoRemote.Android/obj/
+Source/MeadowSamples/Projects/ConnectedServo/ServoRemote/ServoRemote.iOS/obj/ServoRemote.iOS.csproj.nuget.g.targets
+Source/MeadowSamples/Projects/ConnectedServo/ServoRemote/ServoRemote.iOS/obj/ServoRemote.iOS.csproj.nuget.g.props
+Source/MeadowSamples/Projects/ConnectedServo/ServoRemote/ServoRemote.iOS/obj/
+Source/MeadowSamples/Projects/ConnectedServo/ServoRemote/ServoRemote.UWP/obj/ServoRemote.UWP.csproj.nuget.cache
+Source/MeadowSamples/Projects/ConnectedServo/ServoRemote/ServoRemote.UWP/obj/
+Source/MeadowSamples/Projects/ConnectedServo/ServoRemote/ServoRemote/bin/
+Source/MeadowSamples/Projects/ConnectedServo/ServoRemote/ServoRemote/obj/
