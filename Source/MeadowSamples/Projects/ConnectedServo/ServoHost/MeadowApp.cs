@@ -21,7 +21,7 @@ namespace ServoHost
                 minimumPulseDuration: 700,
                 maximumPulseDuration: 3000,
                 frequency: 50);
-            servo = new Servo(Device.CreatePwmPort(Device.Pins.D02), servoConfig);
+            servo = new Servo(Device.CreatePwmPort(Device.Pins.D04), servoConfig);
 
             led = new RgbPwmLed(Device,
                        Device.Pins.OnboardLedRed,
@@ -41,16 +41,27 @@ namespace ServoHost
             {
                 Console.WriteLine("Start Cycling...");
                 led.SetColor(Color.Blue);
-                Cycle(5);
+                Cycle(3);
 
                 Console.WriteLine("Stop Cycling...");
-                led.SetColor(Color.Green);
-
-                Console.WriteLine("Rotate to 90 degrees...");
                 led.SetColor(Color.Blue);
                 Thread.Sleep(1000);
                 led.SetColor(Color.Green);
+                Thread.Sleep(1000);
 
+                Console.WriteLine("Rotate to 90 degrees...");
+                led.SetColor(Color.Blue);
+                servo.RotateTo(90);
+                Thread.Sleep(1000);
+                led.SetColor(Color.Green);
+                Thread.Sleep(1000);
+
+                Console.WriteLine("Rotate to 0 degrees...");
+                led.SetColor(Color.Blue);
+                servo.RotateTo(0);
+                Thread.Sleep(1000);
+                led.SetColor(Color.Green);
+                Thread.Sleep(1000);
             }
         }
 
@@ -59,7 +70,10 @@ namespace ServoHost
             for(int i=0; i<times; i++) 
             {
                 servo.RotateTo(180);
+                Thread.Sleep(1000);
+                led.SetColor(Color.Green);
                 servo.RotateTo(0);
+                Thread.Sleep(1000);
             }
         }
     }
