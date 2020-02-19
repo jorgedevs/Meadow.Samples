@@ -143,3 +143,5 @@ Source/MeadowSamples/Projects/ConnectedServo/ServoRemote/ServoRemote.UWP/bin/
 Source/MeadowSamples/Projects/ConnectedServo/ServoHost/bin/
 Source/MeadowSamples/Projects/ConnectedServo/ServoHost/obj/
 Source/MeadowSamples/Projects/ConnectedServo/ServoRemote/ServoRemote.Android/Resources/Resource.designer.cs
+Source/MeadowSamples/Projects/TemperatureMonitor/bin/
+Source/MeadowSamples/Projects/TemperatureMonitor/obj/
