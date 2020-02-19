@@ -11,13 +11,13 @@ namespace Displays.Tft.ILI9163_Sample
     {
         readonly Color WatchBackgroundColor = Color.White;
 
-        ILI9163 iLI9163;
+        Ili9163 iLI9163;
         GraphicsLibrary display;
         int hour, minute, second, tick;
 
         public MeadowApp()
         {
-            iLI9163 = new ILI9163
+            iLI9163 = new Ili9163
             (
                 device: Device, 
                 spiBus: Device.CreateSpiBus(),
@@ -27,7 +27,6 @@ namespace Displays.Tft.ILI9163_Sample
                 width: 128, height: 160
             );
             iLI9163.ClearScreen(31);
-            iLI9163.Refresh();
 
             display = new GraphicsLibrary(iLI9163);
 
