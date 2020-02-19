@@ -87,7 +87,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServoRemote.iOS", "Projects
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServoRemote", "Projects\ConnectedServo\ServoRemote\ServoRemote\ServoRemote.csproj", "{933B5DAC-64CE-4974-AFD3-12F353ED5442}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServoHost", "Projects\ConnectedServo\ServoHost\ServoHost.csproj", "{3CC9C26D-1B18-4BBF-8642-B1C500F3DDFF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServoHost", "Projects\ConnectedServo\ServoHost\ServoHost.csproj", "{3CC9C26D-1B18-4BBF-8642-B1C500F3DDFF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
