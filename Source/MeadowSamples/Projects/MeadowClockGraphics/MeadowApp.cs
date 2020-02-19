@@ -37,8 +37,11 @@ namespace MeadowClockGraphics
             graphics = new GraphicsLibrary(st7789);
             graphics.Rotation = GraphicsLibrary.RotationType._270Degrees;
 
-            DrawShapes();
-            DrawTexts();
+            //while (true)
+            //{
+            //    DrawShapes();
+            //}
+            //DrawTexts();
             DrawClock();
         }
 
@@ -59,7 +62,7 @@ namespace MeadowClockGraphics
                     centerX: originX, 
                     centerY: originY, 
                     radius: radius, 
-                    color: Color.FromRgb(rand.Next(255), rand.Next(255), rand.Next(255))
+                    color: Color.FromRgb(rand.Next(128,255), rand.Next(128, 255), rand.Next(128, 255))
                 );
                 graphics.Show();
                 radius += 30;
@@ -74,23 +77,23 @@ namespace MeadowClockGraphics
                     yTop: (displayHeight - sideLength) / 2, 
                     width: sideLength, 
                     height: sideLength,
-                    color: Color.FromRgb(rand.Next(255), rand.Next(255), rand.Next(255))
+                    color: Color.FromRgb(rand.Next(128, 255), rand.Next(128, 255), rand.Next(128, 255))
                 );
                 graphics.Show();
                 sideLength += 60;
             }
 
             graphics.DrawLine(0, displayHeight / 2, displayWidth, displayHeight / 2, 
-                Color.FromRgb(rand.Next(255), rand.Next(255), rand.Next(255)));
+                Color.FromRgb(rand.Next(128, 255), rand.Next(128, 255), rand.Next(128, 255)));
             graphics.DrawLine(displayWidth / 2, 0, displayWidth / 2, displayHeight, 
-                Color.FromRgb(rand.Next(255), rand.Next(255), rand.Next(255)));
+                Color.FromRgb(rand.Next(128, 255), rand.Next(128, 255), rand.Next(128, 255)));
             graphics.DrawLine(0, 0, displayWidth, displayHeight, 
-                Color.FromRgb(rand.Next(255), rand.Next(255), rand.Next(255)));
+                Color.FromRgb(rand.Next(128, 255), rand.Next(128, 255), rand.Next(128, 255)));
             graphics.DrawLine(0, displayHeight, displayWidth, 0, 
-                Color.FromRgb(rand.Next(255), rand.Next(255), rand.Next(255)));
+                Color.FromRgb(rand.Next(128, 255), rand.Next(128, 255), rand.Next(128, 255)));
             graphics.Show();
 
-            Thread.Sleep(5000);
+            //Thread.Sleep(5000);
         }
 
         void DrawTexts()
@@ -178,6 +181,9 @@ namespace MeadowClockGraphics
                     }
                 }
             }
+
+            graphics.Stroke = 3;
+
             //remove previous hour
             int previousHour = (hour - 1) < -1 ? 11 : (hour - 1);
             x = (int)(xCenter + 43 * Math.Sin(previousHour * Math.PI / 6));
