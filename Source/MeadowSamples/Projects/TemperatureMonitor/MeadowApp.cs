@@ -5,6 +5,7 @@ using Meadow.Foundation.Displays.Tft;
 using Meadow.Foundation.Graphics;
 using Meadow.Hardware;
 using System;
+using System.Threading;
 
 namespace TemperatureMonitor
 {
@@ -48,8 +49,8 @@ namespace TemperatureMonitor
             int originX = displayWidth / 2;
             int originY = displayHeight / 2 + 130;
 
-            //var colors = new Color[4] { Color.FromHex("#006363"), Color.FromHex("#1D7373"), Color.FromHex("#009999"), Color.FromHex("#33CCCC") }; //blue
-            var colors = new Color[4] { Color.FromHex("#A0000F"), Color.FromHex("#FB717E"), Color.FromHex("#FB3F51"), Color.FromHex("#F60018") }; //red
+            var colors = new Color[4] { Color.FromHex("#006363"), Color.FromHex("#1D7373"), Color.FromHex("#009999"), Color.FromHex("#33CCCC") }; //blue
+            //var colors = new Color[4] { Color.FromHex("#A0000F"), Color.FromHex("#FB717E"), Color.FromHex("#FB3F51"), Color.FromHex("#F60018") }; //red
 
             graphics.Stroke = 3;
             for (int i = 1; i < 5; i++)
@@ -71,7 +72,21 @@ namespace TemperatureMonitor
             graphics.DrawLine(0, 230, 240, 230, Color.White);
 
             graphics.CurrentFont = new Font12x20();
-            graphics.DrawText(48, 140, "22.5°C", Color.White, GraphicsLibrary.ScaleFactor.X2);
+            //graphics.DrawText(42, 130, "BOILER 1 TEMP", Color.White);
+            graphics.DrawText(54, 130, "TEMPERATURE", Color.White);
+
+            graphics.CurrentFont = new Font12x20();
+            //graphics.DrawText(48, 160, "22.5°C", Color.White, GraphicsLibrary.ScaleFactor.X2);
+
+            float temperature = 77.5f;
+            for (int i = 0; i < 20; i++) 
+            {
+                graphics.DrawText(48, 160, $"{temperature.ToString("##.##")}°C", colors[colors.Length - 1], GraphicsLibrary.ScaleFactor.X2);
+                temperature++;
+                graphics.DrawText(48, 160, $"{temperature.ToString("##.##")}°C", Color.White, GraphicsLibrary.ScaleFactor.X2);
+                graphics.Show();
+                Thread.Sleep(1000);
+            }
 
             graphics.Show();
         }
