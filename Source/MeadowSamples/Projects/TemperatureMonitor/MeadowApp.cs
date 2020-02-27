@@ -5,15 +5,20 @@ using Meadow.Foundation.Displays.Tft;
 using Meadow.Foundation.Graphics;
 using Meadow.Foundation.Sensors.Temperature;
 using Meadow.Hardware;
+using Meadow.Peripherals.Sensors.Atmospheric;
 using System;
-using System.Threading;
 
 namespace TemperatureMonitor
 {
     public class MeadowApp : App<F7Micro, MeadowApp>
     {
-        Color[] colors = new Color[4] { Color.FromHex("#006363"), Color.FromHex("#1D7373"), Color.FromHex("#009999"), Color.FromHex("#33CCCC") }; //blue
-        //Color[] colors = new Color[4] { Color.FromHex("#A0000F"), Color.FromHex("#FB717E"), Color.FromHex("#FB3F51"), Color.FromHex("#F60018") }; //red
+        Color[] colors = new Color[4] 
+        { 
+            Color.FromHex("#008500"), 
+            Color.FromHex("#269926"), 
+            Color.FromHex("#00CC00"), 
+            Color.FromHex("#67E667") 
+        };
 
         AnalogTemperature analogTemperature;
         St7789 st7789;
@@ -31,7 +36,9 @@ namespace TemperatureMonitor
             );
             analogTemperature.Updated += AnalogTemperatureUpdated;
 
-            var config = new SpiClockConfiguration(6000, SpiClockConfiguration.Mode.Mode3);
+            var config = new SpiClockConfiguration(
+                speedKHz: 6000, 
+                mode: SpiClockConfiguration.Mode.Mode3);
             st7789 = new St7789
             (
                 device: Device,
@@ -87,13 +94,22 @@ namespace TemperatureMonitor
             graphics.Show();
         }
 
-        void AnalogTemperatureUpdated(object sender, Meadow.Peripherals.Sensors.Atmospheric.AtmosphericConditionChangeResult e)
+        void AnalogTemperatureUpdated(object sender, AtmosphericConditionChangeResult e)
         {
             float oldTemp = e.Old.Temperature / 1000;
             float newTemp = e.New.Temperature / 1000;
 
-            graphics.DrawText(48, 160, $"{oldTemp.ToString("##.#")}°C", colors[colors.Length - 1], GraphicsLibrary.ScaleFactor.X2);
-            graphics.DrawText(48, 160, $"{newTemp.ToString("##.#")}°C", Color.White, GraphicsLibrary.ScaleFactor.X2);
+            graphics.DrawText(
+                x: 48, y: 160, 
+                text: $"{oldTemp.ToString("##.#")}°C", 
+                color: colors[colors.Length - 1], 
+                scaleFactor: GraphicsLibrary.ScaleFactor.X2);
+            graphics.DrawText(
+                x: 48, y: 160, 
+                text: $"{newTemp.ToString("##.#")}°C", 
+                color: Color.White, 
+                scaleFactor: GraphicsLibrary.ScaleFactor.X2);
+
             graphics.Show();
         }
     }
