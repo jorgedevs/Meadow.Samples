@@ -3,6 +3,7 @@ using Meadow.Devices;
 using Meadow.Foundation;
 using Meadow.Foundation.Displays.Tft;
 using Meadow.Foundation.Graphics;
+using Meadow.Foundation.Sensors.Temperature;
 using Meadow.Hardware;
 using System;
 using System.Threading;
@@ -11,6 +12,10 @@ namespace TemperatureMonitor
 {
     public class MeadowApp : App<F7Micro, MeadowApp>
     {
+        Color[] colors = new Color[4] { Color.FromHex("#006363"), Color.FromHex("#1D7373"), Color.FromHex("#009999"), Color.FromHex("#33CCCC") }; //blue
+        //Color[] colors = new Color[4] { Color.FromHex("#A0000F"), Color.FromHex("#FB717E"), Color.FromHex("#FB3F51"), Color.FromHex("#F60018") }; //red
+
+        AnalogTemperature analogTemperature;
         St7789 st7789;
         GraphicsLibrary graphics;
         int displayWidth, displayHeight;
@@ -18,6 +23,13 @@ namespace TemperatureMonitor
         public MeadowApp()
         {
             Console.WriteLine("Initializing...");
+
+            analogTemperature = new AnalogTemperature(
+                device: Device,
+                analogPin: Device.Pins.A00,
+                sensorType: AnalogTemperature.KnownSensorType.LM35
+            );
+            analogTemperature.Updated += AnalogTemperatureUpdated;
 
             var config = new SpiClockConfiguration(6000, SpiClockConfiguration.Mode.Mode3);
             st7789 = new St7789
@@ -35,12 +47,13 @@ namespace TemperatureMonitor
             graphics = new GraphicsLibrary(st7789);
             graphics.Rotation = GraphicsLibrary.RotationType._270Degrees;
 
-            LoanScreen();
+            LoadScreen();
+            analogTemperature.StartUpdating();
         }
 
-        void LoanScreen() 
+        void LoadScreen()
         {
-            Console.WriteLine("LoanScreen...");
+            Console.WriteLine("LoadScreen...");
 
             graphics.Clear();
 
@@ -48,9 +61,6 @@ namespace TemperatureMonitor
             int radius = 225;
             int originX = displayWidth / 2;
             int originY = displayHeight / 2 + 130;
-
-            var colors = new Color[4] { Color.FromHex("#006363"), Color.FromHex("#1D7373"), Color.FromHex("#009999"), Color.FromHex("#33CCCC") }; //blue
-            //var colors = new Color[4] { Color.FromHex("#A0000F"), Color.FromHex("#FB717E"), Color.FromHex("#FB3F51"), Color.FromHex("#F60018") }; //red
 
             graphics.Stroke = 3;
             for (int i = 1; i < 5; i++)
@@ -72,22 +82,18 @@ namespace TemperatureMonitor
             graphics.DrawLine(0, 230, 240, 230, Color.White);
 
             graphics.CurrentFont = new Font12x20();
-            //graphics.DrawText(42, 130, "BOILER 1 TEMP", Color.White);
             graphics.DrawText(54, 130, "TEMPERATURE", Color.White);
 
-            graphics.CurrentFont = new Font12x20();
-            //graphics.DrawText(48, 160, "22.5°C", Color.White, GraphicsLibrary.ScaleFactor.X2);
+            graphics.Show();
+        }
 
-            float temperature = 77.5f;
-            for (int i = 0; i < 20; i++) 
-            {
-                graphics.DrawText(48, 160, $"{temperature.ToString("##.##")}°C", colors[colors.Length - 1], GraphicsLibrary.ScaleFactor.X2);
-                temperature++;
-                graphics.DrawText(48, 160, $"{temperature.ToString("##.##")}°C", Color.White, GraphicsLibrary.ScaleFactor.X2);
-                graphics.Show();
-                Thread.Sleep(1000);
-            }
+        void AnalogTemperatureUpdated(object sender, Meadow.Peripherals.Sensors.Atmospheric.AtmosphericConditionChangeResult e)
+        {
+            float oldTemp = e.Old.Temperature / 1000;
+            float newTemp = e.New.Temperature / 1000;
 
+            graphics.DrawText(48, 160, $"{oldTemp.ToString("##.#")}°C", colors[colors.Length - 1], GraphicsLibrary.ScaleFactor.X2);
+            graphics.DrawText(48, 160, $"{newTemp.ToString("##.#")}°C", Color.White, GraphicsLibrary.ScaleFactor.X2);
             graphics.Show();
         }
     }
