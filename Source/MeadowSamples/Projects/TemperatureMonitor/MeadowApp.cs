@@ -64,7 +64,6 @@ namespace TemperatureMonitor
 
             graphics.Clear();
 
-            var rand = new Random();
             int radius = 225;
             int originX = displayWidth / 2;
             int originY = displayHeight / 2 + 130;
