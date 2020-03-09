@@ -2,10 +2,10 @@
 using Meadow.Devices;
 using Meadow.Foundation.Leds;
 using Meadow.Foundation.Sensors.Hid;
-using Meadow.Hardware;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using static Meadow.Foundation.Sensors.Hid.AnalogJoystick;
 
 namespace LedJoystick
 {
