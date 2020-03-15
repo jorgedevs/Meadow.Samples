@@ -1,6 +1,7 @@
 ﻿using Meadow;
+using System.Threading;
 
-namespace RemoteCar
+namespace LedCar
 {
     class Program
     {
@@ -11,6 +12,8 @@ namespace RemoteCar
 
             // instantiate and run new meadow app
             app = new MeadowApp();
+
+            Thread.Sleep(Timeout.Infinite);
         }
     }
 }

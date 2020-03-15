@@ -1,11 +1,11 @@
-﻿using System;
-using System.Threading;
-using Meadow;
+﻿using Meadow;
 using Meadow.Devices;
 using Meadow.Foundation.Leds;
 using Meadow.Foundation.Motors;
+using System;
+using System.Threading;
 
-namespace RemoteCar
+namespace LedCar
 {
     public class MeadowApp : App<F7Micro, MeadowApp>
     {
@@ -20,7 +20,7 @@ namespace RemoteCar
             TestCar();
         }
 
-        protected void Initialize() 
+        protected void Initialize()
         {
             Console.WriteLine("Initialize()...");
 

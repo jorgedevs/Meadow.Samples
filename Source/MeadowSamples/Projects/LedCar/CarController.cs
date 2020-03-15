@@ -1,6 +1,6 @@
 ﻿using Meadow.Foundation.Motors;
 
-namespace RemoteCar
+namespace LedCar
 {
     public class CarController
     {

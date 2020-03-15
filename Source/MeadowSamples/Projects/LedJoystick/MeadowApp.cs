@@ -2,6 +2,7 @@
 using Meadow.Devices;
 using Meadow.Foundation.Leds;
 using Meadow.Foundation.Sensors.Hid;
+using Meadow.Peripherals.Sensors.Hid;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
@@ -26,16 +27,16 @@ namespace LedJoystick
             joystick = new AnalogJoystick(
                 Device.CreateAnalogInputPort(Device.Pins.A01),
                 Device.CreateAnalogInputPort(Device.Pins.A00),
-                null, false);
+                null, true);
 
-            joystick.SetCenterPosition(); //fire and forget 
-            joystick.Updated += JoystickUpdated;
-            joystick.StartUpdating();
+            //joystick.SetCenterPosition(); //fire and forget 
+            //joystick.Updated += JoystickUpdated;
+            //joystick.StartUpdating();
 
             //var t = TestAnalogJoystick();
         }
 
-        private void JoystickUpdated(object sender, Meadow.Peripherals.Sensors.Hid.JoystickPositionChangeResult e)
+        private void JoystickUpdated(object sender, JoystickPositionChangeResult e)
         {
             if (e.New.HorizontalValue < 0.2f)
             {
@@ -61,62 +62,69 @@ namespace LedJoystick
             Console.WriteLine($"({e.New.HorizontalValue}, {e.New.VerticalValue})");
         }
 
-        async Task TestAnalogJoystick()
-        {
-            Console.WriteLine("TestAnalogJoystick()...");
+        //async Task TestAnalogJoystick()
+        //{
+        //    Console.WriteLine("TestAnalogJoystick()...");
 
-            float x, y;
+        //    Up.StartBlink();
+        //    Down.StartBlink();
+        //    Left.StartBlink();
+        //    Right.StartBlink();
+        //    Thread.Sleep(1000);
+        //    Up.Stop();
+        //    Down.Stop();
+        //    Left.Stop();
+        //    Right.Stop();
 
-            while (true)
-            {
-                //x = await joystick.GetHorizontalValue();
-                //y = await joystick.GetVerticalValue();
-                //Console.WriteLine($"({x},{y})");
+        //    while (true)
+        //    {
+        //        var position = await joystick.GetPosition();
+        //        switch (position)
+        //        {
+        //            case DigitalJoystickPosition.Up:
+        //                Down.IsOn = Left.IsOn = Right.IsOn = false;
+        //                Up.SetBrightness(0.1f);
+        //                break;
+        //            case DigitalJoystickPosition.Down:
+        //                Up.IsOn = Left.IsOn = Right.IsOn = false;
+        //                Down.SetBrightness(0.1f);
+        //                break;
+        //            case DigitalJoystickPosition.Left:
+        //                Up.IsOn = Down.IsOn = Right.IsOn = false;
+        //                Left.SetBrightness(0.1f);
+        //                break;
+        //            case DigitalJoystickPosition.Right:
+        //                Up.IsOn = Down.IsOn = Left.IsOn = false;
+        //                Right.SetBrightness(0.1f);
+        //                break;
+        //            case DigitalJoystickPosition.Center:
+        //                Up.IsOn = Down.IsOn = Left.IsOn = Right.IsOn = false;
+        //                break;
+        //            case DigitalJoystickPosition.UpLeft:
+        //                Down.IsOn = Right.IsOn = false;
+        //                Up.SetBrightness(0.1f);
+        //                Left.SetBrightness(0.1f);
+        //                break;
+        //            case DigitalJoystickPosition.UpRight:
+        //                Down.IsOn = Left.IsOn = false;
+        //                Up.SetBrightness(0.1f);
+        //                Right.SetBrightness(0.1f);
+        //                break;
+        //            case DigitalJoystickPosition.DownLeft:
+        //                Up.IsOn = Right.IsOn = false;
+        //                Down.SetBrightness(0.1f);
+        //                Left.SetBrightness(0.1f);
+        //                break;
+        //            case DigitalJoystickPosition.DownRight:
+        //                Up.IsOn = Left.IsOn = false;
+        //                Down.SetBrightness(0.1f);
+        //                Right.SetBrightness(0.1f);
+        //                break;
+        //        }
+        //        Console.WriteLine($"{position.ToString()}");
 
-
-                var position = await joystick.GetPosition();
-                switch (position)
-                {
-                    case DigitalJoystickPosition.Up:
-                        Down.IsOn = Left.IsOn = Right.IsOn = false;
-                        Up.IsOn = true;
-                        break;
-                    case DigitalJoystickPosition.Down:
-                        Up.IsOn = Left.IsOn = Right.IsOn = false;
-                        Down.IsOn = true;
-                        break;
-                    case DigitalJoystickPosition.Left:
-                        Up.IsOn = Down.IsOn = Right.IsOn = false;
-                        Left.IsOn = true;
-                        break;
-                    case DigitalJoystickPosition.Right:
-                        Up.IsOn = Down.IsOn = Left.IsOn = false;
-                        Right.IsOn = true;
-                        break;
-                    case DigitalJoystickPosition.Center:
-                        Up.IsOn = Down.IsOn = Left.IsOn = Right.IsOn = false;
-                        break;
-                    case DigitalJoystickPosition.UpLeft:
-                        Down.IsOn = Right.IsOn = false;
-                        Up.IsOn = Left.IsOn = true;
-                        break;
-                    case DigitalJoystickPosition.UpRight:
-                        Down.IsOn = Left.IsOn = false;
-                        Up.IsOn = Right.IsOn = true;
-                        break;
-                    case DigitalJoystickPosition.DownLeft:
-                        Up.IsOn = Right.IsOn = false;
-                        Down.IsOn = Left.IsOn = true;
-                        break;
-                    case DigitalJoystickPosition.DownRight:
-                        Up.IsOn = Left.IsOn = false;
-                        Down.IsOn = Right.IsOn = true;
-                        break;
-                }
-                Console.WriteLine($"{position.ToString()}");
-
-                Thread.Sleep(50);
-            }
-        }
+        //        Thread.Sleep(50);
+        //    }
+        //}
     }
 }
