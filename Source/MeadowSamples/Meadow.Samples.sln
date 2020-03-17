@@ -3,67 +3,67 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29230.47
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Simon", "Projects\Simon\Simon.csproj", "{23D68A6A-1F99-4AA2-A82F-5B1CC82951A6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Simon", "Simon\Simon.csproj", "{23D68A6A-1F99-4AA2-A82F-5B1CC82951A6}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HelloLed", "HelloLed\HelloLed.csproj", "{35FA3AA1-A178-4492-A81D-C1A35A730AD0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MemoryGame", "Projects\MemoryGame\MemoryGame.csproj", "{C282B57F-21BC-4A4D-B3CE-9214471DFFAC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MemoryGame", "MemoryGame\MemoryGame.csproj", "{C282B57F-21BC-4A4D-B3CE-9214471DFFAC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RemoteTank", "Projects\RemoteTank\RemoteTank.csproj", "{11A4CA21-A342-42AA-BD79-E6790262F7C2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RemoteTank", "RemoteTank\RemoteTank.csproj", "{11A4CA21-A342-42AA-BD79-E6790262F7C2}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RobotArm", "Projects\RobotArm\RobotArm.csproj", "{6CFD8273-42E5-4A42-B484-A52BCD00B8BB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RobotArm", "RobotArm\RobotArm.csproj", "{6CFD8273-42E5-4A42-B484-A52BCD00B8BB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TunePlayer", "Projects\TunePlayer\TunePlayer.csproj", "{BA18EAD2-237D-41E6-A0BB-F7B8B6A0FCF1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TunePlayer", "TunePlayer\TunePlayer.csproj", "{BA18EAD2-237D-41E6-A0BB-F7B8B6A0FCF1}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PlantMonitor", "Projects\PlantMonitor\PlantMonitor.csproj", "{912D42CE-0A4E-425E-9C8D-3C01B89AA038}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PlantMonitor", "PlantMonitor\PlantMonitor.csproj", "{912D42CE-0A4E-425E-9C8D-3C01B89AA038}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RadioPlayer", "Projects\RadioPlayer\RadioPlayer.csproj", "{433FE978-7CF9-43EC-8019-6F3BEF0F572D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RadioPlayer", "RadioPlayer\RadioPlayer.csproj", "{433FE978-7CF9-43EC-8019-6F3BEF0F572D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChristmasCountdown", "Projects\ChristmasCountdown\ChristmasCountdown.csproj", "{DB426BCF-2C65-4B2E-BBE8-1A88392A0B4F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChristmasCountdown", "ChristmasCountdown\ChristmasCountdown.csproj", "{DB426BCF-2C65-4B2E-BBE8-1A88392A0B4F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RotationDetector", "Projects\RotationDetector\RotationDetector.csproj", "{FA85CEF3-C9C3-40F3-A6F9-362614976E4F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RotationDetector", "RotationDetector\RotationDetector.csproj", "{FA85CEF3-C9C3-40F3-A6F9-362614976E4F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeatherStation", "Projects\WeatherStation\WeatherStation.csproj", "{58A59271-91AE-47AF-A373-C85A765D0B87}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeatherStation", "WeatherStation\WeatherStation.csproj", "{58A59271-91AE-47AF-A373-C85A765D0B87}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServoButton", "Projects\ServoButton\ServoButton.csproj", "{73A9084C-1934-40E4-AE8D-B299763F095B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServoButton", "ServoButton\ServoButton.csproj", "{73A9084C-1934-40E4-AE8D-B299763F095B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LedDice", "Projects\LedDice\LedDice.csproj", "{56DBA205-9998-47A7-B034-C0352A9B8DD3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LedDice", "LedDice\LedDice.csproj", "{56DBA205-9998-47A7-B034-C0352A9B8DD3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LedJoystick", "Projects\LedJoystick\LedJoystick.csproj", "{CEAA4065-3B6E-4867-AC76-97C6BD2D502F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LedJoystick", "LedJoystick\LedJoystick.csproj", "{CEAA4065-3B6E-4867-AC76-97C6BD2D502F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeadowClockGraphics", "Projects\MeadowClockGraphics\MeadowClockGraphics.csproj", "{971C7271-5DBD-430C-AC86-92C398D2AA85}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeadowClockGraphics", "MeadowClockGraphics\MeadowClockGraphics.csproj", "{971C7271-5DBD-430C-AC86-92C398D2AA85}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ConnectedServo", "ConnectedServo", "{BD3108F9-03D4-4D85-B665-C2F9A88B5D0B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServoRemote.UWP", "Projects\ConnectedServo\ServoRemote\ServoRemote.UWP\ServoRemote.UWP.csproj", "{0CD54E16-D712-4223-8198-454FC3A4A568}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServoRemote.UWP", "ConnectedServo\ServoRemote\ServoRemote.UWP\ServoRemote.UWP.csproj", "{0CD54E16-D712-4223-8198-454FC3A4A568}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServoRemote.Android", "Projects\ConnectedServo\ServoRemote\ServoRemote.Android\ServoRemote.Android.csproj", "{470EA142-FB46-42EA-8B33-30786E01B365}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServoRemote.Android", "ConnectedServo\ServoRemote\ServoRemote.Android\ServoRemote.Android.csproj", "{470EA142-FB46-42EA-8B33-30786E01B365}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServoRemote.iOS", "Projects\ConnectedServo\ServoRemote\ServoRemote.iOS\ServoRemote.iOS.csproj", "{F672E22F-5790-443F-9C4A-E408D7EDD07E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServoRemote.iOS", "ConnectedServo\ServoRemote\ServoRemote.iOS\ServoRemote.iOS.csproj", "{F672E22F-5790-443F-9C4A-E408D7EDD07E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServoRemote", "Projects\ConnectedServo\ServoRemote\ServoRemote\ServoRemote.csproj", "{933B5DAC-64CE-4974-AFD3-12F353ED5442}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServoRemote", "ConnectedServo\ServoRemote\ServoRemote\ServoRemote.csproj", "{933B5DAC-64CE-4974-AFD3-12F353ED5442}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServoHost", "Projects\ConnectedServo\ServoHost\ServoHost.csproj", "{3CC9C26D-1B18-4BBF-8642-B1C500F3DDFF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServoHost", "ConnectedServo\ServoHost\ServoHost.csproj", "{3CC9C26D-1B18-4BBF-8642-B1C500F3DDFF}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TemperatureMonitor", "Projects\TemperatureMonitor\TemperatureMonitor.csproj", "{6D851D03-980A-4FE2-B5FB-46E383D1BB6B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TemperatureMonitor", "TemperatureMonitor\TemperatureMonitor.csproj", "{6D851D03-980A-4FE2-B5FB-46E383D1BB6B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShiftRegisterLeds", "Projects\ShiftRegisterLeds\ShiftRegisterLeds.csproj", "{60C5DB95-004A-43DD-A585-2B3322633159}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShiftRegisterLeds", "ShiftRegisterLeds\ShiftRegisterLeds.csproj", "{60C5DB95-004A-43DD-A585-2B3322633159}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RotarySketch", "Projects\RotarySketch\RotarySketch.csproj", "{C4C04C98-8672-4736-A0DD-2AA7AF9CA6A3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RotarySketch", "RotarySketch\RotarySketch.csproj", "{C4C04C98-8672-4736-A0DD-2AA7AF9CA6A3}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ConnectedCar", "ConnectedCar", "{B1EE457B-9F43-4158-8BA6-A4CFF60422CB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarHost", "Projects\ConnectedCar\CarHost\CarHost.csproj", "{3806E2A0-1064-467E-BEDC-E0943ABFAC4F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarHost", "ConnectedCar\CarHost\CarHost.csproj", "{3806E2A0-1064-467E-BEDC-E0943ABFAC4F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LedCar", "Projects\LedCar\LedCar.csproj", "{E9B1B548-4028-42AD-BB52-CDD9CF1A339D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LedCar", "LedCar\LedCar.csproj", "{E9B1B548-4028-42AD-BB52-CDD9CF1A339D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarRemote.UWP", "Projects\ConnectedCar\CarRemote\CarRemote.UWP\CarRemote.UWP.csproj", "{716C5ABC-B3AB-4E70-893C-228FF441B21B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarRemote.UWP", "ConnectedCar\CarRemote\CarRemote.UWP\CarRemote.UWP.csproj", "{716C5ABC-B3AB-4E70-893C-228FF441B21B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarRemote.Android", "Projects\ConnectedCar\CarRemote\CarRemote.Android\CarRemote.Android.csproj", "{1C3BDE3D-FD08-42ED-A022-77CC57F69E10}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarRemote.Android", "ConnectedCar\CarRemote\CarRemote.Android\CarRemote.Android.csproj", "{1C3BDE3D-FD08-42ED-A022-77CC57F69E10}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarRemote.iOS", "Projects\ConnectedCar\CarRemote\CarRemote.iOS\CarRemote.iOS.csproj", "{8E29514F-7A2B-427B-BC52-6425E813F8C4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarRemote.iOS", "ConnectedCar\CarRemote\CarRemote.iOS\CarRemote.iOS.csproj", "{8E29514F-7A2B-427B-BC52-6425E813F8C4}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarRemote", "Projects\ConnectedCar\CarRemote\CarRemote\CarRemote.csproj", "{7A97295A-1848-4F9F-BC5F-A5A8BDE993BF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarRemote", "ConnectedCar\CarRemote\CarRemote\CarRemote.csproj", "{7A97295A-1848-4F9F-BC5F-A5A8BDE993BF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
