@@ -5,15 +5,16 @@
     <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{F672E22F-5790-443F-9C4A-E408D7EDD07E}</ProjectGuid>
+    <ProjectGuid>{8E29514F-7A2B-427B-BC52-6425E813F8C4}</ProjectGuid>
     <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <TemplateGuid>{6143fdea-f3c2-4a09-aafa-6e230626515e}</TemplateGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>ServoRemote.iOS</RootNamespace>
+    <RootNamespace>CarRemote.iOS</RootNamespace>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
-    <AssemblyName>ServoRemote.iOS</AssemblyName>
+    <AssemblyName>CarRemote.iOS</AssemblyName>
     <MtouchEnableSGenConc>true</MtouchEnableSGenConc>
     <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
+    <ProvisioningType>automatic</ProvisioningType>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
     <DebugSymbols>true</DebugSymbols>
@@ -130,10 +131,25 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
-    <ProjectReference Include="..\ServoRemote\ServoRemote.csproj">
-      <Project>{CCDE1AC3-E53B-4FE1-994D-BFD0BEB13C4F}</Project>
-      <Name>ServoRemote</Name>
+    <ProjectReference Include="..\CarRemote\CarRemote.csproj">
+      <Project>{3F7B8E14-3A87-4A35-B75B-B2CC9B640090}</Project>
+      <Name>CarRemote</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Default.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Default%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Default-568h%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Default-Portrait.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Default-Portrait%402x.png" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\icon_connect.png" />
@@ -143,5 +159,32 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\icon_connect%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\icon_refresh.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\icon_refresh%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\icon_refresh%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\img_dpad.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\img_dpad%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\img_dpad%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\img_meadow%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\img_meadow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\img_meadow%402x.png" />
   </ItemGroup>
 </Project>
