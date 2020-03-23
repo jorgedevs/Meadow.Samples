@@ -1,7 +1,6 @@
 ﻿using Meadow;
 using Meadow.Devices;
 using Meadow.Foundation.Sensors.Buttons;
-using Meadow.Foundation.Sensors.Rotary;
 using Meadow.Hardware;
 using System;
 
@@ -9,8 +8,8 @@ namespace EdgeASketch
 {
     public class MeadowApp : App<F7Micro, MeadowApp>
     {
-        int X, Y;
-        RotaryEncoderWithButton RotaryX, RotaryY;
+        int X = 0, Y = 0;
+        //RotaryEncoderWithButton RotaryX, RotaryY;
 
         PushButton xUp, xDown, yUp, yDown;
 
@@ -49,16 +48,16 @@ namespace EdgeASketch
             //};
 
             xUp = new PushButton(Device.CreateDigitalInputPort(Device.Pins.D12, InterruptMode.EdgeBoth, ResistorMode.Disabled));
-            xUp.Clicked += (s,e) => { X++; Console.WriteLine("X = {0}", X); };
+            xUp.Clicked += (s, e) => { X++; Console.WriteLine("X = {0}", X); };
 
             xDown = new PushButton(Device.CreateDigitalInputPort(Device.Pins.D14, InterruptMode.EdgeBoth, ResistorMode.Disabled));
             xDown.Clicked += (s, e) => { X--; Console.WriteLine("X = {0}", X); };
 
-            yUp = new PushButton(Device.CreateDigitalInputPort(Device.Pins.D02, InterruptMode.EdgeBoth, ResistorMode.Disabled));
-            xDown.Clicked += (s, e) => { Y++; Console.WriteLine("Y = {0}", X); };
+            yUp = new PushButton(Device, Device.Pins.D02);
+            yUp.Clicked += (s, e) => { Y++; Console.WriteLine("Y = {0}", Y); };
 
-            yDown = new PushButton(Device.CreateDigitalInputPort(Device.Pins.D04, InterruptMode.EdgeBoth, ResistorMode.Disabled));
-            xDown.Clicked += (s, e) => { Y--; Console.WriteLine("Y = {0}", Y); };
+            yDown = new PushButton(Device, Device.Pins.D05);
+            yDown.Clicked += (s, e) => { Y--; Console.WriteLine("Y = {0}", Y); };
 
             Console.WriteLine("done");
         }
