@@ -24,17 +24,10 @@ namespace RobotArm
 
         public RobotArmController(IPwmPort pwmBase, IPwmPort pwmGrip, IPwmPort pwmVertical, IPwmPort pwmHorizontal)
         {
-            var config = new ServoConfig(
-                minimumAngle: 0,
-                maximumAngle: 180,
-                minimumPulseDuration: 700,
-                maximumPulseDuration: 3000,
-                frequency: 50);
-
-            _base = new Servo(pwmBase, config);
-            _grip = new Servo(pwmGrip, config);
-            _vertical = new Servo(pwmVertical, config);
-            _horizontal = new Servo(pwmHorizontal, config);
+            _base = new Servo(pwmBase, NamedServoConfigs.SG90);
+            _grip = new Servo(pwmGrip, NamedServoConfigs.SG90);
+            _vertical = new Servo(pwmVertical, NamedServoConfigs.SG90);
+            _horizontal = new Servo(pwmHorizontal, NamedServoConfigs.SG90);
 
             Initialize();
         }
