@@ -21,32 +21,29 @@ namespace LedClock
             graphics = new GraphicsLibrary(display);
             graphics.CurrentFont = new Font4x8();
             graphics.Rotation = GraphicsLibrary.RotationType._180Degrees;
+            
+            Device.SetClock(new DateTime(2020, 03, 28, 00, 17, 00));
 
             Console.WriteLine("done");
 
-            TestClock();
+            RunClock();
         }
 
-        void TestClock() 
+        void RunClock() 
         {
-            Console.Write("TestClock...");
-
-            DateTime clock = new DateTime(2020, 03, 23, 10, 25, 35);
-
-            for (int i = 0; i < 200; i++)
+            while(true)
             {
+                DateTime clock = DateTime.Now;
+
                 graphics.Clear();
-                graphics.DrawText(0, 1, $"{clock.Hour}");
-                graphics.DrawText(0, 09, $"{clock.Minute}");
-                graphics.DrawText(0, 17, $"{clock.Second}");
-                graphics.DrawText(0, 25, $"JR");
+                graphics.DrawText(0, 1, $"{clock:hh}");
+                graphics.DrawText(0, 9, $"{clock:mm}");
+                graphics.DrawText(0, 17, $"{clock:ss}");
+                graphics.DrawText(0, 25, $"{clock:tt}");
                 graphics.Show();
 
                 Thread.Sleep(1000);
-                clock = clock.AddSeconds(1);
             }
-
-            Console.WriteLine("done");
         }
     }
 }
