@@ -1,7 +1,7 @@
 ﻿using Android.App;
 using Android.Content;
-using Android.OS;
 using Android.Content.PM;
+using Android.OS;
 
 namespace ServoRemote.Droid
 {
