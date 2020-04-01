@@ -67,7 +67,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarRemote", "ConnectedCar\C
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EdgeASketch", "EdgeASketch\EdgeASketch.csproj", "{ADF94070-F6BD-4B75-97CC-DBE0C23AD837}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LedClock", "LedClock\LedClock.csproj", "{D7DC8C24-6B39-4150-A9CF-0E18A001CD18}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeadowClock", "MeadowClock\MeadowClock.csproj", "{D7DC8C24-6B39-4150-A9CF-0E18A001CD18}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

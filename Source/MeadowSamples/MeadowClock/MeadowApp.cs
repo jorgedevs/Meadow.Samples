@@ -7,7 +7,7 @@ using Meadow.Foundation.Sensors.Buttons;
 using System;
 using System.Threading;
 
-namespace LedClock
+namespace MeadowClock
 {
     public class MeadowApp : App<F7Micro, MeadowApp>
     {
