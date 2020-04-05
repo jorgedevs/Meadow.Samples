@@ -36,15 +36,15 @@ namespace RobotArm
             //baseRotateRight = new PushButton(Device.CreateDigitalInputPort(Device.Pins.D09, InterruptMode.EdgeBoth, ResistorMode.Disabled));
             //baseRotateRight.Clicked += BaseRotateRightClicked;
             
-            gripOpen = new PushButton(Device.CreateDigitalInputPort(Device.Pins.D10, InterruptMode.EdgeBoth, ResistorMode.Disabled));
-            gripOpen.Clicked += GripOpenClicked;
-            gripClose = new PushButton(Device.CreateDigitalInputPort(Device.Pins.D11, InterruptMode.EdgeBoth, ResistorMode.Disabled));
-            gripClose.Clicked += GripCloseClicked;
+            //gripOpen = new PushButton(Device.CreateDigitalInputPort(Device.Pins.D10, InterruptMode.EdgeBoth, ResistorMode.Disabled));
+            //gripOpen.Clicked += GripOpenClicked;
+            //gripClose = new PushButton(Device.CreateDigitalInputPort(Device.Pins.D11, InterruptMode.EdgeBoth, ResistorMode.Disabled));
+            //gripClose.Clicked += GripCloseClicked;
 
-            verticalMoveUp = new PushButton(Device.CreateDigitalInputPort(Device.Pins.D06, InterruptMode.EdgeBoth, ResistorMode.Disabled));
-            verticalMoveUp.Clicked += VerticalMoveUpClicked;
-            verticalMoveDown = new PushButton(Device.CreateDigitalInputPort(Device.Pins.D07, InterruptMode.EdgeBoth, ResistorMode.Disabled));
-            verticalMoveDown.Clicked += VerticalMoveDownClicked;
+            //verticalMoveUp = new PushButton(Device.CreateDigitalInputPort(Device.Pins.D06, InterruptMode.EdgeBoth, ResistorMode.Disabled));
+            //verticalMoveUp.Clicked += VerticalMoveUpClicked;
+            //verticalMoveDown = new PushButton(Device.CreateDigitalInputPort(Device.Pins.D07, InterruptMode.EdgeBoth, ResistorMode.Disabled));
+            //verticalMoveDown.Clicked += VerticalMoveDownClicked;
 
             //horizontalMoveForward = new PushButton(Device.CreateDigitalInputPort(Device.Pins.D12, InterruptMode.EdgeBoth, ResistorMode.Disabled));
             //horizontalMoveForward.Clicked += HorizontalMoveForwardClicked;
@@ -52,6 +52,8 @@ namespace RobotArm
             //horizontalMoveBackward.Clicked += HorizontalMoveBackwardClicked;
 
             Console.WriteLine("Done");
+
+            robotArmController.Test();
         }
 
         #region Base

@@ -32,7 +32,7 @@ namespace RotationDetector
 
             while (true)
             {
-                mpu6050.Refresh();
+                //mpu6050.Refresh();
                 Thread.Sleep(100);
 
                 if (mpu6050.AccelerationY > 1000 && mpu6050.AccelerationY < 16000)

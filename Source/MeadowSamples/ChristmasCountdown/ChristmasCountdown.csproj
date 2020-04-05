@@ -5,8 +5,8 @@
     <AssemblyName>App</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Meadow.Foundation" Version="0.13.2" />
-    <PackageReference Include="Meadow.Foundation.Displays.LCD.CharacterDisplay" Version="0.7.7" />
-    <PackageReference Include="Meadow.Foundation.RTCs.DS1307" Version="0.7.5" />
+    <PackageReference Include="Meadow.Foundation" Version="0.14.1" />
+    <PackageReference Include="Meadow.Foundation.Displays.LCD.CharacterDisplay" Version="0.7.9" />
+    <PackageReference Include="Meadow.Foundation.RTCs.DS1307" Version="0.7.6" />
   </ItemGroup>
 </Project>

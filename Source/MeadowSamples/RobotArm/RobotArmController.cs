@@ -10,7 +10,7 @@ namespace RobotArm
         public const int GRIP_OPEN = 70;
         public const int GRIP_CLOSE = 140;
 
-        int _baseAngle;
+        int baseAngle;
         Servo _base;
 
         int _gripAngle;
@@ -34,8 +34,8 @@ namespace RobotArm
 
         public void Initialize() 
         {
-            //_base.RotateTo(90);
-            //_grip.RotateTo(70);
+            _base.RotateTo(0);
+            _grip.RotateTo(0);
 
             _verticalAngle = 0;
             _vertical.RotateTo(_verticalAngle);
@@ -45,26 +45,26 @@ namespace RobotArm
 
         public void MoveBaseLeft()
         {
-            Console.WriteLine($"MoveBaseLeft...{_baseAngle + 10}");
-            if (_baseAngle < _base.Config.MaximumAngle)
+            Console.WriteLine($"MoveBaseLeft...{baseAngle + 10}");
+            if (baseAngle < _base.Config.MaximumAngle)
             {
                 for (int i = 0; i < 10; i++)
                 {
-                    _baseAngle++;
-                    _base.RotateTo(_baseAngle);
+                    baseAngle++;
+                    _base.RotateTo(baseAngle);
                     Thread.Sleep(500);
                 }
             }
         }
         public void MoveBaseRight()
         {
-            Console.WriteLine($"MoveBaseRight...{_baseAngle - 10}");
-            if (_baseAngle > _base.Config.MinimumAngle)
+            Console.WriteLine($"MoveBaseRight...{baseAngle - 10}");
+            if (baseAngle > _base.Config.MinimumAngle)
             {
                 for (int i = 0; i < 10; i++)
                 {
-                    _baseAngle--;
-                    _base.RotateTo(_baseAngle);
+                    baseAngle--;
+                    _base.RotateTo(baseAngle);
                     Thread.Sleep(500);
                 }
             }
@@ -129,6 +129,46 @@ namespace RobotArm
                     _horizontal.RotateTo(_horizontalAngle);
                     Thread.Sleep(500);
                 }
+            }
+        }
+
+        public void Test() 
+        {
+            Console.WriteLine("Test...");
+            _grip.RotateTo(0);
+
+            bool isOpen = false;
+
+            while (true) 
+            {
+                //_grip.RotateTo(100); //Close
+                //Thread.Sleep(2000);
+
+                //_grip.RotateTo(0); // Open
+                //Thread.Sleep(2000);
+
+                for (int i = 0; i <= 180; i++)
+                {
+                    _base.RotateTo(i);
+                    Thread.Sleep(20);
+                }
+
+                Thread.Sleep(2000);
+
+                for (int i = 180; i >= 0; i--)
+                {
+                    _base.RotateTo(i);
+                    Thread.Sleep(20);
+                }
+
+                Thread.Sleep(2000);
+
+                if (isOpen)
+                    _grip.RotateTo(100);
+                else
+                    _grip.RotateTo(0);
+
+                isOpen = !isOpen;
             }
         }
     }
