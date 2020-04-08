@@ -20,6 +20,7 @@ namespace McpLeds
 
             mcp = new Mcp23x08(Device.CreateI2cBus(), true, true, true);
 
+            leds = new List<Led>();
             leds.Add(new Led(mcp.CreateDigitalOutputPort(mcp.Pins.GP0)));
             leds.Add(new Led(mcp.CreateDigitalOutputPort(mcp.Pins.GP1)));
             leds.Add(new Led(mcp.CreateDigitalOutputPort(mcp.Pins.GP2)));
