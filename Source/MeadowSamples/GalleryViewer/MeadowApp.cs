@@ -43,7 +43,11 @@ namespace GalleryViewer
             display = new St7789
             (
                 device: Device,
-                spiBus: Device.CreateSpiBus(Device.Pins.SCK, Device.Pins.MOSI, Device.Pins.MISO, config),
+                spiBus: Device.CreateSpiBus(
+                    clock: Device.Pins.SCK, 
+                    mosi: Device.Pins.MOSI, 
+                    miso: Device.Pins.MISO, 
+                    config: config),
                 chipSelectPin: null,
                 dcPin: Device.Pins.D01,
                 resetPin: Device.Pins.D00,
@@ -139,7 +143,7 @@ namespace GalleryViewer
             //GC.Collect();
 
             var assembly = Assembly.GetExecutingAssembly();
-            var resourceName = $"Displays.TftSpi.Ili9341_Jpg_Sample.{filename}";
+            var resourceName = $"GalleryViewer.{filename}";
 
             using (Stream stream = assembly.GetManifestResourceStream(resourceName))
             {
