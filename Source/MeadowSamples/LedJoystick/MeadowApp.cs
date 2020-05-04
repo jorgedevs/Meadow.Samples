@@ -4,9 +4,6 @@ using Meadow.Foundation.Leds;
 using Meadow.Foundation.Sensors.Hid;
 using Meadow.Peripherals.Sensors.Hid;
 using System;
-using System.Threading;
-using System.Threading.Tasks;
-using static Meadow.Foundation.Sensors.Hid.AnalogJoystick;
 
 namespace LedJoystick
 {
@@ -29,11 +26,11 @@ namespace LedJoystick
                 Device.CreateAnalogInputPort(Device.Pins.A00),
                 null, true);
 
-            //joystick.SetCenterPosition(); //fire and forget 
-            //joystick.Updated += JoystickUpdated;
-            //joystick.StartUpdating();
+            joystick.SetCenterPosition();
+            joystick.Updated += JoystickUpdated;
+            joystick.StartUpdating();
 
-            //var t = TestAnalogJoystick();
+            //TestAnalogJoystick();
         }
 
         private void JoystickUpdated(object sender, JoystickPositionChangeResult e)
