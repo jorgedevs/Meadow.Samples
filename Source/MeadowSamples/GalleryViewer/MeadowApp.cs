@@ -57,7 +57,7 @@ namespace GalleryViewer
             graphics = new GraphicsLibrary(display);
             graphics.Rotation = GraphicsLibrary.RotationType._270Degrees;
 
-            JpegTest();
+            DisplayJPG();
 
             green.IsOn = true;
         }
@@ -72,7 +72,7 @@ namespace GalleryViewer
             else
                 selectedIndex++;
 
-            JpegTest();
+            DisplayJPG();
 
             red.IsOn = false;
             green.IsOn = true;
@@ -88,29 +88,17 @@ namespace GalleryViewer
             else
                 selectedIndex--;
 
-            JpegTest();
+            DisplayJPG();
 
             red.IsOn = false;
             green.IsOn = true;
         }
 
-        void JpegTest()
+        void DisplayJPG()
         {
-            Console.WriteLine("Jpeg Test!!!");
-
             var jpgData = LoadResource(images[selectedIndex]);
-
-            Console.WriteLine($"Loaded {jpgData.Length} bytes, decoding jpeg ...");
-
             var decoder = new JpegDecoder();
             var jpg = decoder.DecodeJpeg(jpgData);
-
-            Console.WriteLine($"Jpeg decoded is {jpg.Length} bytes");
-            Console.WriteLine($"Width {decoder.Width}");
-            Console.WriteLine($"Height {decoder.Height}");
-
-            graphics.Clear();
-            graphics.DrawRectangle(0, 0, 240, 240, Color.White, true);
 
             int x = 0;
             int y = 0;
@@ -125,7 +113,6 @@ namespace GalleryViewer
                 graphics.DrawPixel(x, y, Color.FromRgb(r, g, b));
 
                 x++;
-
                 if (x % decoder.Width == 0)
                 {
                     y++;
@@ -133,15 +120,11 @@ namespace GalleryViewer
                 }
             }
 
-            Console.WriteLine("Jpeg show");
-
             display.Show();
         }
 
         byte[] LoadResource(string filename)
         {
-            //GC.Collect();
-
             var assembly = Assembly.GetExecutingAssembly();
             var resourceName = $"GalleryViewer.{filename}";
 
