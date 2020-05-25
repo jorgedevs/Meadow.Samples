@@ -74,3 +74,15 @@ Source/MeadowSamples/GalleryViewer/obj/
 Source/MeadowSamples/GalleryViewer/bin/
 Source/MeadowSamples/MoistureMeter/bin/
 Source/MeadowSamples/MoistureMeter/obj/
+Source/MeadowSamples/TestI2CSPI/bin/
+Source/MeadowSamples/TestI2CSPI/obj/
+Source/MeadowSamples/Tests/Leds.Led_Sample/bin/
+Source/MeadowSamples/Tests/Leds.Led_Sample/obj/
+Source/MeadowSamples/Tests/Tests.I2cSpiAnalogTemperature_Sample/bin/
+Source/MeadowSamples/Tests/Tests.I2cSpiAnalogTemperature_Sample/obj/
+Source/MeadowSamples/Tests/Tests.Led_Sample/bin/
+Source/MeadowSamples/Tests/Tests.Led_Sample/obj/
+Source/MeadowSamples/Tests/Tests.PushButton_Sample/bin/
+Source/MeadowSamples/Tests/Tests.PushButton_Sample/obj/
+Source/MeadowSamples/Tests/Tests.PwmLed_Sample/bin/
+Source/MeadowSamples/Tests/Tests.PwmLed_Sample/obj/
