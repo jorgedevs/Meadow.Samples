@@ -86,3 +86,5 @@ Source/MeadowSamples/Tests/Tests.PushButton_Sample/bin/
 Source/MeadowSamples/Tests/Tests.PushButton_Sample/obj/
 Source/MeadowSamples/Tests/Tests.PwmLed_Sample/bin/
 Source/MeadowSamples/Tests/Tests.PwmLed_Sample/obj/
+Source/MeadowSamples/RotaryLedBar/obj/
+Source/MeadowSamples/RotaryLedBar/bin/
