@@ -1,65 +1,89 @@
 ﻿using Meadow;
 using Meadow.Devices;
-using Meadow.Foundation.Sensors.Buttons;
+using Meadow.Foundation;
+using Meadow.Foundation.Displays.Tft;
+using Meadow.Foundation.Graphics;
+using Meadow.Foundation.Sensors.Rotary;
 using Meadow.Hardware;
+using Meadow.Peripherals.Sensors.Rotary;
 using System;
 
 namespace EdgeASketch
 {
     public class MeadowApp : App<F7Micro, MeadowApp>
     {
-        int X = 0, Y = 0;
-        //RotaryEncoderWithButton RotaryX, RotaryY;
-
-        PushButton xUp, xDown, yUp, yDown;
+        int x, y;
+        Color color;
+        St7789 st7789;
+        GraphicsLibrary graphics;
+        RotaryEncoder rotaryX;
+        RotaryEncoder rotaryY;
 
         public MeadowApp()
         {
-            Console.Write("Initializing...");
+            x = 120;
+            y = 120;
 
-            //RotaryX = new RotaryEncoderWithButton(
-            //    device: Device, 
-            //    aPhasePin: Device.Pins.D14, 
-            //    bPhasePin: Device.Pins.D13, 
-            //    buttonPin: Device.Pins.D12
-            //);
-            //RotaryX.Rotated += (s, e) =>
-            //{
-            //    if (e.Direction == Meadow.Peripherals.Sensors.Rotary.RotationDirection.Clockwise)
-            //        X++; 
-            //    else
-            //        X--;
-            //    Console.WriteLine("X = {0}", X);
-            //};
+            color = Color.Black;
 
-            //RotaryY = new RotaryEncoderWithButton(
-            //    device: Device,
-            //    aPhasePin: Device.Pins.D02,
-            //    bPhasePin: Device.Pins.D03,
-            //    buttonPin: Device.Pins.D04
-            //);
-            //RotaryY.Rotated += (s, e) =>
-            //{
-            //    if (e.Direction == Meadow.Peripherals.Sensors.Rotary.RotationDirection.Clockwise)
-            //        Y++;
-            //    else
-            //        Y--;
-            //    Console.WriteLine("Y = {0}", Y);
-            //};
+            var config = new SpiClockConfiguration(
+                speedKHz: 6000,
+                mode: SpiClockConfiguration.Mode.Mode3);
+            st7789 = new St7789(
+                device: Device,
+                spiBus: Device.CreateSpiBus(
+                    clock: Device.Pins.SCK,
+                    mosi: Device.Pins.MOSI,
+                    miso: Device.Pins.MISO,
+                    config: config),
+                chipSelectPin: null,
+                dcPin: Device.Pins.D01,
+                resetPin: Device.Pins.D00,
+                width: 240, height: 240);
 
-            xUp = new PushButton(Device.CreateDigitalInputPort(Device.Pins.D12, InterruptMode.EdgeBoth, ResistorMode.Disabled));
-            xUp.Clicked += (s, e) => { X++; Console.WriteLine("X = {0}", X); };
+            graphics = new GraphicsLibrary(st7789);
+            graphics.Clear(true);
+            graphics.DrawRectangle(0, 0, 240, 240, Color.White, true);
+            graphics.DrawPixel(x, y, color);
+            graphics.Show();
 
-            xDown = new PushButton(Device.CreateDigitalInputPort(Device.Pins.D14, InterruptMode.EdgeBoth, ResistorMode.Disabled));
-            xDown.Clicked += (s, e) => { X--; Console.WriteLine("X = {0}", X); };
+            rotaryX = new RotaryEncoder(
+                Device.CreateDigitalInputPort(Device.Pins.A00, InterruptMode.EdgeBoth, ResistorMode.PullUp, 0, 10),
+                Device.CreateDigitalInputPort(Device.Pins.A01, InterruptMode.EdgeBoth, ResistorMode.PullUp, 0, 10));
+            rotaryX.Rotated += RotaryXRotated;
 
-            yUp = new PushButton(Device, Device.Pins.D02);
-            yUp.Clicked += (s, e) => { Y++; Console.WriteLine("Y = {0}", Y); };
-
-            yDown = new PushButton(Device, Device.Pins.D05);
-            yDown.Clicked += (s, e) => { Y--; Console.WriteLine("Y = {0}", Y); };
+            rotaryY = new RotaryEncoder(
+                Device.CreateDigitalInputPort(Device.Pins.D02, InterruptMode.EdgeBoth, ResistorMode.PullUp, 0, 10),
+                Device.CreateDigitalInputPort(Device.Pins.D03, InterruptMode.EdgeBoth, ResistorMode.PullUp, 0, 10));
+            rotaryY.Rotated += RotaryYRotated;
 
             Console.WriteLine("done");
+        }
+
+        void RotaryXRotated(object sender, RotaryTurnedEventArgs e)
+        {
+            if (e.Direction == RotationDirection.Clockwise)
+                x++;
+            else
+                x--;
+
+            graphics.DrawPixel(x, y + 1, Color.Red);
+            graphics.DrawPixel(x, y, Color.Red);
+            graphics.DrawPixel(x, y - 1, Color.Red);
+            graphics.Show();
+        }
+
+        void RotaryYRotated(object sender, RotaryTurnedEventArgs e)
+        {
+            if (e.Direction == RotationDirection.Clockwise)
+                y++;
+            else
+                y--;
+
+            graphics.DrawPixel(x + 1, y, Color.Red);
+            graphics.DrawPixel(x, y, Color.Red);
+            graphics.DrawPixel(x - 1, y, Color.Red);
+            graphics.Show();
         }
     }
 }
