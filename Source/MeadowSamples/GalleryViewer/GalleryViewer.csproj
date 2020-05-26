@@ -15,10 +15,10 @@
     <EmbeddedResource Include="image3.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Meadow.Foundation" Version="0.14.1" />
+    <PackageReference Include="Meadow.Foundation" Version="0.15.1" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Meadow.Foundation.Displays.TftSpi" Version="0.7.6" />
+    <PackageReference Include="Meadow.Foundation.Displays.TftSpi" Version="0.7.7" />
     <PackageReference Include="SimpleJpegDecoder" Version="0.1.1" />
   </ItemGroup>
 </Project>

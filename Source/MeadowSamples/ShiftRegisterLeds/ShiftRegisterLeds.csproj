@@ -5,9 +5,9 @@
     <AssemblyName>App</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Meadow.Foundation" Version="0.14.1" />
+    <PackageReference Include="Meadow.Foundation" Version="0.15.1" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Meadow.Foundation.ICs.IOExpanders.x74595" Version="0.1.3" />
+    <PackageReference Include="Meadow.Foundation.ICs.IOExpanders.x74595" Version="0.1.4" />
   </ItemGroup>
 </Project>
