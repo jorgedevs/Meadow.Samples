@@ -47,8 +47,8 @@ namespace RotaryLedBar
             ledBarGraph = new LedBarGraph(ports);
 
             rotaryEncoder = new RotaryEncoder(
-                Device.CreateDigitalInputPort(Device.Pins.D02, InterruptMode.EdgeBoth, ResistorMode.PullUp, 0, 10),
-                Device.CreateDigitalInputPort(Device.Pins.D03, InterruptMode.EdgeBoth, ResistorMode.PullUp, 0, 10));
+                Device.CreateDigitalInputPort(Device.Pins.D02, InterruptMode.EdgeRising, ResistorMode.PullUp, 0, 5),
+                Device.CreateDigitalInputPort(Device.Pins.D03, InterruptMode.EdgeRising, ResistorMode.PullUp, 0, 5));
             rotaryEncoder.Rotated += RotaryEncoderRotated;
 
             onboardLed.SetColor(Color.Green);
