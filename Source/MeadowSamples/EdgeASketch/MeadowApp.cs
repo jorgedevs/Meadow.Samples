@@ -13,18 +13,14 @@ namespace EdgeASketch
     public class MeadowApp : App<F7Micro, MeadowApp>
     {
         int x, y;
-        Color color;
         St7789 st7789;
         GraphicsLibrary graphics;
-        RotaryEncoder rotaryX;
-        RotaryEncoder rotaryY;
+        RotaryEncoderWithButton rotaryX;
+        RotaryEncoderWithButton rotaryY;
 
         public MeadowApp()
         {
-            x = 120;
-            y = 120;
-
-            color = Color.Black;
+            x = y = 120;
 
             var config = new SpiClockConfiguration(
                 speedKHz: 6000,
@@ -44,20 +40,17 @@ namespace EdgeASketch
             graphics = new GraphicsLibrary(st7789);
             graphics.Clear(true);
             graphics.DrawRectangle(0, 0, 240, 240, Color.White, true);
-            graphics.DrawPixel(x, y, color);
+            graphics.DrawPixel(x, y, Color.Red);
             graphics.Show();
 
-            rotaryX = new RotaryEncoder(
-                Device.CreateDigitalInputPort(Device.Pins.A00, InterruptMode.EdgeBoth, ResistorMode.PullUp, 0, 10),
-                Device.CreateDigitalInputPort(Device.Pins.A01, InterruptMode.EdgeBoth, ResistorMode.PullUp, 0, 10));
+            rotaryX = new RotaryEncoderWithButton(Device,
+                Device.Pins.A00, Device.Pins.A01, Device.Pins.A02);
             rotaryX.Rotated += RotaryXRotated;
 
-            rotaryY = new RotaryEncoder(
-                Device.CreateDigitalInputPort(Device.Pins.D02, InterruptMode.EdgeBoth, ResistorMode.PullUp, 0, 10),
-                Device.CreateDigitalInputPort(Device.Pins.D03, InterruptMode.EdgeBoth, ResistorMode.PullUp, 0, 10));
+            rotaryY = new RotaryEncoderWithButton(Device,
+                Device.Pins.D02, Device.Pins.D03, Device.Pins.D04);
             rotaryY.Rotated += RotaryYRotated;
-
-            Console.WriteLine("done");
+            rotaryY.Clicked += RotaryYClicked;
         }
 
         void RotaryXRotated(object sender, RotaryTurnedEventArgs e)
@@ -66,6 +59,9 @@ namespace EdgeASketch
                 x++;
             else
                 x--;
+
+            if (x > 239) x = 239;
+            else if (x < 0) x = 0;
 
             graphics.DrawPixel(x, y + 1, Color.Red);
             graphics.DrawPixel(x, y, Color.Red);
@@ -80,9 +76,21 @@ namespace EdgeASketch
             else
                 y--;
 
+            if (y > 239) y = 239;
+            else if (y < 0) y = 0;
+
             graphics.DrawPixel(x + 1, y, Color.Red);
             graphics.DrawPixel(x, y, Color.Red);
             graphics.DrawPixel(x - 1, y, Color.Red);
+            graphics.Show();
+        }
+
+        void RotaryYClicked(object sender, EventArgs e)
+        {
+            x = y = 120;
+
+            graphics.DrawRectangle(0, 0, 240, 240, Color.White, true);
+            graphics.DrawPixel(x, y, Color.Red);
             graphics.Show();
         }
     }
