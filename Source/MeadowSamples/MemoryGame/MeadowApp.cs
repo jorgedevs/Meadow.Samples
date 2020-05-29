@@ -1,21 +1,21 @@
-﻿using System;
-using System.Threading;
-using Meadow;
+﻿using Meadow;
 using Meadow.Devices;
 using Meadow.Foundation.Displays;
 using Meadow.Foundation.Graphics;
 using Meadow.Hardware;
+using System;
+using System.Threading;
 
 namespace MemoryGame
 {
     public class MeadowApp : App<F7Micro, MeadowApp>
     {
-        protected Ssd1306 display;
-        protected GraphicsLibrary graphics;
+        Ssd1306 display;
+        GraphicsLibrary graphics;
 
-        protected int currentColumn;
-        protected IDigitalInputPort[] rowPorts = new IDigitalInputPort[4];
-        protected IDigitalOutputPort[] columnPorts = new IDigitalOutputPort[4];
+        int currentColumn;
+        IDigitalInputPort[] rowPorts = new IDigitalInputPort[4];
+        IDigitalOutputPort[] columnPorts = new IDigitalOutputPort[4];
 
         protected char[] options;
         protected bool[] optionsSolved;
@@ -31,12 +31,12 @@ namespace MemoryGame
             option1 = option2 = -1;
 
             InitializePeripherals();
-            //LoadMemoryBoard();
+            LoadMemoryBoard();
             StartGameAnimation();
-            //CyclingColumnVDD();
+            CyclingColumnVDD();
         }
 
-        protected bool IsLevelComplete()
+        bool IsLevelComplete()
         {
             bool isComplete = true;
 
@@ -52,29 +52,32 @@ namespace MemoryGame
             return isComplete;
         }
 
-        protected void InitializePeripherals()
+        void InitializePeripherals()
         {
             var i2CBus = Device.CreateI2cBus();
             display = new Ssd1306(i2CBus, 60, Ssd1306.DisplayType.OLED128x32);
-            graphics = new GraphicsLibrary(display);            
+            graphics = new GraphicsLibrary(display);
+            graphics.Rotation = GraphicsLibrary.RotationType._180Degrees;
 
-            //rowPorts[0] = Device.CreateDigitalInputPort(Device.Pins.D14, InterruptMode.EdgeFalling, ResistorMode.Disabled, 250);
-            //rowPorts[1] = Device.CreateDigitalInputPort(Device.Pins.D13, InterruptMode.EdgeFalling, ResistorMode.Disabled, 250);
-            //rowPorts[2] = Device.CreateDigitalInputPort(Device.Pins.D12, InterruptMode.EdgeFalling, ResistorMode.Disabled, 250);
-            //rowPorts[3] = Device.CreateDigitalInputPort(Device.Pins.D11, InterruptMode.EdgeFalling, ResistorMode.Disabled, 250);
+            rowPorts[0] = Device.CreateDigitalInputPort(Device.Pins.D15, InterruptMode.EdgeRising, ResistorMode.PullDown, 0, 50);
+            rowPorts[1] = Device.CreateDigitalInputPort(Device.Pins.D14, InterruptMode.EdgeRising, ResistorMode.PullDown, 0, 50);
+            rowPorts[2] = Device.CreateDigitalInputPort(Device.Pins.D13, InterruptMode.EdgeRising, ResistorMode.PullDown, 0, 50);
+            rowPorts[3] = Device.CreateDigitalInputPort(Device.Pins.D12, InterruptMode.EdgeRising, ResistorMode.PullDown, 0, 50);
 
-            columnPorts[0] = Device.CreateDigitalOutputPort(Device.Pins.D10);
-            columnPorts[1] = Device.CreateDigitalOutputPort(Device.Pins.D09);
-            columnPorts[2] = Device.CreateDigitalOutputPort(Device.Pins.D06);
-            columnPorts[3] = Device.CreateDigitalOutputPort(Device.Pins.D05);
+            columnPorts[0] = Device.CreateDigitalOutputPort(Device.Pins.D01);
+            columnPorts[1] = Device.CreateDigitalOutputPort(Device.Pins.D02);
+            columnPorts[2] = Device.CreateDigitalOutputPort(Device.Pins.D03);
+            columnPorts[3] = Device.CreateDigitalOutputPort(Device.Pins.D04);
 
             currentColumn = 0;
         }
 
-        protected void LoadMemoryBoard()
+        void LoadMemoryBoard()
         {
             for (int i = 0; i < 16; i++)
+            {
                 options[i] = ' ';
+            }
 
             for (int i = 0; i < 8; i++)
             {
@@ -83,11 +86,13 @@ namespace MemoryGame
             }
 
             // Uncomment to print all board values
-            // for (int i = 0; i < 16; i++)
-            //    Debug.Print((i+1).ToString() + " " + options[i].ToString() + " ");
+            for (int i = 0; i < 16; i++)
+            {
+                Console.Write((i + 1).ToString() + " " + options[i].ToString() + " ");
+            }                
         }
 
-        protected void PlaceCharacter(int i)
+        void PlaceCharacter(int i)
         {
             var r = new Random();
             bool isPlaced = false;
@@ -103,7 +108,7 @@ namespace MemoryGame
             }
         }
 
-        protected void StartGameAnimation()
+        void StartGameAnimation()
         {
             DisplayText("MEMORY GAME", 20);
             Thread.Sleep(2000);
@@ -114,7 +119,7 @@ namespace MemoryGame
             DisplayText("Select Button");
         }
 
-        protected void CyclingColumnVDD()
+        void CyclingColumnVDD()
         {
             Thread thread = new Thread(() =>
             {
@@ -234,10 +239,8 @@ namespace MemoryGame
             thread.Start();
         }
 
-        protected void DisplayText(string text, int x = 12)
+        void DisplayText(string text, int x = 12)
         {
-            Console.WriteLine("Hellooooo");
-
             graphics.Clear();
             graphics.CurrentFont = new Font8x12();
             graphics.DrawRectangle(0, 0, 128, 32);
