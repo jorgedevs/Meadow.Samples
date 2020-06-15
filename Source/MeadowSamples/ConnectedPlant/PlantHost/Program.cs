@@ -1,7 +1,7 @@
 ﻿using Meadow;
 using System.Threading;
 
-namespace HelloLed
+namespace PlantHost
 {
     class Program
     {

@@ -88,3 +88,7 @@ Source/MeadowSamples/Tests/Tests.PwmLed_Sample/bin/
 Source/MeadowSamples/Tests/Tests.PwmLed_Sample/obj/
 Source/MeadowSamples/RotaryLedBar/obj/
 Source/MeadowSamples/RotaryLedBar/bin/
+Source/MeadowSamples/ConnectedPlant/PlantHost/bin/
+Source/MeadowSamples/ConnectedPlant/PlantHost/obj/
+Source/MeadowSamples/RotaryServo/bin/
+Source/MeadowSamples/RotaryServo/obj/
