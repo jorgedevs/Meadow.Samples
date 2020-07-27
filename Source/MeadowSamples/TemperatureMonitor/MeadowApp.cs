@@ -95,8 +95,8 @@ namespace TemperatureMonitor
 
         void AnalogTemperatureUpdated(object sender, AtmosphericConditionChangeResult e)
         {
-            float oldTemp = e.Old.Temperature / 1000;
-            float newTemp = e.New.Temperature / 1000;
+            float oldTemp = (float)(e.Old.Temperature / 1000);
+            float newTemp = (float)(e.New.Temperature / 1000);
 
             graphics.DrawText(
                 x: 48, y: 160, 

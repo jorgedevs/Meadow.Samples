@@ -9,15 +9,18 @@ using Meadow.Foundation.Leds;
 using Meadow.Foundation.Sensors.Rotary;
 using Meadow.Foundation.Servos;
 using Meadow.Hardware;
+using Meadow.Peripherals.Sensors.Rotary;
 
 namespace RotaryServo
 {
     public class MeadowApp : App<F7Micro, MeadowApp>
     {
+        int angle = 0;
+
         Servo servo;
         St7789 display;
         GraphicsLibrary graphics;
-        RotaryEncoderWithButton rotary;
+        RotaryEncoder rotary;
         RgbPwmLed onboardLed;
 
         public MeadowApp()
@@ -39,7 +42,7 @@ namespace RotaryServo
             (
                 device: Device,
                 spiBus: Device.CreateSpiBus(Device.Pins.SCK, Device.Pins.MOSI, Device.Pins.MISO, config),
-                chipSelectPin: Device.Pins.D02,
+                chipSelectPin: null,
                 dcPin: Device.Pins.D01,
                 resetPin: Device.Pins.D00,
                 width: 240, height: 240
@@ -47,9 +50,31 @@ namespace RotaryServo
             graphics = new GraphicsLibrary(display);
             graphics.Rotation = GraphicsLibrary.RotationType._270Degrees;
 
+            rotary = new RotaryEncoder(Device, Device.Pins.D02, Device.Pins.D03);
+            rotary.Rotated += RotaryRotated;
+
+            servo = new Servo(Device.CreatePwmPort(Device.Pins.D12), NamedServoConfigs.SG90);
+            servo.RotateTo(0);
 
             onboardLed.SetColor(Color.Green);
             Start();
+        }
+
+        void RotaryRotated(object sender, RotaryTurnedEventArgs e)
+        {
+            if (e.Direction == Meadow.Peripherals.Sensors.Rotary.RotationDirection.Clockwise)
+                angle++;
+            else
+                angle--;
+
+            if (angle > 180) angle = 180;
+            else if (angle < 0) angle = 0;
+
+            servo.RotateTo(angle);
+
+            graphics.DrawRectangle(66, 98, 108, 60, Color.White, true);
+            graphics.DrawText(66, 98, angle.ToString("D3"), Color.Black, GraphicsLibrary.ScaleFactor.X3);
+            graphics.Show();
         }
 
         void Start() 
@@ -61,21 +86,23 @@ namespace RotaryServo
             graphics.CurrentFont = new Font12x20();
             graphics.DrawText(90, 70, "SERVO", Color.Black);
 
-            for(int i=0; i<180; i++) 
-            {
-                graphics.DrawRectangle(66, 98, 108, 60, Color.White, true);
-                graphics.DrawText(66, 98, i.ToString("###"), Color.Black, GraphicsLibrary.ScaleFactor.X3);
-                graphics.Show();
-                Thread.Sleep(500);
-            }
+            graphics.DrawText(66, 98, angle.ToString("D3"), Color.Black, GraphicsLibrary.ScaleFactor.X3);
 
-            for (int i=179; i>=0; i--)
-            {
-                graphics.DrawRectangle(66, 98, 108, 60, Color.White, true);
-                graphics.DrawText(66, 98, i.ToString("###"), Color.Black, GraphicsLibrary.ScaleFactor.X3);
-                graphics.Show();
-                Thread.Sleep(500);
-            }
+            //for (int i=0; i<180; i++) 
+            //{
+            //    graphics.DrawRectangle(66, 98, 108, 60, Color.White, true);
+            //    graphics.DrawText(66, 98, i.ToString("D3"), Color.Black, GraphicsLibrary.ScaleFactor.X3);
+            //    graphics.Show();
+            //    Thread.Sleep(500);
+            //}
+
+            //for (int i=179; i>=0; i--)
+            //{
+            //    graphics.DrawRectangle(66, 98, 108, 60, Color.White, true);
+            //    graphics.DrawText(66, 98, i.ToString("D3"), Color.Black, GraphicsLibrary.ScaleFactor.X3);
+            //    graphics.Show();
+            //    Thread.Sleep(500);
+            //}
 
             graphics.Show();
         }
