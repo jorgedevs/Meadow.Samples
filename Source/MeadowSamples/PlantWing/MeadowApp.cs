@@ -12,8 +12,8 @@ namespace PlantWing
 {
     public class MeadowApp : App<F7Micro, MeadowApp>
     {
-        const float MINIMUM_VOLTAGE_CALIBRATION = 2.84f;
-        const float MAXIMUM_VOLTAGE_CALIBRATION = 1.37f;
+        const float MINIMUM_VOLTAGE_CALIBRATION = 2.81f;
+        const float MAXIMUM_VOLTAGE_CALIBRATION = 1.50f;
 
         Capacitive capacitive;
         LedBarGraph ledBarGraph;
@@ -22,6 +22,7 @@ namespace PlantWing
         {
             Initialize();
 
+            //Calibration();
             StartReading();
         }
 
@@ -56,12 +57,25 @@ namespace PlantWing
 
             capacitive = new Capacitive
             (
-                Device.CreateAnalogInputPort(Device.Pins.A00)//,
-                //MINIMUM_VOLTAGE_CALIBRATION,
-                //MAXIMUM_VOLTAGE_CALIBRATION
+                Device.CreateAnalogInputPort(Device.Pins.A00),
+                MINIMUM_VOLTAGE_CALIBRATION,
+                MAXIMUM_VOLTAGE_CALIBRATION
             );
 
             led.SetColor(RgbLed.Colors.Green);
+        }
+
+        async Task Calibration() 
+        {
+            IAnalogInputPort analogIn = Device.CreateAnalogInputPort(Device.Pins.A00);
+            float voltage;
+
+            while (true)
+            {
+                voltage = await analogIn.Read();
+                Console.WriteLine("Voltage: " + voltage.ToString());
+                Thread.Sleep(1000);
+            }
         }
 
         async Task StartReading()
