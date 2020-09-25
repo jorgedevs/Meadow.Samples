@@ -4,6 +4,7 @@ using Meadow.Foundation;
 using Meadow.Foundation.Displays;
 using Meadow.Foundation.Displays.Tft;
 using Meadow.Foundation.Graphics;
+using Meadow.Foundation.Leds;
 using Meadow.Foundation.Sensors.Temperature;
 using System;
 using System.Collections.Generic;
@@ -22,6 +23,9 @@ namespace Tests.I2cSpiAnalogTemperature_Sample
 
         public MeadowApp()
         {
+            var led = new RgbLed(Device, Device.Pins.OnboardLedRed, Device.Pins.OnboardLedGreen, Device.Pins.OnboardLedBlue);
+            led.SetColor(RgbLed.Colors.Red);
+
             Console.WriteLine("Start...");
 
             Console.Write("Initializing I2C...");
@@ -60,8 +64,10 @@ namespace Tests.I2cSpiAnalogTemperature_Sample
                 new AnalogTemperature(Device, Device.Pins.A02, AnalogTemperature.KnownSensorType.LM35),
                 new AnalogTemperature(Device, Device.Pins.A03, AnalogTemperature.KnownSensorType.LM35),
                 //new AnalogTemperature(Device, Device.Pins.A04, AnalogTemperature.KnownSensorType.LM35), borked
-                new AnalogTemperature(Device, Device.Pins.A05, AnalogTemperature.KnownSensorType.LM35),
+                //new AnalogTemperature(Device, Device.Pins.A05, AnalogTemperature.KnownSensorType.LM35),
             };
+
+            led.SetColor(RgbLed.Colors.Green);
 
             TestTemperatures();
         }
