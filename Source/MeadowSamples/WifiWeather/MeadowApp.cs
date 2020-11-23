@@ -4,35 +4,40 @@ using Meadow.Foundation;
 using Meadow.Foundation.Leds;
 using Meadow.Gateway.WiFi;
 using System;
-using System.Threading;
+using WifiWeather.Models;
 using WifiWeather.ServiceAccessLayer;
 
 namespace WifiWeather
 {
     public class MeadowApp : App<F7Micro, MeadowApp>
-    {        
+    {
+        RgbPwmLed onboardLed;
+        WeatherReading reading;
+
         public MeadowApp()
         {
             Initialize();
 
+            onboardLed.StartPulse(Color.Magenta);
+
             ClientServiceFacade.FetchReadings().Wait();
 
-            Console.WriteLine("Done!");
+            onboardLed.StartPulse(Color.Green);
         }
 
         void Initialize()
         {
-            var onboardLed = new RgbPwmLed(device: Device,
+            onboardLed = new RgbPwmLed(device: Device,
                 redPwmPin: Device.Pins.OnboardLedRed,
                 greenPwmPin: Device.Pins.OnboardLedGreen,
                 bluePwmPin: Device.Pins.OnboardLedBlue,
                 3.3f, 3.3f, 3.3f,
                 Meadow.Peripherals.Leds.IRgbLed.CommonType.CommonAnode);
-            onboardLed.SetColor(Color.Red);
+            onboardLed.StartPulse(Color.Red);
 
             Device.InitWiFiAdapter().Wait();
 
-            onboardLed.SetColor(Color.Blue);
+            onboardLed.StartPulse(Color.Blue);
 
             var result = Device.WiFiAdapter.Connect(Secrets.WIFI_NAME, Secrets.WIFI_PASSWORD);
             if (result.ConnectionStatus != ConnectionStatus.Success)
@@ -40,7 +45,7 @@ namespace WifiWeather
                 throw new Exception($"Cannot connect to network: {result.ConnectionStatus}");
             }
 
-            onboardLed.SetColor(Color.Green);
+            onboardLed.StartPulse(Color.Green);
         }
     }
 }
