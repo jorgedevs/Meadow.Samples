@@ -4,6 +4,8 @@ using Meadow.Foundation;
 using Meadow.Foundation.Leds;
 using Meadow.Gateway.WiFi;
 using System;
+using System.Threading.Tasks;
+using WifiWeather.Controllers;
 using WifiWeather.Models;
 using WifiWeather.ServiceAccessLayer;
 
@@ -13,16 +15,13 @@ namespace WifiWeather
     {
         RgbPwmLed onboardLed;
         WeatherReading reading;
+        DisplayController displayController;
 
         public MeadowApp()
         {
             Initialize();
 
-            onboardLed.StartPulse(Color.Magenta);
-
-            ClientServiceFacade.FetchReadings().Wait();
-
-            onboardLed.StartPulse(Color.Green);
+            
         }
 
         void Initialize()
@@ -35,6 +34,8 @@ namespace WifiWeather
                 Meadow.Peripherals.Leds.IRgbLed.CommonType.CommonAnode);
             onboardLed.StartPulse(Color.Red);
 
+            displayController = new DisplayController();
+
             Device.InitWiFiAdapter().Wait();
 
             onboardLed.StartPulse(Color.Blue);
@@ -44,6 +45,16 @@ namespace WifiWeather
             {
                 throw new Exception($"Cannot connect to network: {result.ConnectionStatus}");
             }
+
+            onboardLed.StartPulse(Color.Green);
+        }
+
+        async Task Start() 
+        {
+            onboardLed.StartPulse(Color.Magenta);
+
+            WeatherReading reading = await ClientServiceFacade.FetchReadings();
+            //displayController.UpdateDisplay(reading);
 
             onboardLed.StartPulse(Color.Green);
         }

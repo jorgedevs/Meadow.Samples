@@ -16,7 +16,7 @@ namespace WifiWeather.ServiceAccessLayer
         /// Fetches the climate readings from the Web API Endpoint
         /// </summary>
         /// <returns></returns>
-        public static async Task FetchReadings()
+        public static async Task<WeatherReading> FetchReadings()
         {
             using (HttpClient client = new HttpClient())
             {
@@ -34,22 +34,25 @@ namespace WifiWeather.ServiceAccessLayer
 
                     Console.WriteLine(json);
 
-                    var stuff = System.Text.Json.JsonSerializer.Deserialize(json, typeof(WeatherReading));
+                    var values = System.Text.Json.JsonSerializer.Deserialize(json, typeof(WeatherReading));
 
                     Console.WriteLine("deserialized to object");
 
-                    var reading = stuff as WeatherReading;
+                    var reading = values as WeatherReading;
 
                     Console.WriteLine($"Success");
+                    return reading;
                 }
                 catch (TaskCanceledException)
                 {
                     Console.WriteLine("Request time out.");
+                    return null;
                 }
                 catch (Exception e)
                 {
                     Console.WriteLine($"Request went sideways: {e.Message}");
-                }
+                    return null;
+                }                
             }
         }
     }
