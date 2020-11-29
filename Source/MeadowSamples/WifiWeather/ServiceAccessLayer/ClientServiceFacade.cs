@@ -8,7 +8,7 @@ namespace WifiWeather.ServiceAccessLayer
     public static class ClientServiceFacade
     {
         // TODO: change this IP for your localhost 
-        static string climateDataUri = "http://api.openweathermap.org/data/2.5/weather?q=Vancouver&appid=65ffb400cbae35050dc2d1d1ebd3ef8d";
+        static string climateDataUri = "http://api.openweathermap.org/data/2.5/weather?q=Vancouver&appid=[API KEY HERE]";
 
         static ClientServiceFacade() { }
 
