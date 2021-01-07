@@ -63,8 +63,8 @@ namespace Tests.I2cSpiAnalogTemperature_Sample
                 new AnalogTemperature(Device, Device.Pins.A01, AnalogTemperature.KnownSensorType.LM35),
                 new AnalogTemperature(Device, Device.Pins.A02, AnalogTemperature.KnownSensorType.LM35),
                 new AnalogTemperature(Device, Device.Pins.A03, AnalogTemperature.KnownSensorType.LM35),
-                //new AnalogTemperature(Device, Device.Pins.A04, AnalogTemperature.KnownSensorType.LM35), borked
-                //new AnalogTemperature(Device, Device.Pins.A05, AnalogTemperature.KnownSensorType.LM35),
+                new AnalogTemperature(Device, Device.Pins.A04, AnalogTemperature.KnownSensorType.LM35), 
+                new AnalogTemperature(Device, Device.Pins.A05, AnalogTemperature.KnownSensorType.LM35),
             };
 
             led.SetColor(RgbLed.Colors.Green);
