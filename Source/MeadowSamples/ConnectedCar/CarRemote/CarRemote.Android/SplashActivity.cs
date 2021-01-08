@@ -5,7 +5,7 @@ using Android.OS;
 
 namespace CarRemote.Droid
 {
-    [Activity(Label = "CarRemote", Icon = "@mipmap/icon_launcher", RoundIcon = "@mipmap/icon_round_launcher", Theme = "@style/Theme.Splash",
+    [Activity(Label = "Rover", Icon = "@mipmap/icon_launcher", RoundIcon = "@mipmap/icon_round_launcher", Theme = "@style/Theme.Splash",
         MainLauncher = true, NoHistory = true, ConfigurationChanges = ConfigChanges.ScreenSize, ScreenOrientation = ScreenOrientation.SensorLandscape)]
     public class SplashScreen : Activity
     {

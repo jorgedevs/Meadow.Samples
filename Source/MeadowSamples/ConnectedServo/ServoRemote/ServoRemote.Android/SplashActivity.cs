@@ -5,7 +5,7 @@ using Android.OS;
 
 namespace ServoRemote.Droid
 {
-    [Activity(Label = "ServoRemote", Icon = "@mipmap/icon_launcher", RoundIcon = "@mipmap/icon_round_launcher", Theme = "@style/Theme.Splash", 
+    [Activity(Label = "Servo", Icon = "@mipmap/icon_launcher", RoundIcon = "@mipmap/icon_round_launcher", Theme = "@style/Theme.Splash", 
         MainLauncher = true, NoHistory = true, ConfigurationChanges = ConfigChanges.ScreenSize, ScreenOrientation = ScreenOrientation.Portrait)]
     public class SplashScreen : Activity
     {
