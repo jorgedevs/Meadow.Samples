@@ -8,5 +8,6 @@
     <PackageReference Include="Meadow.Foundation" Version="0.22.0" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Meadow.Foundation.Sensors.Moisture.Capacitive" Version="0.5.30" />
   </ItemGroup>
 </Project>
