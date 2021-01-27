@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using PlantWing.App.ViewModels;
 using Xamarin.Forms;
 
 namespace PlantWing.App
@@ -13,6 +8,7 @@ namespace PlantWing.App
         public MainPage()
         {
             InitializeComponent();
+            BindingContext = new MainViewModel();
         }
     }
 }
