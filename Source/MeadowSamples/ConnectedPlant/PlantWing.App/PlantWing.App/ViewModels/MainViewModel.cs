@@ -1,11 +1,8 @@
 ﻿using PlantWing.App.Models;
-using PlantWing.App.Utils;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
@@ -13,7 +10,11 @@ namespace PlantWing.App.ViewModels
 {
     public class MainViewModel : INotifyPropertyChanged
     {
-        public ObservableCollection<SoilMoistureModel> ClimateList { get; set; }
+        public static int HIGH = 1;
+        public static int MEDIUM = 2;
+        public static int LOW = 3;
+
+        public ObservableCollection<SoilMoistureModel> SoilMoistureList { get; set; }
 
         string ipAddress;
         public string IpAddress
@@ -29,22 +30,22 @@ namespace PlantWing.App.ViewModels
             set { isRefreshing = value; OnPropertyChanged(nameof(IsRefreshing)); }
         }
 
-        public Command GetHumidityCommand { private set; get; }
+        public Command GetSoilMoisturesCommand { private set; get; }
 
         public MainViewModel()
         {
-            ClimateList = new ObservableCollection<SoilMoistureModel>();
+            SoilMoistureList = new ObservableCollection<SoilMoistureModel>();
 
             IpAddress = "192.168.1.74";
 
-            GetHumidityCommand = new Command(async (s) => await GetReadingsAsync());
+            GetSoilMoisturesCommand = new Command(async (s) => await GetSoilMoistureReadings());
 
-            GetReadingsAsync();
+            GetSoilMoistureReadings();
         }
 
-        async Task GetReadingsAsync()
+        async Task GetSoilMoistureReadings()
         {
-            ClimateList.Clear();
+            SoilMoistureList.Clear();
 
             //var response = await NetworkManager.GetAsync(IpAddress);
 
@@ -59,12 +60,12 @@ namespace PlantWing.App.ViewModels
             //    }
             //}
 
-            ClimateList.Add(new SoilMoistureModel() { Id = 0, Moisture = 100, Date = DateTime.Now.ToString("g") });
-            ClimateList.Add(new SoilMoistureModel() { Id = 1, Moisture = 98,  Date = DateTime.Now.ToString("g") });
-            ClimateList.Add(new SoilMoistureModel() { Id = 2, Moisture = 77,  Date = DateTime.Now.ToString("g") });
-            ClimateList.Add(new SoilMoistureModel() { Id = 3, Moisture = 56,  Date = DateTime.Now.ToString("g") });
-            ClimateList.Add(new SoilMoistureModel() { Id = 4, Moisture = 45,  Date = DateTime.Now.ToString("g") });
-            ClimateList.Add(new SoilMoistureModel() { Id = 5, Moisture = 26,  Date = DateTime.Now.ToString("g") });
+            SoilMoistureList.Add(new SoilMoistureModel() { Id = 0, Moisture = 100, Level = HIGH, Date = DateTime.Now.ToString("g") });
+            SoilMoistureList.Add(new SoilMoistureModel() { Id = 1, Moisture = 98,  Level = HIGH, Date = DateTime.Now.ToString("g") });
+            SoilMoistureList.Add(new SoilMoistureModel() { Id = 2, Moisture = 77,  Level = MEDIUM, Date = DateTime.Now.ToString("g") });
+            SoilMoistureList.Add(new SoilMoistureModel() { Id = 3, Moisture = 56,  Level = MEDIUM, Date = DateTime.Now.ToString("g") });
+            SoilMoistureList.Add(new SoilMoistureModel() { Id = 4, Moisture = 45,  Level = LOW, Date = DateTime.Now.ToString("g") });
+            SoilMoistureList.Add(new SoilMoistureModel() { Id = 5, Moisture = 26,  Level = LOW, Date = DateTime.Now.ToString("g") });
 
             IsRefreshing = false;
         }

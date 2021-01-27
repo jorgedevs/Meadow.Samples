@@ -8,6 +8,9 @@
     <ContentPage.Resources>
         <ResourceDictionary>
             <Color x:Key="TextColor">#555</Color>
+            <Color x:Key="HIGH">#2D9B27</Color>
+            <Color x:Key="MEDIUM">#BFA730</Color>
+            <Color x:Key="LOW">#BF3A30</Color>
         </ResourceDictionary>
     </ContentPage.Resources>
 
@@ -16,7 +19,7 @@
             <StackLayout Padding="30">
                 <Label Text="PlantWing App" TextColor="{StaticResource TextColor}" FontSize="Large" FontAttributes="Bold" />
 
-                <Label Text="Enter server IP Address:" TextColor="{StaticResource TextColor}" Margin="0,10,0,10" />
+                <Label Text="Enter server IP address:" TextColor="{StaticResource TextColor}" Margin="0,10,0,10" />
 
                 <Frame BackgroundColor="White" HasShadow="false" Padding="5,0">
                     <Entry Text="{Binding IpAddress}" TextColor="{StaticResource TextColor}" Placeholder="192.168.0.1" />
@@ -24,13 +27,25 @@
 
                 <Label Text="Plant soil moisture" TextColor="{StaticResource TextColor}" Margin="0,10,0,10" />
 
-                <Frame Padding="4">
-                    <ListView ItemsSource="{Binding ClimateList}" BackgroundColor="Transparent" SeparatorVisibility="None"
-                        IsPullToRefreshEnabled="True" RefreshCommand="{Binding GetHumidityCommand}" IsRefreshing="{Binding IsRefreshing}">
+                <Frame Padding="5">
+                    <ListView ItemsSource="{Binding SoilMoistureList}" BackgroundColor="Transparent" SeparatorVisibility="None"
+                        IsPullToRefreshEnabled="True" RefreshCommand="{Binding GetSoilMoisturesCommand}" IsRefreshing="{Binding IsRefreshing}">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>
-                                    <Frame HasShadow="false" Margin="0,2,0,2" Padding="10,0" BackgroundColor="#23ABE3">
+                                    <Frame HasShadow="false" Margin="0,0,0,5" Padding="10,0" BackgroundColor="#23ABE3">
+                                        <Frame.Triggers>
+                                            <DataTrigger TargetType="Frame" Binding="{Binding Level}" Value="1">
+                                                <Setter Property="BackgroundColor" Value="{StaticResource HIGH}" />
+                                            </DataTrigger>
+                                            <DataTrigger TargetType="Frame" Binding="{Binding Level}" Value="2">
+                                                <Setter Property="BackgroundColor" Value="{StaticResource MEDIUM}" />
+                                            </DataTrigger>
+                                            <DataTrigger TargetType="Frame" Binding="{Binding Level}" Value="3">
+                                                <Setter Property="BackgroundColor" Value="{StaticResource LOW}" />
+                                            </DataTrigger>
+                                        </Frame.Triggers>
+
                                         <Grid>
                                             <Label Text="{Binding Date}" TextColor="White" FontSize="Medium" VerticalOptions="Center" />
                                             <Label Text="{Binding Moisture, StringFormat='{0}%'}" TextColor="White" FontSize="Large"
