@@ -106,3 +106,5 @@ Source/MeadowSamples/ConnectedPlant/PlantWing.App/PlantWing.App/bin/
 Source/MeadowSamples/Tests.I2cSpiAnalogTemperature_Sample/bin/
 Source/MeadowSamples/Tests.I2cSpiAnalogTemperature_Sample/obj/
 Source/MeadowSamples/ConnectedPlant/PlantWing.App/PlantWing.App.Android/bin/
+Source/MeadowSamples/ConnectedPlant/PlantWing.Server/bin/
+Source/MeadowSamples/ConnectedPlant/PlantWing.Server/obj/

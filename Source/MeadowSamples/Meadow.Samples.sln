@@ -47,9 +47,17 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlantWing.App.Android", "Co
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlantWing.App.iOS", "ConnectedPlant\PlantWing.App\PlantWing.App.iOS\PlantWing.App.iOS.csproj", "{DF6A5DB2-4908-48A8-8FC6-FB5F47CA4042}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlantWing.App", "ConnectedPlant\PlantWing.App\PlantWing.App\PlantWing.App.csproj", "{D5667949-37EB-4343-A5F0-25B326892E40}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PlantWing.App", "ConnectedPlant\PlantWing.App\PlantWing.App\PlantWing.App.csproj", "{D5667949-37EB-4343-A5F0-25B326892E40}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "PlantWing.Shared", "ConnectedPlant\PlantWing.Shared\PlantWing.Shared.shproj", "{DDCDB190-3E72-43AC-9BA3-47BFDE0EC1E6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlantWing.Server", "ConnectedPlant\PlantWing.Server\PlantWing.Server.csproj", "{BC9A23FF-B6BF-44BE-AFE8-A4CD1737212F}"
 EndProject
 Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		ConnectedPlant\PlantWing.Shared\PlantWing.Shared.projitems*{bc9a23ff-b6bf-44be-afe8-a4cd1737212f}*SharedItemsImports = 5
+		ConnectedPlant\PlantWing.Shared\PlantWing.Shared.projitems*{ddcdb190-3e72-43ac-9ba3-47bfde0ec1e6}*SharedItemsImports = 13
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Debug|ARM = Debug|ARM
@@ -665,6 +673,30 @@ Global
 		{D5667949-37EB-4343-A5F0-25B326892E40}.Release|x64.Build.0 = Release|Any CPU
 		{D5667949-37EB-4343-A5F0-25B326892E40}.Release|x86.ActiveCfg = Release|Any CPU
 		{D5667949-37EB-4343-A5F0-25B326892E40}.Release|x86.Build.0 = Release|Any CPU
+		{BC9A23FF-B6BF-44BE-AFE8-A4CD1737212F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC9A23FF-B6BF-44BE-AFE8-A4CD1737212F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC9A23FF-B6BF-44BE-AFE8-A4CD1737212F}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{BC9A23FF-B6BF-44BE-AFE8-A4CD1737212F}.Debug|ARM.Build.0 = Debug|Any CPU
+		{BC9A23FF-B6BF-44BE-AFE8-A4CD1737212F}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{BC9A23FF-B6BF-44BE-AFE8-A4CD1737212F}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{BC9A23FF-B6BF-44BE-AFE8-A4CD1737212F}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{BC9A23FF-B6BF-44BE-AFE8-A4CD1737212F}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{BC9A23FF-B6BF-44BE-AFE8-A4CD1737212F}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{BC9A23FF-B6BF-44BE-AFE8-A4CD1737212F}.Debug|x64.Build.0 = Debug|Any CPU
+		{BC9A23FF-B6BF-44BE-AFE8-A4CD1737212F}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{BC9A23FF-B6BF-44BE-AFE8-A4CD1737212F}.Debug|x86.Build.0 = Debug|Any CPU
+		{BC9A23FF-B6BF-44BE-AFE8-A4CD1737212F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC9A23FF-B6BF-44BE-AFE8-A4CD1737212F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC9A23FF-B6BF-44BE-AFE8-A4CD1737212F}.Release|ARM.ActiveCfg = Release|Any CPU
+		{BC9A23FF-B6BF-44BE-AFE8-A4CD1737212F}.Release|ARM.Build.0 = Release|Any CPU
+		{BC9A23FF-B6BF-44BE-AFE8-A4CD1737212F}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{BC9A23FF-B6BF-44BE-AFE8-A4CD1737212F}.Release|iPhone.Build.0 = Release|Any CPU
+		{BC9A23FF-B6BF-44BE-AFE8-A4CD1737212F}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{BC9A23FF-B6BF-44BE-AFE8-A4CD1737212F}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{BC9A23FF-B6BF-44BE-AFE8-A4CD1737212F}.Release|x64.ActiveCfg = Release|Any CPU
+		{BC9A23FF-B6BF-44BE-AFE8-A4CD1737212F}.Release|x64.Build.0 = Release|Any CPU
+		{BC9A23FF-B6BF-44BE-AFE8-A4CD1737212F}.Release|x86.ActiveCfg = Release|Any CPU
+		{BC9A23FF-B6BF-44BE-AFE8-A4CD1737212F}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -684,6 +716,8 @@ Global
 		{75FD7E4A-F737-4761-BBD8-914E6CAF093A} = {9A8C24C0-1F22-47D8-9ECC-3B75898F544A}
 		{DF6A5DB2-4908-48A8-8FC6-FB5F47CA4042} = {9A8C24C0-1F22-47D8-9ECC-3B75898F544A}
 		{D5667949-37EB-4343-A5F0-25B326892E40} = {9A8C24C0-1F22-47D8-9ECC-3B75898F544A}
+		{DDCDB190-3E72-43AC-9BA3-47BFDE0EC1E6} = {9A8C24C0-1F22-47D8-9ECC-3B75898F544A}
+		{BC9A23FF-B6BF-44BE-AFE8-A4CD1737212F} = {9A8C24C0-1F22-47D8-9ECC-3B75898F544A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9105841E-2E41-4992-AC47-1AB23EF8DC57}

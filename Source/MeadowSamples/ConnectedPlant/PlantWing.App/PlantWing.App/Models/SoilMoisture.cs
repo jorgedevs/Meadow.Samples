@@ -2,7 +2,7 @@
 
 namespace PlantWing.App.Models
 {
-    public class SoilMoistureModel
+    public class SoilMoisture
     {
         public long Id { get; set; }
         public int Level { get; set; }

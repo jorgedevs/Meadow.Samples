@@ -14,7 +14,7 @@ namespace PlantWing.App.ViewModels
         public static int MEDIUM = 2;
         public static int LOW = 3;
 
-        public ObservableCollection<SoilMoistureModel> SoilMoistureList { get; set; }
+        public ObservableCollection<SoilMoisture> SoilMoistureList { get; set; }
 
         string ipAddress;
         public string IpAddress
@@ -34,7 +34,7 @@ namespace PlantWing.App.ViewModels
 
         public MainViewModel()
         {
-            SoilMoistureList = new ObservableCollection<SoilMoistureModel>();
+            SoilMoistureList = new ObservableCollection<SoilMoisture>();
 
             IpAddress = "192.168.1.74";
 
@@ -60,12 +60,12 @@ namespace PlantWing.App.ViewModels
             //    }
             //}
 
-            SoilMoistureList.Add(new SoilMoistureModel() { Id = 0, Moisture = 100, Level = HIGH, Date = DateTime.Now.ToString("g") });
-            SoilMoistureList.Add(new SoilMoistureModel() { Id = 1, Moisture = 98,  Level = HIGH, Date = DateTime.Now.ToString("g") });
-            SoilMoistureList.Add(new SoilMoistureModel() { Id = 2, Moisture = 77,  Level = MEDIUM, Date = DateTime.Now.ToString("g") });
-            SoilMoistureList.Add(new SoilMoistureModel() { Id = 3, Moisture = 56,  Level = MEDIUM, Date = DateTime.Now.ToString("g") });
-            SoilMoistureList.Add(new SoilMoistureModel() { Id = 4, Moisture = 45,  Level = LOW, Date = DateTime.Now.ToString("g") });
-            SoilMoistureList.Add(new SoilMoistureModel() { Id = 5, Moisture = 26,  Level = LOW, Date = DateTime.Now.ToString("g") });
+            SoilMoistureList.Add(new SoilMoisture() { Id = 0, Moisture = 100, Level = HIGH, Date = DateTime.Now.ToString("g") });
+            SoilMoistureList.Add(new SoilMoisture() { Id = 1, Moisture = 98,  Level = HIGH, Date = DateTime.Now.ToString("g") });
+            SoilMoistureList.Add(new SoilMoisture() { Id = 2, Moisture = 77,  Level = MEDIUM, Date = DateTime.Now.ToString("g") });
+            SoilMoistureList.Add(new SoilMoisture() { Id = 3, Moisture = 56,  Level = MEDIUM, Date = DateTime.Now.ToString("g") });
+            SoilMoistureList.Add(new SoilMoisture() { Id = 4, Moisture = 45,  Level = LOW, Date = DateTime.Now.ToString("g") });
+            SoilMoistureList.Add(new SoilMoisture() { Id = 5, Moisture = 26,  Level = LOW, Date = DateTime.Now.ToString("g") });
 
             IsRefreshing = false;
         }
