@@ -8,11 +8,11 @@ namespace PlantWing.Server.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class SoilMoistureEntityLogController : ControllerBase
+    public class PlantWingDataController : ControllerBase
     {
         static List<SoilMoistureEntity> SoilMoistureEntityReadings;
 
-        static SoilMoistureEntityLogController()
+        static PlantWingDataController()
         {
             SoilMoistureEntityReadings = new List<SoilMoistureEntity>();
 
@@ -24,7 +24,7 @@ namespace PlantWing.Server.Controllers
             SoilMoistureEntityReadings.Add(new SoilMoistureEntity() { id = 5, value = 0.26m,  date = DateTime.Now.ToString("g") });
         }
 
-        public SoilMoistureEntityLogController() { }
+        public PlantWingDataController() { }
 
         [HttpGet]
         public IActionResult Get()
