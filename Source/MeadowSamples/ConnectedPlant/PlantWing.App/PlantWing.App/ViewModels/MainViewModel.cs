@@ -1,5 +1,8 @@
 ﻿using PlantWing.App.Models;
+using PlantWing.Shared.Network;
+using PlantWing.Shared.Models;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
@@ -47,25 +50,24 @@ namespace PlantWing.App.ViewModels
         {
             SoilMoistureList.Clear();
 
-            //var response = await NetworkManager.GetAsync(IpAddress);
+            var response = await NetworkManager.GetAsync(IpAddress);
 
-            //if (response != null)
-            //{
-            //    string json = await response.Content.ReadAsStringAsync();
-            //    var values = (List<ClimateReading>)System.Text.Json.JsonSerializer.Deserialize(json, typeof(List<ClimateReading>));
+            if (response != null)
+            {
+                string json = await response.Content.ReadAsStringAsync();
+                var values = (List<SoilMoistureEntity>)System.Text.Json.JsonSerializer.Deserialize(json, typeof(List<SoilMoistureEntity>));
 
-            //    foreach (ClimateReading value in values)
-            //    {
-            //        ClimateList.Add(new SoilMoistureModel() { Id = value.ID, Moisture = value.TempC });
-            //    }
-            //}
+                foreach (var value in values)
+                {
+                    var model = new SoilMoisture();
+                    model.Date = value.date;
+                    model.Id = value.id;
+                    model.Moisture = value.value * 100;
+                    model.Level = model.Moisture > 75 ? HIGH : model.Moisture > 25 ? MEDIUM : LOW;
 
-            SoilMoistureList.Add(new SoilMoisture() { Id = 0, Moisture = 100, Level = HIGH, Date = DateTime.Now.ToString("g") });
-            SoilMoistureList.Add(new SoilMoisture() { Id = 1, Moisture = 98,  Level = HIGH, Date = DateTime.Now.ToString("g") });
-            SoilMoistureList.Add(new SoilMoisture() { Id = 2, Moisture = 77,  Level = MEDIUM, Date = DateTime.Now.ToString("g") });
-            SoilMoistureList.Add(new SoilMoisture() { Id = 3, Moisture = 56,  Level = MEDIUM, Date = DateTime.Now.ToString("g") });
-            SoilMoistureList.Add(new SoilMoisture() { Id = 4, Moisture = 45,  Level = LOW, Date = DateTime.Now.ToString("g") });
-            SoilMoistureList.Add(new SoilMoisture() { Id = 5, Moisture = 26,  Level = LOW, Date = DateTime.Now.ToString("g") });
+                    SoilMoistureList.Add(model);
+                }
+            }
 
             IsRefreshing = false;
         }

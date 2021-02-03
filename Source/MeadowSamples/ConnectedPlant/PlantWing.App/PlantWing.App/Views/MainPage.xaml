@@ -22,7 +22,10 @@
                 <Label Text="Enter server IP address:" TextColor="{StaticResource TextColor}" Margin="0,10,0,10" />
 
                 <Frame BackgroundColor="White" HasShadow="false" Padding="5,0">
-                    <Entry Text="{Binding IpAddress}" TextColor="{StaticResource TextColor}" Placeholder="192.168.0.1" />
+                    <StackLayout Orientation="Horizontal">
+                        <Entry Text="{Binding IpAddress}" TextColor="{StaticResource TextColor}" Placeholder="192.168.0.1" HorizontalOptions="FillAndExpand" />
+                        <Image Source="icon_connect.png" HorizontalOptions="End" />
+                    </StackLayout>
                 </Frame>
 
                 <Label Text="Plant soil moisture" TextColor="{StaticResource TextColor}" Margin="0,10,0,10" />

@@ -2,7 +2,7 @@
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace PlantWing.App.Utils
+namespace PlantWing.Shared.Network
 {
     public static class NetworkManager
     {
@@ -16,13 +16,13 @@ namespace PlantWing.App.Utils
         {
             using (HttpClient client = new HttpClient()
             {
-                BaseAddress = new Uri($"http://{ipAddress}:2792/"),
+                BaseAddress = new Uri($"http://{ipAddress}:5000/"),
                 Timeout = TimeSpan.FromMinutes(5)
             })
             {
                 try
                 {
-                    var response = await client.GetAsync("ClimateData", HttpCompletionOption.ResponseContentRead);
+                    var response = await client.GetAsync("PlantWingData", HttpCompletionOption.ResponseContentRead);
 
                     if (response.IsSuccessStatusCode)
                     {

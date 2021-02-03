@@ -9,6 +9,7 @@
     <Import_RootNamespace>PlantWing.Shared</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="..\PlantWing.Shared\Models\SoilMoistureEntity.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Network\NetworkManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\SoilMoistureEntity.cs" />
   </ItemGroup>
 </Project>
