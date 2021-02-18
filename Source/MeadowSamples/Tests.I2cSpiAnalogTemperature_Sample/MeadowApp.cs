@@ -102,13 +102,13 @@ namespace Tests.I2cSpiAnalogTemperature_Sample
 
                     if (temp == null)
                     {
-                        graphicsSPI.DrawRectangle(7, i * 32 + 44, 208, 24, Color.Black, true);
-                        graphicsSPI.DrawText(7, i * 32 + 44, $"A0{i}: INACTIVE", Color.Red, GraphicsLibrary.ScaleFactor.X2);
+                        graphicsSPI.DrawRectangle(16, i * 32 + 44, 208, 24, Color.Black, true);
+                        graphicsSPI.DrawText(16, i * 32 + 44, $"A0{i}: INACTIVE", Color.Red, GraphicsLibrary.ScaleFactor.X2);
                     }
                     else
                     {
-                        graphicsSPI.DrawRectangle(7, i * 32 + 44, 208, 24, Color.Black, true);
-                        graphicsSPI.DrawText(7, i * 32 + 44, $"{temperatures[tempIndex].AnalogInputPort.Pin}: {temp}", Color.Cyan, GraphicsLibrary.ScaleFactor.X2);
+                        graphicsSPI.DrawRectangle(16, i * 32 + 44, 208, 24, Color.Black, true);
+                        graphicsSPI.DrawText(16, i * 32 + 44, $"{temperatures[tempIndex].AnalogInputPort.Pin}: {temp}", Color.FromHex("#00FF00"), GraphicsLibrary.ScaleFactor.X2);
                         tempIndex++;
                     }
 
