@@ -5,10 +5,23 @@
     <AssemblyName>App</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="level_0.jpg" />
+    <None Remove="level_1.jpg" />
+    <None Remove="level_2.jpg" />
+    <None Remove="level_3.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="level_0.jpg" />
+    <EmbeddedResource Include="level_1.jpg" />
+    <EmbeddedResource Include="level_2.jpg" />
+    <EmbeddedResource Include="level_3.jpg" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="Meadow.Foundation" Version="0.*" />
     <PackageReference Include="Meadow.Foundation.Displays.TftSpi" Version="0.7.36" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Meadow.Foundation.Sensors.Moisture.Capacitive" Version="0.5.34" />
+    <PackageReference Include="SimpleJpegDecoder" Version="0.2.0" />
   </ItemGroup>
 </Project>
