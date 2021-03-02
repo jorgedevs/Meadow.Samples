@@ -12,7 +12,6 @@ using SimpleJpegDecoder;
 using System;
 using System.IO;
 using System.Reflection;
-using System.Threading;
 
 namespace PlantCompanion
 {
@@ -76,8 +75,6 @@ namespace PlantCompanion
 
             graphics = new GraphicsLibrary(display);
 
-
-
             capacitive = new Capacitive(
                 device: Device, 
                 analogPin: Device.Pins.A01, 
@@ -86,8 +83,6 @@ namespace PlantCompanion
 
             analogTemperature = new AnalogTemperature(Device, Device.Pins.A00, AnalogTemperature.KnownSensorType.LM35);
             
-
-
             onboardLed.SetColor(Color.Green);
         }
 
@@ -103,7 +98,6 @@ namespace PlantCompanion
             if (moisture < 0)
                 moisture = 0f;
 
-
             if (moisture > 0 && moisture <= 0.25)
                 selectedImageIndex = 0;
             else if (moisture > 0.25 && moisture <= 0.50)
@@ -113,13 +107,13 @@ namespace PlantCompanion
             else if (moisture > 0.75 && moisture <= 1.0)
                 selectedImageIndex = 3;
 
-            DisplayJPG();
+            var temperature = analogTemperature.Read();
 
-            int percentage = (int)(moisture * 100);
+
+            UpdateImage();
 
             graphics.DrawRectangle(0, 0, 36, 20, Color.White, true);
             graphics.DrawText(0, 0, $"{(int)(moisture * 100)}%", Color.Black);            
-
 
             graphics.Show();
             
@@ -136,12 +130,12 @@ namespace PlantCompanion
             graphics.CurrentFont = new Font12x20();
             graphics.DrawText(0, 0, "99%", Color.Black);
 
-            DisplayJPG();
+            UpdateImage();
 
             graphics.Show();
         }
 
-        void DisplayJPG()
+        void UpdateImage()
         {
             var jpgData = LoadResource(images[selectedImageIndex]);
             var decoder = new JpegDecoder();
