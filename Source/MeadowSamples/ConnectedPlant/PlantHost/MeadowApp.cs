@@ -26,7 +26,7 @@ namespace PlantWing.Meadow
             StartReading();
         }
 
-        void Initialize()
+        async Task Initialize()
         {
             var led = new RgbLed(Device, Device.Pins.OnboardLedRed, Device.Pins.OnboardLedGreen, Device.Pins.OnboardLedBlue);
             led.SetColor(RgbLed.Colors.Red);
@@ -57,7 +57,7 @@ namespace PlantWing.Meadow
 
             ledBarGraph.StartBlink(500, 500);
 
-            var result = Device.WiFiAdapter.Connect(Secrets.WIFI_NAME, Secrets.WIFI_PASSWORD);
+            var result = await Device.WiFiAdapter.Connect(Secrets.WIFI_NAME, Secrets.WIFI_PASSWORD);
             if (result.ConnectionStatus != ConnectionStatus.Success)
             {
                 throw new Exception($"Cannot connect to network: {result.ConnectionStatus}");
@@ -87,7 +87,8 @@ namespace PlantWing.Meadow
         {
             while (true)
             {
-                float moisture = await capacitive.Read();
+                var reading = await capacitive.Read();
+                float moisture = reading.New;
 
                 if (moisture > 1)
                     moisture = 1f;

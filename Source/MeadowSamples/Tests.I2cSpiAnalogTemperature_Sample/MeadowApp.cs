@@ -67,8 +67,8 @@ namespace Tests.I2cSpiAnalogTemperature_Sample
 
             temperatures = new List<AnalogTemperature>
             {
-                //new AnalogTemperature(Device, Device.Pins.A00, AnalogTemperature.KnownSensorType.LM35),
-                //new AnalogTemperature(Device, Device.Pins.A01, AnalogTemperature.KnownSensorType.LM35),
+                new AnalogTemperature(Device, Device.Pins.A00, AnalogTemperature.KnownSensorType.LM35),
+                new AnalogTemperature(Device, Device.Pins.A01, AnalogTemperature.KnownSensorType.LM35),
                 new AnalogTemperature(Device, Device.Pins.A02, AnalogTemperature.KnownSensorType.LM35),
                 new AnalogTemperature(Device, Device.Pins.A03, AnalogTemperature.KnownSensorType.LM35),
                 new AnalogTemperature(Device, Device.Pins.A04, AnalogTemperature.KnownSensorType.LM35), 

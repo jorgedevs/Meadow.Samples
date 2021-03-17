@@ -90,7 +90,8 @@ namespace PlantCompanion
         {
             onboardLed.SetColor(Color.Orange);
 
-            float moisture = await capacitive.Read();
+            var reading = await capacitive.Read();
+            float moisture = reading.New;
 
             if (moisture > 1)
                 moisture = 1f;
