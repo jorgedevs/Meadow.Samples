@@ -81,14 +81,14 @@ namespace Tests.I2cSpiAnalogTemperature_Sample
 
             led.SetColor(RgbLed.Colors.Green);
 
-            //TestWifi().Wait();
+            TestWifi().Wait();
 
             TestTemperatures().Wait();
         }
 
         async Task TestWifi() 
         {
-            led.StartBlink(RgbLed.Colors.Blue);
+            led.SetColor(RgbLed.Colors.Blue);
 
             graphicsSPI.Clear();            
             graphicsSPI.DrawRectangle(0, 0, 240, 240);
@@ -144,6 +144,8 @@ namespace Tests.I2cSpiAnalogTemperature_Sample
             led.Stop();
             led.SetColor(RgbLed.Colors.Green);
             led.IsOn = true;
+
+            await Task.Delay(5000);
         }
 
         void WiFiAdapterConnectionCompleted(object sender, EventArgs e)
