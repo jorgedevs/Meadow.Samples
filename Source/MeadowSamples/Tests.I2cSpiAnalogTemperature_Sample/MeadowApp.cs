@@ -70,6 +70,8 @@ namespace Tests.I2cSpiAnalogTemperature_Sample
             graphicsSPI.Show();
             Console.WriteLine("done");
 
+            Thread.Sleep(1000);
+
             temperatures = new List<AnalogTemperature>
             {
                 new AnalogTemperature(Device, Device.Pins.A00, AnalogTemperature.KnownSensorType.LM35),
@@ -167,11 +169,11 @@ namespace Tests.I2cSpiAnalogTemperature_Sample
                 {
                     client.Timeout = new TimeSpan(0, 5, 0);
 
-                    string uri = "https://postman-echo.com/get?foo1=bar1&foo2=bar2";
-                    HttpResponseMessage response = await client.GetAsync(uri);
-
                     try
                     {
+                        string uri = "https://postman-echo.com/get?foo1=bar1&foo2=bar2";
+                        HttpResponseMessage response = await client.GetAsync(uri);
+                    
                         response.EnsureSuccessStatusCode();
                         string responseBody = await response.Content.ReadAsStringAsync();
                         Console.WriteLine(responseBody);
@@ -202,7 +204,7 @@ namespace Tests.I2cSpiAnalogTemperature_Sample
             led.SetColor(testPassed ? RgbLed.Colors.Green : RgbLed.Colors.Red);
             led.IsOn = true;
 
-            await Task.Delay(5000);
+            await Task.Delay(3000);
         }
 
         async Task TestTemperatures()
