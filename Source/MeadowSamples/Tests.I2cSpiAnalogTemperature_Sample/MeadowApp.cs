@@ -10,6 +10,7 @@ using Meadow.Gateway.WiFi;
 using Meadow.Hardware;
 using System;
 using System.Collections.Generic;
+using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using static Meadow.Foundation.Displays.DisplayBase;
@@ -86,75 +87,128 @@ namespace Tests.I2cSpiAnalogTemperature_Sample
             TestTemperatures().Wait();
         }
 
-        async Task TestWifi() 
+        async Task TestWifi()
         {
+            bool testPassed = true;
+
             led.SetColor(RgbLed.Colors.Blue);
 
-            graphicsSPI.Clear();            
+            graphicsSPI.Clear();
             graphicsSPI.DrawRectangle(0, 0, 240, 240);
-            graphicsSPI.DrawText(40, 108, "WIFI TESTS", Color.White, GraphicsLibrary.ScaleFactor.X2);
+            graphicsSPI.DrawText(40, 12, "WIFI TESTS", Color.Cyan, GraphicsLibrary.ScaleFactor.X2);
             graphicsSPI.Show();
 
             graphicsI2C.Clear();
             graphicsI2C.DrawRectangle(0, 0, 128, 32);
             graphicsI2C.Show();
 
-            graphicsSPI.Clear();            
-            graphicsSPI.DrawRectangle(0, 0, 240, 240);
+            graphicsSPI.DrawText(16, 44, "Scanning...", Color.White, GraphicsLibrary.ScaleFactor.X2);
+            graphicsSPI.Show();
 
             if (!Device.InitWiFiAdapter().Result)
+            {
+                graphicsSPI.DrawText(32, 76, $"Failed!", Color.Red, GraphicsLibrary.ScaleFactor.X2);
+                graphicsSPI.Show();
                 throw new Exception("Could not initialize the WiFi adapter.");
+            }
 
-            Device.WiFiAdapter.WiFiConnected += WiFiAdapterConnectionCompleted;
+            Device.WiFiAdapter.WiFiConnected += new EventHandler(delegate (object sender, EventArgs e) 
+            {
+                Console.WriteLine("Connection request completed.");
+            });
 
             var networks = Device.WiFiAdapter.Scan();
             if (networks.Count > 0)
             {
-                graphicsSPI.DrawText(16, 12, $"NETWORKS ({networks.Count})", Color.White, GraphicsLibrary.ScaleFactor.X2);
-
                 Console.WriteLine("|-------------------------------------------------------------|---------|");
                 Console.WriteLine("|         Network Name             | RSSI |       BSSID       | Channel |");
-                Console.WriteLine("|-------------------------------------------------------------|---------|");
-                //foreach (WifiNetwork accessPoint in networks)
+                Console.WriteLine("|-------------------------------------------------------------|---------|");               
                 for (int i=0; i<networks.Count; i++)
                 {
-                    Console.WriteLine($"| {networks[i].Ssid,-32} | {networks[i].SignalDbStrength,4} | {networks[i].Bssid,17} |   {networks[i].ChannelCenterFrequency,3}   |");
-                    graphicsSPI.DrawText(16, i * 32 + 44, networks[i].Ssid, GraphicsLibrary.ScaleFactor.X2);
+                    Console.WriteLine($"| {networks[i].Ssid,-32} | {networks[i].SignalDbStrength,4} | {networks[i].Bssid,17} |   {networks[i].ChannelCenterFrequency,3}   |");                    
                 }
 
+                graphicsSPI.DrawText(32, 76, $"Found {networks.Count}!", Color.FromHex("#00FF00"), GraphicsLibrary.ScaleFactor.X2);
                 graphicsSPI.Show();
             }
             else
             {
                 Console.WriteLine($"No access points detected.");
+                graphicsSPI.DrawText(32, 76, $"None found!", Color.Red, GraphicsLibrary.ScaleFactor.X2);
+                graphicsSPI.Show();
             }
 
-            Console.WriteLine($"Connecting to WiFi Network {Secrets.WIFI_NAME}");
-            var connectionResult = await Device.WiFiAdapter.Connect(Secrets.WIFI_NAME, Secrets.WIFI_PASSWORD);
-            if (connectionResult.ConnectionStatus != ConnectionStatus.Success)
+            if (testPassed)
             {
-                throw new Exception($"Cannot connect to network: {connectionResult.ConnectionStatus}");
+                graphicsSPI.DrawText(16, 108, "Joining...", Color.White, GraphicsLibrary.ScaleFactor.X2);
+                graphicsSPI.Show();
+            
+                Console.WriteLine($"Connecting to WiFi Network {Secrets.WIFI_NAME}");
+                var connectionResult = await Device.WiFiAdapter.Connect(Secrets.WIFI_NAME, Secrets.WIFI_PASSWORD);
+                if (connectionResult.ConnectionStatus == ConnectionStatus.Success)
+                {
+                    graphicsSPI.DrawText(32, 140, "Connected!", Color.FromHex("#00FF00"), GraphicsLibrary.ScaleFactor.X2);
+                    graphicsSPI.Show();
+                }
+                else
+                {
+                    testPassed = false;
+                    graphicsSPI.DrawText(32, 140, "Failed!", Color.Red, GraphicsLibrary.ScaleFactor.X2);
+                    graphicsSPI.Show();
+                }
             }
 
-            graphicsI2C.Clear();
-            graphicsI2C.DrawRectangle(0, 0, 128, 32);
-            graphicsI2C.DrawText(20, 12, "JOINED WIFI");
+            if (testPassed)
+            {
+                graphicsSPI.DrawText(16, 172, "Requesting...", Color.White, GraphicsLibrary.ScaleFactor.X2);
+                graphicsSPI.Show();
+
+                using (HttpClient client = new HttpClient())
+                {
+                    client.Timeout = new TimeSpan(0, 5, 0);
+
+                    string uri = "https://postman-echo.com/get?foo1=bar1&foo2=bar2";
+                    HttpResponseMessage response = await client.GetAsync(uri);
+
+                    try
+                    {
+                        response.EnsureSuccessStatusCode();
+                        string responseBody = await response.Content.ReadAsStringAsync();
+                        Console.WriteLine(responseBody);
+                        graphicsSPI.DrawText(32, 204, "Returned OK!", Color.FromHex("#00FF00"), GraphicsLibrary.ScaleFactor.X2);
+                        graphicsSPI.Show();
+                    }
+                    catch (TaskCanceledException)
+                    {
+                        testPassed = false;
+                        Console.WriteLine("Request time out.");
+                        graphicsSPI.DrawText(32, 204, "Failed!", Color.Red, GraphicsLibrary.ScaleFactor.X2);
+                        graphicsSPI.Show();
+                    }
+                    catch (Exception e)
+                    {
+                        testPassed = false;
+                        Console.WriteLine($"Request went sideways: {e.Message}");
+                        graphicsSPI.DrawText(32, 204, "Failed!", Color.Red, GraphicsLibrary.ScaleFactor.X2);
+                        graphicsSPI.Show();
+                    }
+                }
+            }
+
+            graphicsI2C.DrawText(36, 12, testPassed? "PASSED!" : "FAILED!");
             graphicsI2C.Show();
 
             led.Stop();
-            led.SetColor(RgbLed.Colors.Green);
+            led.SetColor(testPassed ? RgbLed.Colors.Green : RgbLed.Colors.Red);
             led.IsOn = true;
 
             await Task.Delay(5000);
         }
 
-        void WiFiAdapterConnectionCompleted(object sender, EventArgs e)
-        {
-            Console.WriteLine("Connection request completed.");
-        }
-
         async Task TestTemperatures()
         {
+            led.SetColor(RgbLed.Colors.Green);
+
             graphicsSPI.Clear();
             graphicsSPI.DrawRectangle(0, 0, 240, 240);
             graphicsSPI.DrawText(24, 108, "ANALOG TESTS", Color.White, GraphicsLibrary.ScaleFactor.X2);
@@ -168,7 +222,7 @@ namespace Tests.I2cSpiAnalogTemperature_Sample
 
             graphicsSPI.Clear();
             graphicsSPI.DrawRectangle(0, 0, 240, 240);
-            graphicsSPI.DrawText(56, 12, $"READINGS", Color.White, GraphicsLibrary.ScaleFactor.X2);
+            graphicsSPI.DrawText(56, 12, $"READINGS", Color.Cyan, GraphicsLibrary.ScaleFactor.X2);
 
             while (true)
             {
