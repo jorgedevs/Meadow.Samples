@@ -115,3 +115,10 @@ Source/MeadowSamples/ConnectedPlant/PlantWing.App/PlantWing.App.Android/Resource
 Source/MeadowSamples/ConnectedPlant/PlantWing.App/PlantWing.App.Android/PlantWing.App.Android.csproj.user
 Source/MeadowSamples/PlantCompanion/bin/
 Source/MeadowSamples/PlantCompanion/obj/
+Source/MeadowSamples/Tests.Led_Sample/bin/
+Source/MeadowSamples/Tests.Led_Sample/obj/
+Source/MeadowSamples/Tests.Maple_Sample/obj/
+Source/MeadowSamples/Tests.PushButton_Sample/bin/
+Source/MeadowSamples/Tests.PushButton_Sample/obj/
+Source/MeadowSamples/Tests.PwmLed_Sample/bin/
+Source/MeadowSamples/Tests.PwmLed_Sample/obj/
