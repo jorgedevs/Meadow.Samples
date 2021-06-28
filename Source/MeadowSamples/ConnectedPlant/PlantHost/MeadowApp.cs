@@ -4,6 +4,7 @@ using Meadow.Foundation.Leds;
 using Meadow.Foundation.Sensors.Moisture;
 using Meadow.Gateway.WiFi;
 using Meadow.Hardware;
+using Meadow.Units;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
@@ -48,9 +49,9 @@ namespace PlantWing.Meadow
 
             capacitive = new Capacitive
             (
-                Device.CreateAnalogInputPort(Device.Pins.A00),
-                MINIMUM_VOLTAGE_CALIBRATION,
-                MAXIMUM_VOLTAGE_CALIBRATION
+                Device.CreateAnalogInputPort(Device.Pins.A00), 
+                new Voltage(MINIMUM_VOLTAGE_CALIBRATION, Voltage.UnitType.Volts),
+                new Voltage(MAXIMUM_VOLTAGE_CALIBRATION, Voltage.UnitType.Volts)                
             );
             
             Device.InitWiFiAdapter().Wait();
@@ -73,7 +74,7 @@ namespace PlantWing.Meadow
         async Task Calibration()
         {
             IAnalogInputPort analogIn = Device.CreateAnalogInputPort(Device.Pins.A00);
-            float voltage;
+            Voltage voltage;
 
             while (true)
             {
@@ -88,15 +89,9 @@ namespace PlantWing.Meadow
             while (true)
             {
                 var reading = await capacitive.Read();
-                float moisture = reading.New;
+                double moisture = reading.New;
 
-                if (moisture > 1)
-                    moisture = 1f;
-                else
-                if (moisture < 0)
-                    moisture = 0f;
-
-                ledBarGraph.Percentage = moisture;
+                ledBarGraph.Percentage = (float)moisture;
                 Console.WriteLine($"Moisture {moisture * 100}%");
                 Thread.Sleep(1000);
             }

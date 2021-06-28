@@ -1,8 +1,8 @@
 ﻿using Meadow;
 using Meadow.Devices;
 using Meadow.Foundation;
-using Meadow.Foundation.Displays;
-using Meadow.Foundation.Displays.Tft;
+using Meadow.Foundation.Displays.Ssd130x;
+using Meadow.Foundation.Displays.TftSpi;
 using Meadow.Foundation.Graphics;
 using Meadow.Foundation.Leds;
 using Meadow.Foundation.Sensors.Temperature;
@@ -229,7 +229,7 @@ namespace Tests.I2cSpiAnalogTemperature_Sample
             while (true)
             {
                 int tempIndex = 0;
-                float? temp;
+                double? temp;
                 float average = 0;
 
                 for (int i = 0; i < 6; i++)
@@ -241,7 +241,7 @@ namespace Tests.I2cSpiAnalogTemperature_Sample
                         if ($"A0{i}" == temperatures[tempIndex].AnalogInputPort.Pin.ToString())
                         {
                             var conditions = await temperatures[tempIndex].Read();
-                            temp = conditions.Temperature;
+                            temp = conditions.New.Celsius;
                         }
                     }
 
