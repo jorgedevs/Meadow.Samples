@@ -1,5 +1,6 @@
 ﻿using Meadow.Foundation.Servos;
 using Meadow.Hardware;
+using Meadow.Units;
 using System;
 using System.Threading;
 
@@ -34,11 +35,11 @@ namespace RobotArm
 
         public void Initialize() 
         {
-            _base.RotateTo(0);
-            _grip.RotateTo(0);
+            _base.RotateTo(new Angle(0, Angle.UnitType.Degrees));
+            _grip.RotateTo(new Angle(0, Angle.UnitType.Degrees));
 
             _verticalAngle = 0;
-            _vertical.RotateTo(_verticalAngle);
+            _vertical.RotateTo(new Angle(_verticalAngle, Angle.UnitType.Degrees));
 
             //_horizontal.RotateTo(90);
         }
@@ -46,12 +47,12 @@ namespace RobotArm
         public void MoveBaseLeft()
         {
             Console.WriteLine($"MoveBaseLeft...{baseAngle + 10}");
-            if (baseAngle < _base.Config.MaximumAngle)
+            if (baseAngle < _base.Config.MaximumAngle.Degrees)
             {
                 for (int i = 0; i < 10; i++)
                 {
                     baseAngle++;
-                    _base.RotateTo(baseAngle);
+                    _base.RotateTo(new Angle(baseAngle, Angle.UnitType.Degrees));
                     Thread.Sleep(500);
                 }
             }
@@ -59,12 +60,12 @@ namespace RobotArm
         public void MoveBaseRight()
         {
             Console.WriteLine($"MoveBaseRight...{baseAngle - 10}");
-            if (baseAngle > _base.Config.MinimumAngle)
+            if (baseAngle > _base.Config.MinimumAngle.Degrees)
             {
                 for (int i = 0; i < 10; i++)
                 {
                     baseAngle--;
-                    _base.RotateTo(baseAngle);
+                    _base.RotateTo(new Angle(baseAngle, Angle.UnitType.Degrees));
                     Thread.Sleep(500);
                 }
             }
@@ -74,19 +75,19 @@ namespace RobotArm
         {
             Console.WriteLine($"MoveGrip...{angle}");
             if (angle != _gripAngle)
-                _grip.RotateTo(angle);
+                _grip.RotateTo(new Angle(angle, Angle.UnitType.Degrees));
             _gripAngle = angle;
         }
 
         public void MoveVerticalUp()
         {
             Console.WriteLine($"MoveVerticalUp...{_verticalAngle + 10}");
-            if (_verticalAngle < _vertical.Config.MaximumAngle)
+            if (_verticalAngle < _vertical.Config.MaximumAngle.Degrees)
             {
                 for (int i = 0; i < 10; i++)
                 {
                     _verticalAngle++;
-                    _vertical.RotateTo(_verticalAngle);
+                    _vertical.RotateTo(new Angle(_verticalAngle, Angle.UnitType.Degrees));
                     Thread.Sleep(500);
                 }
             }
@@ -94,12 +95,12 @@ namespace RobotArm
         public void MoveVerticalDown()
         {
             Console.WriteLine($"MoveVerticalDown...{_verticalAngle - 10}");
-            if (_verticalAngle > _vertical.Config.MinimumAngle)
+            if (_verticalAngle > _vertical.Config.MinimumAngle.Degrees)
             {
                 for (int i = 0; i < 10; i++)
                 {
                     _verticalAngle--;
-                    _vertical.RotateTo(_verticalAngle);
+                    _vertical.RotateTo(new Angle(_verticalAngle, Angle.UnitType.Degrees));
                     Thread.Sleep(500);
                 }
             }
@@ -108,12 +109,12 @@ namespace RobotArm
         public void MoveHorizontalForward()
         {
             Console.WriteLine($"MoveHorizontalForward...{_horizontalAngle + 10}");
-            if (_horizontalAngle < _horizontal.Config.MaximumAngle)
+            if (_horizontalAngle < _horizontal.Config.MaximumAngle.Degrees)
             {
                 for (int i = 0; i < 10; i++)
                 {
                     _horizontalAngle++;
-                    _horizontal.RotateTo(_horizontalAngle);
+                    _horizontal.RotateTo(new Angle(_horizontalAngle, Angle.UnitType.Degrees));
                     Thread.Sleep(500);
                 }
             }
@@ -121,12 +122,12 @@ namespace RobotArm
         public void MoveHorizontalBackward()
         {
             Console.WriteLine($"MoveHorizontalBackward...{_horizontalAngle - 10}");
-            if (_horizontalAngle > _horizontal.Config.MinimumAngle)
+            if (_horizontalAngle > _horizontal.Config.MinimumAngle.Degrees)
             {
                 for (int i = 0; i < 10; i++)
                 {
                     _horizontalAngle--;
-                    _horizontal.RotateTo(_horizontalAngle);
+                    _horizontal.RotateTo(new Angle(_horizontalAngle, Angle.UnitType.Degrees));
                     Thread.Sleep(500);
                 }
             }
@@ -135,7 +136,7 @@ namespace RobotArm
         public void Test() 
         {
             Console.WriteLine("Test...");
-            _grip.RotateTo(0);
+            _grip.RotateTo(new Angle(0, Angle.UnitType.Degrees));
 
             bool isOpen = false;
 
@@ -149,7 +150,7 @@ namespace RobotArm
 
                 for (int i = 0; i <= 180; i++)
                 {
-                    _base.RotateTo(i);
+                    _base.RotateTo(new Angle(i, Angle.UnitType.Degrees));
                     Thread.Sleep(20);
                 }
 
@@ -157,16 +158,16 @@ namespace RobotArm
 
                 for (int i = 180; i >= 0; i--)
                 {
-                    _base.RotateTo(i);
+                    _base.RotateTo(new Angle(i, Angle.UnitType.Degrees));
                     Thread.Sleep(20);
                 }
 
                 Thread.Sleep(2000);
 
                 if (isOpen)
-                    _grip.RotateTo(100);
+                    _grip.RotateTo(new Angle(100, Angle.UnitType.Degrees));
                 else
-                    _grip.RotateTo(0);
+                    _grip.RotateTo(new Angle(0, Angle.UnitType.Degrees));
 
                 isOpen = !isOpen;
             }
