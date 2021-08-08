@@ -236,27 +236,27 @@ namespace Tests.I2cSpiAnalogTemperature_Sample
                 {
                     temp = null;
 
-                    if (tempIndex < temperatures.Count)
-                    {
-                        if ($"A0{i}" == temperatures[tempIndex].AnalogInputPort.Pin.ToString())
-                        {
-                            var conditions = await temperatures[tempIndex].Read();
-                            temp = conditions.New.Celsius;
-                        }
-                    }
+                    //if (tempIndex < temperatures.Count)
+                    //{
+                    //    if ($"A0{i}" == temperatures[tempIndex].AnalogInputPort.Pin.ToString())
+                    //    {
+                    //        var conditions = await temperatures[tempIndex].Read();
+                    //        temp = conditions.New.Celsius;
+                    //    }
+                    //}
 
-                    if (temp == null)
-                    {
-                        graphicsSPI.DrawRectangle(16, i * 32 + 44, 208, 24, Color.Black, true);
-                        graphicsSPI.DrawText(16, i * 32 + 44, $"A0{i}: INACTIVE", Color.Red, GraphicsLibrary.ScaleFactor.X2);
-                    }
-                    else
-                    {
-                        graphicsSPI.DrawRectangle(16, i * 32 + 44, 208, 24, Color.Black, true);
-                        graphicsSPI.DrawText(16, i * 32 + 44, $"{temperatures[tempIndex].AnalogInputPort.Pin}: {temp}", Color.FromHex("#00FF00"), GraphicsLibrary.ScaleFactor.X2);
-                        tempIndex++;
-                        average = average + (float)temp;
-                    }
+                    //if (temp == null)
+                    //{
+                    //    graphicsSPI.DrawRectangle(16, i * 32 + 44, 208, 24, Color.Black, true);
+                    //    graphicsSPI.DrawText(16, i * 32 + 44, $"A0{i}: INACTIVE", Color.Red, GraphicsLibrary.ScaleFactor.X2);
+                    //}
+                    //else
+                    //{
+                    //    graphicsSPI.DrawRectangle(16, i * 32 + 44, 208, 24, Color.Black, true);
+                    //    graphicsSPI.DrawText(16, i * 32 + 44, $"{temperatures[tempIndex].AnalogInputPort.Pin}: {temp}", Color.FromHex("#00FF00"), GraphicsLibrary.ScaleFactor.X2);
+                    //    tempIndex++;
+                    //    average = average + (float)temp;
+                    //}
 
                     graphicsSPI.Show();
                     Thread.Sleep(100);

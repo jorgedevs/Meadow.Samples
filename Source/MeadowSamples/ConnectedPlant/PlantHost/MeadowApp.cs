@@ -88,8 +88,7 @@ namespace PlantWing.Meadow
         {
             while (true)
             {
-                var reading = await capacitive.Read();
-                double moisture = reading.New;
+                var moisture = await capacitive.Read();                
 
                 ledBarGraph.Percentage = (float)moisture;
                 Console.WriteLine($"Moisture {moisture * 100}%");
