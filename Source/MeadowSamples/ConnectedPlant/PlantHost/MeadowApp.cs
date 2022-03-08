@@ -21,10 +21,11 @@ namespace PlantWing.Meadow
 
         public MeadowApp()
         {
-            Initialize();
+            Initialize().Wait();
+            test().Wait();
 
             //Calibration();
-            StartReading();
+            //StartReading();
         }
 
         async Task Initialize()
@@ -54,8 +55,6 @@ namespace PlantWing.Meadow
                 new Voltage(MAXIMUM_VOLTAGE_CALIBRATION, Voltage.UnitType.Volts)                
             );
             
-            Device.InitWiFiAdapter().Wait();
-
             ledBarGraph.StartBlink(500, 500);
 
             var result = await Device.WiFiAdapter.Connect(Secrets.WIFI_NAME, Secrets.WIFI_PASSWORD);
@@ -69,6 +68,24 @@ namespace PlantWing.Meadow
             ledBarGraph.Percentage = 0f;
 
             led.SetColor(RgbLed.Colors.Green);
+        }
+
+        async Task test() 
+        {
+            while (true)
+            {
+                for (double i = 0; i <= 1; i = i + 0.10) 
+                {
+                    ledBarGraph.Percentage = (float) i;
+                    await Task.Delay(500);
+                }
+
+                for (double i = 1; i >= 0; i = i - 0.10)
+                {
+                    ledBarGraph.Percentage = (float)i;
+                    await Task.Delay(500);
+                }
+            }
         }
 
         async Task Calibration()
