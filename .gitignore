@@ -123,3 +123,9 @@ Source/MeadowSamples/Tests.PushButton_Sample/obj/
 Source/MeadowSamples/Tests.PwmLed_Sample/bin/
 Source/MeadowSamples/Tests.PwmLed_Sample/obj/
 Source/MeadowSamples/Tests.Maple_Sample/bin/
+Source/MeadowSamples/Leds.Led_Sample/bin/
+Source/MeadowSamples/Leds.Led_Sample/obj/
+Source/MeadowSamples/Leds.PwmLed_Sample/bin/
+Source/MeadowSamples/Leds.PwmLed_Sample/obj/
+Source/MeadowSamples/Sensors.Buttons.PushButton_Sample/bin/
+Source/MeadowSamples/Sensors.Buttons.PushButton_Sample/obj/
