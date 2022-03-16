@@ -1,7 +1,7 @@
 ﻿using Meadow;
 using System.Threading;
 
-namespace Tests.I2cSpiAnalogTemperature_Sample
+namespace I2cSpiAnalogTemperature_Sample
 {
     class Program
     {

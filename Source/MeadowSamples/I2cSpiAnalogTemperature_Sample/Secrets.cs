@@ -1,15 +1,15 @@
-﻿namespace Tests.I2cSpiAnalogTemperature_Sample
+﻿namespace I2cSpiAnalogTemperature_Sample
 {
     public class Secrets
     {
         /// <summary>
         /// Name of the WiFi network to use.
         /// </summary>
-        public const string WIFI_NAME = "Pneuma";
+        public const string WIFI_NAME = "[SSID]";
 
         /// <summary>
         /// Password for the WiFi network names in WIFI_NAME.
         /// </summary>
-        public const string WIFI_PASSWORD = "25115A020963";
+        public const string WIFI_PASSWORD = "[PASSWORD]";
     }
 }

@@ -133,3 +133,5 @@ Source/MeadowSamples/Bluetooth.Led_Sample/obj/
 Source/MeadowSamples/Maple.Led_Sample/obj/
 Source/MeadowSamples/Bluetooth.Led_Sample/bin/
 Source/MeadowSamples/Maple.Led_Sample/bin/
+Source/MeadowSamples/I2cSpiAnalogTemperature_Sample/bin/
+Source/MeadowSamples/I2cSpiAnalogTemperature_Sample/obj/

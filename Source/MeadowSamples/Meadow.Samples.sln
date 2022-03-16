@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RobotArm", "RobotArm\RobotA
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TunePlayer", "TunePlayer\TunePlayer.csproj", "{BA18EAD2-237D-41E6-A0BB-F7B8B6A0FCF1}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests.I2cSpiAnalogTemperature_Sample", "Tests.I2cSpiAnalogTemperature_Sample\Tests.I2cSpiAnalogTemperature_Sample.csproj", "{17218000-63EA-46DC-880C-6A5A27C54D44}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "I2cSpiAnalogTemperature_Sample", "I2cSpiAnalogTemperature_Sample\I2cSpiAnalogTemperature_Sample.csproj", "{17218000-63EA-46DC-880C-6A5A27C54D44}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ConnectedPlant", "ConnectedPlant", "{9A8C24C0-1F22-47D8-9ECC-3B75898F544A}"
 EndProject
@@ -35,9 +35,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sensors.Buttons.PushButton_
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{D96747C9-C73A-453B-B178-5460FDA95BAA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bluetooth.Led_Sample", "Bluetooth.Led_Sample\Bluetooth.Led_Sample.csproj", "{9DBFE0EC-1B72-4D7D-A212-145924B0FA01}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bluetooth.Led_Sample", "Bluetooth.Led_Sample\Bluetooth.Led_Sample.csproj", "{9DBFE0EC-1B72-4D7D-A212-145924B0FA01}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Maple.Led_Sample", "Maple.Led_Sample\Maple.Led_Sample.csproj", "{26D80078-CE47-472D-9251-A05C69006D65}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Maple.Led_Sample", "Maple.Led_Sample\Maple.Led_Sample.csproj", "{26D80078-CE47-472D-9251-A05C69006D65}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
