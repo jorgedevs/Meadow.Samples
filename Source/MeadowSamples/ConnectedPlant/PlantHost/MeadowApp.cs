@@ -9,9 +9,9 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace PlantWing.Meadow
+namespace MeadowApp
 {
-    public class MeadowApp : App<F7Micro, MeadowApp>
+    public class MeadowApp : App<F7FeatherV1>, IApp
     {
         const float MINIMUM_VOLTAGE_CALIBRATION = 2.81f;
         const float MAXIMUM_VOLTAGE_CALIBRATION = 1.50f;
@@ -19,16 +19,7 @@ namespace PlantWing.Meadow
         Capacitive capacitive;
         LedBarGraph ledBarGraph;
 
-        public MeadowApp()
-        {
-            Initialize().Wait();
-            test().Wait();
-
-            //Calibration();
-            //StartReading();
-        }
-
-        async Task Initialize()
+        async Task IApp.Initialize()
         {
             var led = new RgbLed(Device, Device.Pins.OnboardLedRed, Device.Pins.OnboardLedGreen, Device.Pins.OnboardLedBlue);
             led.SetColor(RgbLed.Colors.Red);
@@ -47,45 +38,29 @@ namespace PlantWing.Meadow
                 Device.CreateDigitalOutputPort(Device.Pins.D02)
             };
             ledBarGraph = new LedBarGraph(ports);
+            ledBarGraph.StartBlink();
+            await Task.Delay(5000);
+            ledBarGraph.Stop();
 
             capacitive = new Capacitive
             (
                 Device.CreateAnalogInputPort(Device.Pins.A00), 
                 new Voltage(MINIMUM_VOLTAGE_CALIBRATION, Voltage.UnitType.Volts),
-                new Voltage(MAXIMUM_VOLTAGE_CALIBRATION, Voltage.UnitType.Volts)                
+                new Voltage(MAXIMUM_VOLTAGE_CALIBRATION, Voltage.UnitType.Volts)
             );
-            
-            ledBarGraph.StartBlink(500, 500);
-
-            var result = await Device.WiFiAdapter.Connect(Secrets.WIFI_NAME, Secrets.WIFI_PASSWORD);
-            if (result.ConnectionStatus != ConnectionStatus.Success)
-            {
-                throw new Exception($"Cannot connect to network: {result.ConnectionStatus}");
-            }
-
-            ledBarGraph.Percentage = 1f;
-            Thread.Sleep(1000);
-            ledBarGraph.Percentage = 0f;
+            var consumer = Capacitive.CreateObserver(
+                handler: result => 
+                {
+                    var percentage = (float)ExtensionMethods.Map(result.New, 0.30, 1.10, 0, 1);
+                    UpdatePercentage(percentage);
+                },
+                filter: null
+            );
+            capacitive.Subscribe(consumer);
+            float percentage = (float) await capacitive.Read();
+            UpdatePercentage(percentage);
 
             led.SetColor(RgbLed.Colors.Green);
-        }
-
-        async Task test() 
-        {
-            while (true)
-            {
-                for (double i = 0; i <= 1; i = i + 0.10) 
-                {
-                    ledBarGraph.Percentage = (float) i;
-                    await Task.Delay(500);
-                }
-
-                for (double i = 1; i >= 0; i = i - 0.10)
-                {
-                    ledBarGraph.Percentage = (float)i;
-                    await Task.Delay(500);
-                }
-            }
         }
 
         async Task Calibration()
@@ -101,16 +76,32 @@ namespace PlantWing.Meadow
             }
         }
 
-        async Task StartReading()
+        void UpdatePercentage(float percentage)
         {
-            while (true)
-            {
-                var moisture = await capacitive.Read();                
+            Console.WriteLine(percentage);
 
-                ledBarGraph.Percentage = (float)moisture;
-                Console.WriteLine($"Moisture {moisture * 100}%");
-                Thread.Sleep(1000);
+            if (percentage > 1)
+            {
+                ledBarGraph.Percentage = 1;
+                ledBarGraph.SetLedBlink(9);
             }
+            else if (percentage < 0)
+            {
+                ledBarGraph.Percentage = 0;
+                ledBarGraph.SetLedBlink(0);
+            }
+            else
+            {
+                ledBarGraph.Percentage = percentage;
+                ledBarGraph.SetLedBlink((int)(percentage * 10));
+            }
+        }
+
+        public override async Task Run()
+        {
+            capacitive.StartUpdating(TimeSpan.FromSeconds(1));
+
+            Thread.Sleep(Timeout.Infinite);
         }
     }
 }
