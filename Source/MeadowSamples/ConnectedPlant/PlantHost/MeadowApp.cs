@@ -2,7 +2,6 @@
 using Meadow.Devices;
 using Meadow.Foundation.Leds;
 using Meadow.Foundation.Sensors.Moisture;
-using Meadow.Gateway.WiFi;
 using Meadow.Hardware;
 using Meadow.Units;
 using System;
@@ -51,14 +50,14 @@ namespace MeadowApp
             var consumer = Capacitive.CreateObserver(
                 handler: result => 
                 {
-                    var percentage = (float)ExtensionMethods.Map(result.New, 0.30, 1.10, 0, 1);
+                    var percentage = ExtensionMethods.Map(result.New, 0.30, 1.10, 0, 1);
+                    Console.WriteLine($"{percentage}");
                     UpdatePercentage(percentage);
                 },
                 filter: null
             );
             capacitive.Subscribe(consumer);
-            float percentage = (float) await capacitive.Read();
-            UpdatePercentage(percentage);
+            await capacitive.Read();
 
             led.SetColor(RgbLed.Colors.Green);
         }
@@ -76,25 +75,31 @@ namespace MeadowApp
             }
         }
 
-        void UpdatePercentage(float percentage)
+        void UpdatePercentage(double percentage)
         {
-            Console.WriteLine(percentage);
+            //Console.WriteLine(percentage);
 
-            if (percentage > 1)
-            {
-                ledBarGraph.Percentage = 1;
-                ledBarGraph.SetLedBlink(9);
-            }
-            else if (percentage < 0)
-            {
-                ledBarGraph.Percentage = 0;
-                ledBarGraph.SetLedBlink(0);
-            }
-            else
-            {
-                ledBarGraph.Percentage = percentage;
-                ledBarGraph.SetLedBlink((int)(percentage * 10));
-            }
+            if (percentage > 1) { percentage = 1; }
+            else if (percentage < 0) { percentage = 0; }
+
+            ledBarGraph.Percentage = percentage;
+            ledBarGraph.SetLedBlink(ledBarGraph.GetTopLedForPercentage());
+
+            //if (percentage > 1)
+            //{
+            //    ledBarGraph.Percentage = 1;
+            //    ledBarGraph.SetLedBlink(9);
+            //}
+            //else if (percentage < 0)
+            //{
+            //    ledBarGraph.Percentage = 0;
+            //    ledBarGraph.SetLedBlink(0);
+            //}
+            //else
+            //{
+            //    ledBarGraph.Percentage = percentage;
+            //    ledBarGraph.SetLedBlink((int)(percentage * 10));
+            //}
         }
 
         public override async Task Run()

@@ -7,7 +7,7 @@ using Meadow.Foundation.Leds;
 
 namespace HelloLed
 {
-    public class MeadowApp : App<F7Micro, MeadowApp>
+    public class MeadowApp : App<F7FeatherV1, MeadowApp>
     {
         RgbPwmLed onboardLed;
 
@@ -24,9 +24,7 @@ namespace HelloLed
             onboardLed = new RgbPwmLed(device: Device,
                 redPwmPin: Device.Pins.OnboardLedRed,
                 greenPwmPin: Device.Pins.OnboardLedGreen,
-                bluePwmPin: Device.Pins.OnboardLedBlue,
-                3.3f, 3.3f, 3.3f,
-                Meadow.Peripherals.Leds.IRgbLed.CommonType.CommonAnode);
+                bluePwmPin: Device.Pins.OnboardLedBlue);
         }
 
         void CycleColors(int duration)
@@ -52,7 +50,7 @@ namespace HelloLed
 
         void ShowColorPulse(Color color, int duration = 1000)
         {
-            onboardLed.StartPulse(color, (duration / 2));
+            onboardLed.StartPulse(color);
             Thread.Sleep(duration);
             onboardLed.Stop();
         }
