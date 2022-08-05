@@ -1,23 +1,18 @@
-﻿using System;
-using System.Threading;
-using Meadow;
+﻿using Meadow;
 using Meadow.Devices;
 using Meadow.Foundation;
 using Meadow.Foundation.Leds;
+using System;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace HelloLed
 {
-    public class MeadowApp : App<F7FeatherV1, MeadowApp>
+    public class MeadowApp : App<F7FeatherV1>
     {
         RgbPwmLed onboardLed;
 
-        public MeadowApp()
-        {
-            Initialize();
-            CycleColors(1000);
-        }
-
-        void Initialize()
+        public override Task Initialize()
         {
             Console.WriteLine("Initialize hardware...");
 
@@ -25,6 +20,15 @@ namespace HelloLed
                 redPwmPin: Device.Pins.OnboardLedRed,
                 greenPwmPin: Device.Pins.OnboardLedGreen,
                 bluePwmPin: Device.Pins.OnboardLedBlue);
+
+            return Task.CompletedTask;
+        }
+
+        public override Task Run()
+        {
+            CycleColors(1000);
+
+            return base.Run();
         }
 
         void CycleColors(int duration)

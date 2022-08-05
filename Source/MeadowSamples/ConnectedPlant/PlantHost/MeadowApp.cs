@@ -3,6 +3,7 @@ using Meadow.Devices;
 using Meadow.Foundation.Leds;
 using Meadow.Foundation.Sensors.Moisture;
 using Meadow.Hardware;
+using Meadow.Peripherals.Leds;
 using Meadow.Units;
 using System;
 using System.Threading;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace MeadowApp
 {
-    public class MeadowApp : App<F7FeatherV1>, IApp
+    public class MeadowApp : App<F7FeatherV1>
     {
         const float MINIMUM_VOLTAGE_CALIBRATION = 2.81f;
         const float MAXIMUM_VOLTAGE_CALIBRATION = 1.50f;
@@ -18,10 +19,10 @@ namespace MeadowApp
         Capacitive capacitive;
         LedBarGraph ledBarGraph;
 
-        async Task IApp.Initialize()
+        public override async Task Initialize()
         {
             var led = new RgbLed(Device, Device.Pins.OnboardLedRed, Device.Pins.OnboardLedGreen, Device.Pins.OnboardLedBlue);
-            led.SetColor(RgbLed.Colors.Red);
+            led.SetColor(RgbLedColors.Red);
 
             IDigitalOutputPort[] ports =
             {
@@ -37,7 +38,7 @@ namespace MeadowApp
                 Device.CreateDigitalOutputPort(Device.Pins.D02)
             };
             ledBarGraph = new LedBarGraph(ports);
-            ledBarGraph.StartBlink();
+            ledBarGraph.StartBlink(TimeSpan.FromMilliseconds(500), TimeSpan.FromMilliseconds(500));
             await Task.Delay(5000);
             ledBarGraph.Stop();
 
@@ -47,19 +48,21 @@ namespace MeadowApp
                 new Voltage(MINIMUM_VOLTAGE_CALIBRATION, Voltage.UnitType.Volts),
                 new Voltage(MAXIMUM_VOLTAGE_CALIBRATION, Voltage.UnitType.Volts)
             );
-            var consumer = Capacitive.CreateObserver(
-                handler: result => 
-                {
-                    var percentage = ExtensionMethods.Map(result.New, 0.30, 1.10, 0, 1);
-                    Console.WriteLine($"{percentage}");
-                    UpdatePercentage(percentage);
-                },
-                filter: null
-            );
-            capacitive.Subscribe(consumer);
-            await capacitive.Read();
+            capacitive.Updated += CapacitiveUpdated;
 
-            led.SetColor(RgbLed.Colors.Green);
+            led.SetColor(RgbLedColors.Green);
+        }
+
+        private void CapacitiveUpdated(object sender, IChangeResult<double> e)
+        {
+            var percentage = ExtensionMethods.Map(e.New, 0.30, 1.10, 0, 1);
+            Console.WriteLine($"{percentage}");
+            
+            if (percentage > 1) { percentage = 1; }
+            else if (percentage < 0) { percentage = 0; }
+
+            ledBarGraph.Percentage = (float)percentage;
+            ledBarGraph.SetLedBlink(ledBarGraph.GetTopLedForPercentage());
         }
 
         async Task Calibration()
@@ -75,38 +78,11 @@ namespace MeadowApp
             }
         }
 
-        void UpdatePercentage(double percentage)
-        {
-            //Console.WriteLine(percentage);
-
-            if (percentage > 1) { percentage = 1; }
-            else if (percentage < 0) { percentage = 0; }
-
-            ledBarGraph.Percentage = percentage;
-            ledBarGraph.SetLedBlink(ledBarGraph.GetTopLedForPercentage());
-
-            //if (percentage > 1)
-            //{
-            //    ledBarGraph.Percentage = 1;
-            //    ledBarGraph.SetLedBlink(9);
-            //}
-            //else if (percentage < 0)
-            //{
-            //    ledBarGraph.Percentage = 0;
-            //    ledBarGraph.SetLedBlink(0);
-            //}
-            //else
-            //{
-            //    ledBarGraph.Percentage = percentage;
-            //    ledBarGraph.SetLedBlink((int)(percentage * 10));
-            //}
-        }
-
-        public override async Task Run()
+        public override Task Run()
         {
             capacitive.StartUpdating(TimeSpan.FromSeconds(1));
 
-            Thread.Sleep(Timeout.Infinite);
+            return Task.CompletedTask;
         }
     }
 }
