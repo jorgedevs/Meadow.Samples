@@ -37,18 +37,18 @@ namespace HelloLed
 
             while (true)
             {
-                ShowColorPulse(Color.Blue, duration);
-                ShowColorPulse(Color.Cyan, duration);
-                ShowColorPulse(Color.Green, duration);
-                ShowColorPulse(Color.GreenYellow, duration);
-                ShowColorPulse(Color.Yellow, duration);
-                ShowColorPulse(Color.Orange, duration);
-                ShowColorPulse(Color.OrangeRed, duration);
-                ShowColorPulse(Color.Red, duration);
-                ShowColorPulse(Color.MediumVioletRed, duration);
-                ShowColorPulse(Color.Purple, duration);
-                ShowColorPulse(Color.Magenta, duration);
-                ShowColorPulse(Color.Pink, duration);
+                ShowColor(Color.Blue, duration);
+                ShowColor(Color.Cyan, duration);
+                ShowColor(Color.Green, duration);
+                ShowColor(Color.GreenYellow, duration);
+                ShowColor(Color.Yellow, duration);
+                ShowColor(Color.Orange, duration);
+                ShowColor(Color.OrangeRed, duration);
+                ShowColor(Color.Red, duration);
+                ShowColor(Color.MediumVioletRed, duration);
+                ShowColor(Color.Purple, duration);
+                ShowColor(Color.Magenta, duration);
+                ShowColor(Color.Pink, duration);
             }
         }
 
