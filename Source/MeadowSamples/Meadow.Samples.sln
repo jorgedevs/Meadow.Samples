@@ -11,17 +11,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TunePlayer", "TunePlayer\Tu
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "I2cSpiAnalogTemperature_Sample", "I2cSpiAnalogTemperature_Sample\I2cSpiAnalogTemperature_Sample.csproj", "{17218000-63EA-46DC-880C-6A5A27C54D44}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ConnectedPlant", "ConnectedPlant", "{9A8C24C0-1F22-47D8-9ECC-3B75898F544A}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Connectivity", "Connectivity", "{9A8C24C0-1F22-47D8-9ECC-3B75898F544A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PlantWing.Meadow", "ConnectedPlant\PlantHost\PlantWing.Meadow.csproj", "{AA33DD42-2A79-487E-B48C-6FE533559D4D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeadowPlantSample", "ConnectedPlant\PlantHost\MeadowPlantSample.csproj", "{AA33DD42-2A79-487E-B48C-6FE533559D4D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HelloLed", "HelloLed\HelloLed.csproj", "{474645B2-E7B9-4A4C-8168-9DFEF2E12CD4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlantWing.App.Android", "ConnectedPlant\PlantWing.App\PlantWing.App.Android\PlantWing.App.Android.csproj", "{75FD7E4A-F737-4761-BBD8-914E6CAF093A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MobilePlantSample.Android", "ConnectedPlant\PlantWing.App\PlantWing.App.Android\MobilePlantSample.Android.csproj", "{75FD7E4A-F737-4761-BBD8-914E6CAF093A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlantWing.App.iOS", "ConnectedPlant\PlantWing.App\PlantWing.App.iOS\PlantWing.App.iOS.csproj", "{DF6A5DB2-4908-48A8-8FC6-FB5F47CA4042}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MobilePlantSample.iOS", "ConnectedPlant\PlantWing.App\PlantWing.App.iOS\MobilePlantSample.iOS.csproj", "{DF6A5DB2-4908-48A8-8FC6-FB5F47CA4042}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PlantWing.App", "ConnectedPlant\PlantWing.App\PlantWing.App\PlantWing.App.csproj", "{D5667949-37EB-4343-A5F0-25B326892E40}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MobilePlantSample", "ConnectedPlant\PlantWing.App\PlantWing.App\MobilePlantSample.csproj", "{D5667949-37EB-4343-A5F0-25B326892E40}"
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "PlantWing.Shared", "ConnectedPlant\PlantWing.Shared\PlantWing.Shared.shproj", "{DDCDB190-3E72-43AC-9BA3-47BFDE0EC1E6}"
 EndProject

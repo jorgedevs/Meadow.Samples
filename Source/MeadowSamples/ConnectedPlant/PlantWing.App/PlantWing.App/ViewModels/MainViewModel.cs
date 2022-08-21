@@ -1,4 +1,4 @@
-﻿using PlantWing.App.Models;
+﻿using MobilePlantSample.Models;
 using PlantWing.Shared.Network;
 using PlantWing.Shared.Models;
 using System;
@@ -9,7 +9,7 @@ using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
-namespace PlantWing.App.ViewModels
+namespace MobilePlantSample.ViewModels
 {
     public class MainViewModel : INotifyPropertyChanged
     {

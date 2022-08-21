@@ -5,7 +5,7 @@ using System.Linq;
 using Foundation;
 using UIKit;
 
-namespace PlantWing.App.iOS
+namespace MobilePlantSample.iOS
 {
     public class Application
     {

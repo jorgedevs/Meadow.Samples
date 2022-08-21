@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace PlantWing.App.Models
+namespace MobilePlantSample.Models
 {
     public class SoilMoisture
     {

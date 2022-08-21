@@ -1,7 +1,7 @@
-﻿using PlantWing.App.ViewModels;
+﻿using MobilePlantSample.ViewModels;
 using Xamarin.Forms;
 
-namespace PlantWing.App
+namespace MobilePlantSample
 {
     public partial class MainPage : ContentPage
     {

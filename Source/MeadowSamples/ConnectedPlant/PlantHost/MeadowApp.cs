@@ -9,7 +9,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace MeadowApp
+namespace MeadowPlantSample
 {
     public class MeadowApp : App<F7FeatherV1>
     {
@@ -62,7 +62,7 @@ namespace MeadowApp
             else if (percentage < 0) { percentage = 0; }
 
             ledBarGraph.Percentage = (float)percentage;
-            ledBarGraph.SetLedBlink(ledBarGraph.GetTopLedForPercentage());
+            ledBarGraph.StartBlink(ledBarGraph.GetTopLedForPercentage());
         }
 
         async Task Calibration()

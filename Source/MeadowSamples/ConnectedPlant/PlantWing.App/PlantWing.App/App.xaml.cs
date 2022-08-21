@@ -2,7 +2,7 @@
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace PlantWing.App
+namespace MobilePlantSample
 {
     public partial class App : Application
     {
