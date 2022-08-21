@@ -1,12 +1,13 @@
-﻿using System;
-using System.Threading;
-using Meadow;
+﻿using Meadow;
 using Meadow.Devices;
 using Meadow.Foundation.Leds;
+using Meadow.Units;
+using System;
+using System.Threading.Tasks;
 
 namespace RemoteTank
 {
-    public class MeadowApp : App<F7Micro, MeadowApp>
+    public class MeadowApp : App<F7FeatherV1>
     {
         Led ledRed;
         Led ledGreen;
@@ -14,27 +15,23 @@ namespace RemoteTank
 
         TankController tankController;
 
-        public MeadowApp()
-        {
-            ConfigurePorts();
-            BlinkLeds();
-        }
-
-        public void ConfigurePorts()
+        public override Task Initialize()
         {
             Console.WriteLine("Creating Outputs...");
-            ledRed = new Led(Device.CreateDigitalOutputPort(Device.Pins.D00));
-            ledGreen = new Led(Device.CreateDigitalOutputPort(Device.Pins.D01));
-            ledBlue = new Led(Device.CreateDigitalOutputPort(Device.Pins.D02));
+            ledRed = new Led(Device, Device.Pins.D00);
+            ledGreen = new Led(Device, Device.Pins.D01);
+            ledBlue = new Led(Device, Device.Pins.D02);
 
             tankController = new TankController
             (
-                motorLeftPort: Device.CreatePwmPort(Device.Pins.D03, 1000, 0.75f), 
-                motorRightPort: Device.CreatePwmPort(Device.Pins.D04, 1000, 0.75f)
+                motorLeftPort: Device.CreatePwmPort(Device.Pins.D03, new Frequency(1000), 0.75f),
+                motorRightPort: Device.CreatePwmPort(Device.Pins.D04, new Frequency(1000), 0.75f)
             );
+
+            return Task.CompletedTask;
         }
 
-        public void BlinkLeds()
+        public override async Task Run()
         {
             var state = false;
 
@@ -47,23 +44,23 @@ namespace RemoteTank
                 Console.WriteLine($"State: {state}");
 
                 ledRed.IsOn = state;
-                Thread.Sleep(wait);
+                await Task.Delay(wait);
                 ledGreen.IsOn = state;
-                Thread.Sleep(wait);
+                await Task.Delay(wait);
                 ledBlue.IsOn = state;
-                Thread.Sleep(wait);
+                await Task.Delay(wait);
 
                 Console.WriteLine($"Forward");
                 tankController.TurnRight();
-                Thread.Sleep(3000);
+                await Task.Delay(3000);
 
                 Console.WriteLine($"Stop");
                 tankController.Stop();
-                Thread.Sleep(3000);
+                await Task.Delay(3000);
 
                 Console.WriteLine($"Backward");
                 tankController.TurnLeft();
-                Thread.Sleep(3000);
+                await Task.Delay(3000);
                 tankController.Stop();
             }
         }

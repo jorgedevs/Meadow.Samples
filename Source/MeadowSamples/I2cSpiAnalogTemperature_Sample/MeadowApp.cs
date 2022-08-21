@@ -8,6 +8,7 @@ using Meadow.Foundation.Leds;
 using Meadow.Foundation.Sensors.Temperature;
 using Meadow.Gateway.WiFi;
 using Meadow.Hardware;
+using Meadow.Peripherals.Leds;
 using Meadow.Units;
 using System;
 using System.Collections.Generic;
@@ -17,10 +18,12 @@ using System.Threading.Tasks;
 
 namespace I2cSpiAnalogTemperature_Sample
 {
-    public class MeadowApp : App<F7Micro, MeadowApp>
+    public class MeadowApp : App<F7FeatherV1>
     {
-        RgbLed led;        
-        MicroGraphics graphicsSPI;        
+        IWiFiNetworkAdapter wifi;
+
+        RgbLed led;
+        MicroGraphics graphicsSPI;
         MicroGraphics graphicsI2C;
         List<AnalogTemperature> temperatures;
 
@@ -31,13 +34,12 @@ namespace I2cSpiAnalogTemperature_Sample
                 Device.Pins.OnboardLedRed, 
                 Device.Pins.OnboardLedGreen, 
                 Device.Pins.OnboardLedBlue);
-            led.SetColor(RgbLed.Colors.Red);
+            led.SetColor(RgbLedColors.Red);
 
             Console.WriteLine("Start...");
 
             Console.Write("Initializing I2C...");
             var displayI2C = new Ssd1306(Device.CreateI2cBus(), 60, Ssd1306.DisplayType.OLED128x32);
-            displayI2C.IgnoreOutOfBoundsPixels = true;
             graphicsI2C = new MicroGraphics(displayI2C);
             graphicsI2C.CurrentFont = new Font8x12();
             graphicsI2C.Clear();
@@ -63,7 +65,6 @@ namespace I2cSpiAnalogTemperature_Sample
                 dcPin: Device.Pins.D14,
                 resetPin: Device.Pins.D13,
                 width: 240, height: 240); 
-            displaySPI.IgnoreOutOfBoundsPixels = true;
             graphicsSPI = new MicroGraphics(displaySPI);
             graphicsSPI.Rotation = RotationType._90Degrees;
             graphicsSPI.Clear();
@@ -86,7 +87,7 @@ namespace I2cSpiAnalogTemperature_Sample
                 new AnalogTemperature(Device, Device.Pins.A05, AnalogTemperature.KnownSensorType.LM35),
             };
 
-            led.SetColor(RgbLed.Colors.Green);
+            led.SetColor(RgbLedColors.Green);
 
             TestWifi().Wait();
 
@@ -97,7 +98,7 @@ namespace I2cSpiAnalogTemperature_Sample
         {
             bool testPassed = true;
 
-            led.SetColor(RgbLed.Colors.Blue);
+            led.SetColor(RgbLedColors.Blue);
 
             graphicsSPI.Clear();
             graphicsSPI.DrawRectangle(0, 0, 240, 240);
@@ -111,12 +112,9 @@ namespace I2cSpiAnalogTemperature_Sample
             graphicsSPI.DrawText(16, 44, "Scanning...", Color.White, ScaleFactor.X2);
             graphicsSPI.Show();
 
-            Device.WiFiAdapter.WiFiConnected += new EventHandler(delegate (object sender, EventArgs e)
-            {
-                Console.WriteLine("Connection request completed.");
-            });
+            wifi = Device.NetworkAdapters.Primary<IWiFiNetworkAdapter>();
 
-            var networks = Device.WiFiAdapter.Scan();
+            var networks = await wifi.Scan(TimeSpan.FromSeconds(60));
             if (networks.Count > 0)
             {
                 Console.WriteLine("|-------------------------------------------------------------|---------|");
@@ -143,9 +141,10 @@ namespace I2cSpiAnalogTemperature_Sample
                 graphicsSPI.Show();
             
                 Console.WriteLine($"Connecting to WiFi Network {Secrets.WIFI_NAME}");
-                var connectionResult = await Device.WiFiAdapter.Connect(Secrets.WIFI_NAME, Secrets.WIFI_PASSWORD);
-                if (connectionResult.ConnectionStatus == ConnectionStatus.Success)
+                var connectionResult = await wifi.Connect(Secrets.WIFI_NAME, Secrets.WIFI_PASSWORD, TimeSpan.FromSeconds(45));
+                if (connectionResult.ConnectionStatus != ConnectionStatus.Success)
                 {
+                    testPassed = true;
                     graphicsSPI.DrawText(32, 140, "Connected!", Color.FromHex("#00FF00"), ScaleFactor.X2);
                     graphicsSPI.Show();
                 }
@@ -198,7 +197,7 @@ namespace I2cSpiAnalogTemperature_Sample
             graphicsI2C.Show();
 
             led.Stop();
-            led.SetColor(testPassed ? RgbLed.Colors.Green : RgbLed.Colors.Red);
+            led.SetColor(testPassed ? RgbLedColors.Green : RgbLedColors.Red);
             led.IsOn = true;
 
             await Task.Delay(3000);
@@ -206,7 +205,7 @@ namespace I2cSpiAnalogTemperature_Sample
 
         async Task TestTemperatures()
         {
-            led.SetColor(RgbLed.Colors.Green);
+            led.SetColor(RgbLedColors.Green);
 
             graphicsSPI.Clear();
             graphicsSPI.DrawRectangle(0, 0, 240, 240);

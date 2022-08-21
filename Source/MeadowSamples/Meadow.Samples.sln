@@ -23,9 +23,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MobilePlantSample.iOS", "Co
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MobilePlantSample", "ConnectedPlant\PlantWing.App\PlantWing.App\MobilePlantSample.csproj", "{D5667949-37EB-4343-A5F0-25B326892E40}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "PlantWing.Shared", "ConnectedPlant\PlantWing.Shared\PlantWing.Shared.shproj", "{DDCDB190-3E72-43AC-9BA3-47BFDE0EC1E6}"
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "SharedPlantSample", "ConnectedPlant\PlantWing.Shared\SharedPlantSample.shproj", "{DDCDB190-3E72-43AC-9BA3-47BFDE0EC1E6}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PlantWing.Server", "ConnectedPlant\PlantWing.Server\PlantWing.Server.csproj", "{BC9A23FF-B6BF-44BE-AFE8-A4CD1737212F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServerPlantSample", "ConnectedPlant\PlantWing.Server\ServerPlantSample.csproj", "{BC9A23FF-B6BF-44BE-AFE8-A4CD1737212F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{D96747C9-C73A-453B-B178-5460FDA95BAA}"
 EndProject

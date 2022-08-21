@@ -1,58 +1,67 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
+using System.Threading.Tasks;
 using Meadow;
 using Meadow.Devices;
 using Meadow.Foundation.Audio;
+using Meadow.Units;
 
 namespace TunePlayer
 {
-    public class MeadowApp : App<F7Micro, MeadowApp>
+    public class MeadowApp : App<F7FeatherV2>
     {
         const int NUMBER_OF_NOTES = 16;
-        float[] melody;
+        Frequency[] melody;
+        PiezoSpeaker piezo;
 
-        public MeadowApp()
+        public override Task Initialize() 
         {
-            melody = new float[NUMBER_OF_NOTES]
+            melody = new Frequency[NUMBER_OF_NOTES]
             {
-                NoteFrequencies.NOTE_A3,
-                NoteFrequencies.NOTE_B3,
-                NoteFrequencies.NOTE_CS4,
-                NoteFrequencies.NOTE_D4,
-                NoteFrequencies.NOTE_E4,
-                NoteFrequencies.NOTE_FS4,
-                NoteFrequencies.NOTE_GS4,
-                NoteFrequencies.NOTE_A4,
-                NoteFrequencies.NOTE_A4,
-                NoteFrequencies.NOTE_GS4,
-                NoteFrequencies.NOTE_FS4,
-                NoteFrequencies.NOTE_E4,
-                NoteFrequencies.NOTE_D4,
-                NoteFrequencies.NOTE_CS4,
-                NoteFrequencies.NOTE_B3,
-                NoteFrequencies.NOTE_A3,
+                new Frequency(NoteFrequencies.NOTE_A3),
+                new Frequency(NoteFrequencies.NOTE_B3),
+                new Frequency(NoteFrequencies.NOTE_CS4),
+                new Frequency(NoteFrequencies.NOTE_D4),
+                new Frequency(NoteFrequencies.NOTE_E4),
+                new Frequency(NoteFrequencies.NOTE_FS4),
+                new Frequency(NoteFrequencies.NOTE_GS4),
+                new Frequency(NoteFrequencies.NOTE_A4),
+                new Frequency(NoteFrequencies.NOTE_A4),
+                new Frequency(NoteFrequencies.NOTE_GS4),
+                new Frequency(NoteFrequencies.NOTE_FS4),
+                new Frequency(NoteFrequencies.NOTE_E4),
+                new Frequency(NoteFrequencies.NOTE_D4),
+                new Frequency(NoteFrequencies.NOTE_CS4),
+                new Frequency(NoteFrequencies.NOTE_B3),
+                new Frequency(NoteFrequencies.NOTE_A3),
             };
 
-            var piezo = new PiezoSpeaker(Device.CreatePwmPort(Device.Pins.D10));
+            piezo = new PiezoSpeaker(Device, Device.Pins.D10);
 
+            return Task.CompletedTask;
+        }
+
+        public override async Task Run()
+        {        
             while (true)
             {
                 for (int i = 0; i < NUMBER_OF_NOTES; i++)
                 {
                     //PlayTone with a duration in synchronous
-                    piezo.PlayTone(melody[i], 600);
+                    piezo.PlayTone(melody[i], new TimeSpan(600));
                     Thread.Sleep(50);
                 }
 
-                Thread.Sleep(1000);
+                await Task.Delay(1000);
 
                 //PlayTone without a duration will return immediately and play the tone
-                piezo.PlayTone(NoteFrequencies.NOTE_A4);
-                Thread.Sleep(2000);
+                piezo.PlayTone(new Frequency(NoteFrequencies.NOTE_A4));
+                await Task.Delay(2000);
 
                 //call StopTone to end a tone started without a duration
                 piezo.StopTone();
 
-                Thread.Sleep(2000);
+                await Task.Delay(2000);
             }
         }
     }
