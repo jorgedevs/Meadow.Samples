@@ -16,5 +16,5 @@
     <PackageReference Include="Xamarin.Essentials" Version="1.7.1" />
   </ItemGroup>
 
-  <Import Project="..\..\PlantWing.Shared\PlantWing.Shared.projitems" Label="Shared" />
+  <Import Project="..\..\SharedPlantSample\PlantWing.Shared.projitems" Label="Shared" />
 </Project>
