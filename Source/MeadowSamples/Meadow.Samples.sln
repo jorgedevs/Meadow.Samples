@@ -53,6 +53,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeadowPlantSample", "Connec
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServerPlantSample", "ConnectedPlant\ServerPlantSample\ServerPlantSample.csproj", "{4CA8DFED-AEF2-4839-9036-6BE58CAE1FFB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwitterClient", "TwitterClient\TwitterClient.csproj", "{7154A27E-CFA8-48D3-AD4B-29CBDF660056}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -325,6 +327,24 @@ Global
 		{4CA8DFED-AEF2-4839-9036-6BE58CAE1FFB}.Release|iPhone.Build.0 = Release|Any CPU
 		{4CA8DFED-AEF2-4839-9036-6BE58CAE1FFB}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{4CA8DFED-AEF2-4839-9036-6BE58CAE1FFB}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{7154A27E-CFA8-48D3-AD4B-29CBDF660056}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7154A27E-CFA8-48D3-AD4B-29CBDF660056}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7154A27E-CFA8-48D3-AD4B-29CBDF660056}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{7154A27E-CFA8-48D3-AD4B-29CBDF660056}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{7154A27E-CFA8-48D3-AD4B-29CBDF660056}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{7154A27E-CFA8-48D3-AD4B-29CBDF660056}.Debug|iPhone.Deploy.0 = Debug|Any CPU
+		{7154A27E-CFA8-48D3-AD4B-29CBDF660056}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{7154A27E-CFA8-48D3-AD4B-29CBDF660056}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{7154A27E-CFA8-48D3-AD4B-29CBDF660056}.Debug|iPhoneSimulator.Deploy.0 = Debug|Any CPU
+		{7154A27E-CFA8-48D3-AD4B-29CBDF660056}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7154A27E-CFA8-48D3-AD4B-29CBDF660056}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7154A27E-CFA8-48D3-AD4B-29CBDF660056}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{7154A27E-CFA8-48D3-AD4B-29CBDF660056}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{7154A27E-CFA8-48D3-AD4B-29CBDF660056}.Release|iPhone.Build.0 = Release|Any CPU
+		{7154A27E-CFA8-48D3-AD4B-29CBDF660056}.Release|iPhone.Deploy.0 = Release|Any CPU
+		{7154A27E-CFA8-48D3-AD4B-29CBDF660056}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{7154A27E-CFA8-48D3-AD4B-29CBDF660056}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{7154A27E-CFA8-48D3-AD4B-29CBDF660056}.Release|iPhoneSimulator.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -350,8 +370,8 @@ Global
 		{4CA8DFED-AEF2-4839-9036-6BE58CAE1FFB} = {9A8C24C0-1F22-47D8-9ECC-3B75898F544A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {859892DE-B9E3-452B-AC48-ED046B61B4B7}
 		        SolutionGuid = {9105841E-2E41-4992-AC47-1AB23EF8DC57}
+		SolutionGuid = {859892DE-B9E3-452B-AC48-ED046B61B4B7}
 	EndGlobalSection
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		ConnectedPlant\SharedPlantSample\PlantWing.Shared.projitems*{4ca8dfed-aef2-4839-9036-6be58cae1ffb}*SharedItemsImports = 5

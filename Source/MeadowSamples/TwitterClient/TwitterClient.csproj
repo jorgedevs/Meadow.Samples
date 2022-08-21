@@ -1,0 +1,30 @@
+﻿<Project Sdk="Meadow.Sdk/1.1.0">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    <OutputType>Library</OutputType>
+    <AssemblyName>App</AssemblyName>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Remove="tw-like.jpg" />
+    <None Remove="tw-logo.jpg" />
+    <None Remove="tw-reply.jpg" />
+    <None Remove="tw-retweet.jpg" />
+    <None Remove="twitter.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="tw-like.jpg" />
+    <EmbeddedResource Include="tw-logo.jpg" />
+    <EmbeddedResource Include="tw-reply.jpg" />
+    <EmbeddedResource Include="tw-retweet.jpg" />
+    <EmbeddedResource Include="twitter.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+        <PackageReference Include="SimpleJpegDecoder" Version="0.*" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Meadow.Core\source\Meadow.F7\Meadow.F7.csproj" />
+    <ProjectReference Include="..\..\..\..\Meadow.Foundation\Source\Meadow.Foundation.Core\Meadow.Foundation.Core.csproj" />
+    <ProjectReference Include="..\..\..\..\Meadow.Foundation\Source\Meadow.Foundation.Peripherals\Displays.TftSpi\Driver\Displays.TftSpi.csproj" />
+  </ItemGroup>
+</Project>

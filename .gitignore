@@ -148,3 +148,6 @@ Source/MeadowSamples/ConnectedPlant/MobilePlantSample/MobilePlantSample/obj/
 Source/MeadowSamples/ConnectedPlant/ServerPlantSample/bin/
 Source/MeadowSamples/ConnectedPlant/ServerPlantSample/obj/
 Source/MeadowSamples/ConnectedPlant/MobilePlantSample/MobilePlantSample/bin/
+Source/MeadowSamples/TwitterClient/bin/
+Source/MeadowSamples/TwitterClient/obj/
+Source/MeadowSamples/ConnectedPlant/MobilePlantSample/MobilePlantSample.Android/Resources/Resource.designer.cs
