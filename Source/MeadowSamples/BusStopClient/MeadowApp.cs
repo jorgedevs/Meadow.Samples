@@ -1,13 +1,17 @@
-﻿using Meadow;
+﻿using BusStopClient.Models;
+using BusStopClient.Services;
+using Meadow;
 using Meadow.Devices;
 using Meadow.Foundation;
-using Meadow.Foundation.Displays.TftSpi;
+using Meadow.Foundation.Displays;
 using Meadow.Foundation.Graphics;
 using Meadow.Foundation.Leds;
+using Meadow.Gateway.WiFi;
 using Meadow.Hardware;
 using Meadow.Units;
 using SimpleJpegDecoder;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using System.Threading.Tasks;
@@ -18,19 +22,32 @@ namespace BusStopClient
     public class MeadowApp : App<F7FeatherV1>
     {
         MicroGraphics graphics;
+        Font12x20 large;
+        Font8x12 medium;
+
+        Color dayBackground = Color.FromHex("06BFCC");
+        Color darkFont = Color.FromHex("06416C");
 
         string[] images = new string[1]
         {
             "mystop.jpg"
         };
 
-        public override Task Initialize()
+        public override async Task Initialize()
         {
             var onboardLed = new RgbPwmLed(device: Device,
                 redPwmPin: Device.Pins.OnboardLedRed,
                 greenPwmPin: Device.Pins.OnboardLedGreen,
                 bluePwmPin: Device.Pins.OnboardLedBlue);
             onboardLed.SetColor(Color.Red);
+
+            var wifi = Device.NetworkAdapters.Primary<IWiFiNetworkAdapter>();
+
+            var connectionResult = await wifi.Connect(Secrets.WIFI_NAME, Secrets.WIFI_PASSWORD, TimeSpan.FromSeconds(45));
+            if (connectionResult.ConnectionStatus != ConnectionStatus.Success)
+            {
+                throw new Exception($"Cannot connect to network: {connectionResult.ConnectionStatus}");
+            }
 
             var config = new SpiClockConfiguration(
                 new Frequency(12000, Frequency.UnitType.Kilohertz),
@@ -53,20 +70,79 @@ namespace BusStopClient
                 CurrentFont = new Font8x8()
             };
 
-            onboardLed.SetColor(Color.Green);
+            large = new Font12x20();
+            medium = new Font8x12();
 
-            return base.Initialize();
+            onboardLed.SetColor(Color.Green);
         }
 
-        public override Task Run()
+        public override async Task Run()
         {
             Console.WriteLine("Run");
 
+            DrawBackgroundAndStopInfo();
+
+            while (true) 
+            {
+                Console.WriteLine("Simulate");
+
+                var arrivals = await BusService.Instance.GetSchedulesAsync("51195");
+                DrawBusArrivals(arrivals);
+
+                await Task.Delay(TimeSpan.FromSeconds(10));
+            }
+            
+        }
+
+        void DrawBackgroundAndStopInfo() 
+        {
             DisplayJPG(0, 0, images[0]);
 
-            graphics.Show();
+            graphics.CurrentFont = medium;
 
-            return base.Run();
+            graphics.DrawText(95, 50, "WB KINGSWAY FS WINDSOR ST", darkFont);
+            graphics.DrawText(95, 85, "STOP #51195", darkFont, ScaleFactor.X2);
+
+            graphics.Show();
+        }
+
+        void DrawBusArrivals(List<Schedule> arrivals) 
+        {
+            graphics.CurrentFont = large;
+
+            graphics.DrawRectangle(15, 160, 290, 180, dayBackground, true);
+
+            if (arrivals[0] != null)
+            {
+                graphics.DrawText(15, 160, $"019 {arrivals[0].Destination}", darkFont);
+                graphics.DrawText(305, 160, $"{arrivals[0].ExpectedCountdown} MIN", darkFont, alignment: TextAlignment.Right);
+            }
+
+            if (arrivals[1] != null)
+            {
+                graphics.DrawText(15, 200, $"019 {arrivals[1].Destination}", darkFont);
+                graphics.DrawText(305, 200, $"{arrivals[1].ExpectedCountdown} MIN", darkFont, alignment: TextAlignment.Right);
+            }
+
+            if (arrivals[2] != null)
+            {
+                graphics.DrawText(15, 240, $"019 {arrivals[2].Destination}", darkFont);
+                graphics.DrawText(305, 240, $"{arrivals[2].ExpectedCountdown} MIN", darkFont, alignment: TextAlignment.Right);
+            }
+
+            if (arrivals[3] != null)
+            {
+                graphics.DrawText(15, 280, $"019 {arrivals[3].Destination}", darkFont);
+                graphics.DrawText(305, 280, $"{arrivals[3].ExpectedCountdown} MIN", darkFont, alignment: TextAlignment.Right);
+            }
+
+            if (arrivals[4] != null)
+            {
+                graphics.DrawText(15, 320, $"019 {arrivals[4].Destination}", darkFont);
+                graphics.DrawText(305, 320, $"{arrivals[4].ExpectedCountdown} MIN", darkFont, alignment: TextAlignment.Right);
+            }
+
+            graphics.Show();
         }
 
         void DisplayJPG(int x, int y, string filename)
