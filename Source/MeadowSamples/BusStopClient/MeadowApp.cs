@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace BusStopClient
 {
-    public class MeadowApp : App<F7FeatherV1>
+    public class MeadowApp : App<F7FeatherV2>
     {
         string BUS_STOP_NUMBER = "51195";
 

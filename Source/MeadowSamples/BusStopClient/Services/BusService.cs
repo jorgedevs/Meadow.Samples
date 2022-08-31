@@ -69,8 +69,6 @@ namespace BusStopClient.Services
                 }
             }
 
-            GC.Collect();
-
             return schedules;
         }
     }

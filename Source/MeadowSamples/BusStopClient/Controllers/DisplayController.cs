@@ -18,23 +18,16 @@ namespace BusStopClient.Controllers
             new Lazy<DisplayController>(() => new DisplayController());
         public static DisplayController Instance => instance.Value;
 
+        bool isDay = true;
+
         MicroGraphics graphics;
         Font12x20 large;
         Font8x12 medium;
 
-        Color dayBackground = Color.FromHex("06BFCC");
-        Color nightBackground = Color.FromHex("133B4F");
-        Color darkFont = Color.FromHex("06416C");
-        Color lightFont = Color.FromHex("FFFFFF");
-
-        string[] images = new string[5]
-        {
-            "img_splash_logo.jpg",
-            "img_day_bg.jpg",
-            "img_day_stop.jpg",
-            "img_night_bg.jpg",
-            "img_night_stop.jpg"
-        };
+        Color backgroundColor;
+        Color fontColor;
+        string backgroundImage;
+        string stopSignImage;
 
         static DisplayController() { }
 
@@ -63,27 +56,34 @@ namespace BusStopClient.Controllers
 
             large = new Font12x20();
             medium = new Font8x12();
+
+            isDay = false;
+
+            backgroundColor = isDay ? ColorConstants.DayBackground : ColorConstants.NightBackground;
+            fontColor = isDay? ColorConstants.DarkFont : ColorConstants.LightFont;
+            backgroundImage = isDay? ImageConstants.DayBackground : ImageConstants.NightBackground;
+            stopSignImage = isDay? ImageConstants.DayStopSign : ImageConstants.NightStopSign;
         }
 
         public void DrawSplashScreen() 
         {
-            graphics.Clear(darkFont, false);
-            DisplayJPG(105, 214, images[0]);
+            graphics.Clear(ColorConstants.SplashColor, false);
+            DisplayJPG(105, 214, ImageConstants.SplashImage);
             graphics.Show();
         }
 
         public void DrawBackgroundAndStopInfo()
         {
-            graphics.Clear(nightBackground, false);
+            graphics.Clear(backgroundColor, false);
 
-            DisplayJPG(0, 370, images[3]);
+            DisplayJPG(0, 370, backgroundImage);
 
-            DisplayJPG(19, 33, images[4]);
+            DisplayJPG(19, 33, stopSignImage);
 
             graphics.CurrentFont = medium;
 
-            graphics.DrawText(95, 50, "WB KINGSWAY FS WINDSOR ST", lightFont);
-            graphics.DrawText(95, 85, "STOP #51195", lightFont, ScaleFactor.X2);
+            graphics.DrawText(95, 50, "WB KINGSWAY FS WINDSOR ST", fontColor);
+            graphics.DrawText(95, 85, "STOP #51195", fontColor, ScaleFactor.X2);
 
             graphics.Show();
         }
@@ -92,39 +92,39 @@ namespace BusStopClient.Controllers
         {
             graphics.CurrentFont = large;
 
-            graphics.DrawRectangle(15, 160, 290, 180, nightBackground, true);
+            graphics.DrawRectangle(15, 160, 290, 180, backgroundColor, true);
 
             if (arrivals.Count == 0)
                 return;
 
             if (arrivals.Count > 0 && arrivals[0] != null)
             {
-                graphics.DrawText(15, 160, Truncate($"{arrivals[0].RouteNo} {arrivals[0].Destination}", 16), lightFont);
-                graphics.DrawText(305, 160, $"{arrivals[0].ExpectedCountdown} MIN", lightFont, alignment: TextAlignment.Right);
+                graphics.DrawText(15, 160, Truncate($"{arrivals[0].RouteNo} {arrivals[0].Destination}", 16), fontColor);
+                graphics.DrawText(305, 160, $"{arrivals[0].ExpectedCountdown} MIN", fontColor, alignment: TextAlignment.Right);
             }
 
             if (arrivals.Count > 1 && arrivals[1] != null)
             {
-                graphics.DrawText(15, 200, Truncate($"{arrivals[1].RouteNo} {arrivals[1].Destination}", 16), lightFont);
-                graphics.DrawText(305, 200, $"{arrivals[1].ExpectedCountdown} MIN", lightFont, alignment: TextAlignment.Right);
+                graphics.DrawText(15, 200, Truncate($"{arrivals[1].RouteNo} {arrivals[1].Destination}", 16), fontColor);
+                graphics.DrawText(305, 200, $"{arrivals[1].ExpectedCountdown} MIN", fontColor, alignment: TextAlignment.Right);
             }
 
             if (arrivals.Count > 2 && arrivals[2] != null)
             {
-                graphics.DrawText(15, 240, Truncate($"{arrivals[2].RouteNo} {arrivals[2].Destination}", 16), lightFont);
-                graphics.DrawText(305, 240, $"{arrivals[2].ExpectedCountdown} MIN", lightFont, alignment: TextAlignment.Right);
+                graphics.DrawText(15, 240, Truncate($"{arrivals[2].RouteNo} {arrivals[2].Destination}", 16), fontColor);
+                graphics.DrawText(305, 240, $"{arrivals[2].ExpectedCountdown} MIN", fontColor, alignment: TextAlignment.Right);
             }
 
             if (arrivals.Count > 3 && arrivals[3] != null)
             {
-                graphics.DrawText(15, 280, Truncate($"{arrivals[3].RouteNo} {arrivals[3].Destination}", 16), lightFont);
-                graphics.DrawText(305, 280, $"{arrivals[3].ExpectedCountdown} MIN", lightFont, alignment: TextAlignment.Right);
+                graphics.DrawText(15, 280, Truncate($"{arrivals[3].RouteNo} {arrivals[3].Destination}", 16), fontColor);
+                graphics.DrawText(305, 280, $"{arrivals[3].ExpectedCountdown} MIN", fontColor, alignment: TextAlignment.Right);
             }
 
             if (arrivals.Count > 4 && arrivals[4] != null)
             {
-                graphics.DrawText(15, 320, Truncate($"{arrivals[4].RouteNo} {arrivals[4].Destination}", 16), lightFont);
-                graphics.DrawText(305, 320, $"{arrivals[4].ExpectedCountdown} MIN", lightFont, alignment: TextAlignment.Right);
+                graphics.DrawText(15, 320, Truncate($"{arrivals[4].RouteNo} {arrivals[4].Destination}", 16), fontColor);
+                graphics.DrawText(305, 320, $"{arrivals[4].ExpectedCountdown} MIN", fontColor, alignment: TextAlignment.Right);
             }
 
             graphics.Show();
