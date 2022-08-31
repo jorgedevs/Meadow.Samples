@@ -19,7 +19,8 @@ namespace BusStopClient
 
         public override async Task Initialize()
         {
-            onboardLed = new RgbPwmLed(device: Device,
+            onboardLed = new RgbPwmLed(
+                device: Device,
                 redPwmPin: Device.Pins.OnboardLedRed,
                 greenPwmPin: Device.Pins.OnboardLedGreen,
                 bluePwmPin: Device.Pins.OnboardLedBlue);

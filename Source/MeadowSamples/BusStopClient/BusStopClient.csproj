@@ -8,11 +8,15 @@
   <ItemGroup>
     <None Remove="img_day_bg.jpg" />
     <None Remove="img_day_stop.jpg" />
+    <None Remove="img_night_bg.jpg" />
+    <None Remove="img_night_stop.jpg" />
     <None Remove="img_splash_logo.jpg" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="img_day_bg.jpg" />
     <EmbeddedResource Include="img_day_stop.jpg" />
+    <EmbeddedResource Include="img_night_bg.jpg" />
+    <EmbeddedResource Include="img_night_stop.jpg" />
     <EmbeddedResource Include="img_splash_logo.jpg" />
   </ItemGroup>
   <ItemGroup>
