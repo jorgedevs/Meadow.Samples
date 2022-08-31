@@ -84,9 +84,7 @@ namespace BusStopClient
 
             while (true) 
             {
-                Console.WriteLine("Simulate");
-
-                var arrivals = await BusService.Instance.GetSchedulesAsync("51195");
+                var arrivals = await BusService.GetSchedulesAsync("51195");
                 DrawBusArrivals(arrivals);
 
                 await Task.Delay(TimeSpan.FromSeconds(10));
@@ -111,6 +109,9 @@ namespace BusStopClient
             graphics.CurrentFont = large;
 
             graphics.DrawRectangle(15, 160, 290, 180, dayBackground, true);
+
+            if (arrivals.Count == 0)
+                return;
 
             if (arrivals[0] != null)
             {
