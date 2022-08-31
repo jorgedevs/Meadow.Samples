@@ -43,21 +43,15 @@ namespace BusStopClient.Services
                         return schedules;
 
                     string json = await response.Content.ReadAsStringAsync();
-
-                    Console.WriteLine($"Json Response = {json}");
-
+                    
                     var nextBuses = JsonSerializer.Deserialize<List<NextBus>>(json);
-
-                    Console.WriteLine($"Next Busses {nextBuses.Count}");
 
                     foreach (var nextBus in nextBuses)
                     {
-                        Console.WriteLine($"Next Busses {nextBus.Schedules.Count}");
-
                         foreach (var schedule in nextBus.Schedules)
                         {
                             var scheduleItem = new Schedule();
-                            //scheduleItem.RouteNo = nextBus.RouteNo;
+                            scheduleItem.RouteNo = nextBus.RouteNo;
                             scheduleItem.Destination = schedule.Destination;
                             scheduleItem.ExpectedCountdown = schedule.ExpectedCountdown;
                             scheduleItem.ScheduleStatus = schedule.ScheduleStatus;

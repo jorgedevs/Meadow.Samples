@@ -7,9 +7,11 @@
   </PropertyGroup>
   <ItemGroup>
     <None Remove="mystop.jpg" />
+    <None Remove="splash_logo.jpg" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="mystop.jpg" />
+    <EmbeddedResource Include="splash_logo.jpg" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="SimpleJpegDecoder" Version="0.*" />
