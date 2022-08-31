@@ -6,12 +6,14 @@
     <AssemblyName>App</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
-    <None Remove="mystop.jpg" />
-    <None Remove="splash_logo.jpg" />
+    <None Remove="img_day_bg.jpg" />
+    <None Remove="img_day_stop.jpg" />
+    <None Remove="img_splash_logo.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="mystop.jpg" />
-    <EmbeddedResource Include="splash_logo.jpg" />
+    <EmbeddedResource Include="img_day_bg.jpg" />
+    <EmbeddedResource Include="img_day_stop.jpg" />
+    <EmbeddedResource Include="img_splash_logo.jpg" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="SimpleJpegDecoder" Version="0.*" />

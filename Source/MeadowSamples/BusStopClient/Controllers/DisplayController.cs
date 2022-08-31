@@ -25,9 +25,11 @@ namespace BusStopClient.Controllers
         Color dayBackground = Color.FromHex("06BFCC");
         Color darkFont = Color.FromHex("06416C");
 
-        string[] images = new string[1]
+        string[] images = new string[3]
         {
-            "mystop.jpg"
+            "img_splash_logo.jpg",
+            "img_day_bg.jpg",
+            "img_day_stop.jpg"
         };
 
         static DisplayController() { }
@@ -62,13 +64,17 @@ namespace BusStopClient.Controllers
         public void DrawSplashScreen() 
         {
             graphics.Clear(Color.FromHex("06416C"), false);
-            DisplayJPG(105, 214, "splash_logo.jpg");
+            DisplayJPG(105, 214, images[0]);
             graphics.Show();
         }
 
         public void DrawBackgroundAndStopInfo()
         {
-            DisplayJPG(0, 0, images[0]);
+            graphics.Clear(dayBackground, false);
+
+            DisplayJPG(0, 370, images[1]);
+
+            DisplayJPG(19, 33, images[2]);
 
             graphics.CurrentFont = medium;
 
@@ -89,31 +95,31 @@ namespace BusStopClient.Controllers
 
             if (arrivals.Count > 0 && arrivals[0] != null)
             {
-                graphics.DrawText(15, 160, $"{arrivals[0].RouteNo} {arrivals[0].Destination}", darkFont);
+                graphics.DrawText(15, 160, Truncate($"{arrivals[0].RouteNo} {arrivals[0].Destination}", 16), darkFont);
                 graphics.DrawText(305, 160, $"{arrivals[0].ExpectedCountdown} MIN", darkFont, alignment: TextAlignment.Right);
             }
 
             if (arrivals.Count > 1 && arrivals[1] != null)
             {
-                graphics.DrawText(15, 200, $"{arrivals[1].RouteNo} {arrivals[1].Destination}", darkFont);
+                graphics.DrawText(15, 200, Truncate($"{arrivals[1].RouteNo} {arrivals[1].Destination}", 16), darkFont);
                 graphics.DrawText(305, 200, $"{arrivals[1].ExpectedCountdown} MIN", darkFont, alignment: TextAlignment.Right);
             }
 
             if (arrivals.Count > 2 && arrivals[2] != null)
             {
-                graphics.DrawText(15, 240, $"{arrivals[2].RouteNo} {arrivals[2].Destination}", darkFont);
+                graphics.DrawText(15, 240, Truncate($"{arrivals[2].RouteNo} {arrivals[2].Destination}", 16), darkFont);
                 graphics.DrawText(305, 240, $"{arrivals[2].ExpectedCountdown} MIN", darkFont, alignment: TextAlignment.Right);
             }
 
             if (arrivals.Count > 3 && arrivals[3] != null)
             {
-                graphics.DrawText(15, 280, $"{arrivals[3].RouteNo} {arrivals[3].Destination}", darkFont);
+                graphics.DrawText(15, 280, Truncate($"{arrivals[3].RouteNo} {arrivals[3].Destination}", 16), darkFont);
                 graphics.DrawText(305, 280, $"{arrivals[3].ExpectedCountdown} MIN", darkFont, alignment: TextAlignment.Right);
             }
 
             if (arrivals.Count > 4 && arrivals[4] != null)
             {
-                graphics.DrawText(15, 320, $"{arrivals[4].RouteNo} {arrivals[4].Destination}", darkFont);
+                graphics.DrawText(15, 320, Truncate($"{arrivals[4].RouteNo} {arrivals[4].Destination}", 16), darkFont);
                 graphics.DrawText(305, 320, $"{arrivals[4].ExpectedCountdown} MIN", darkFont, alignment: TextAlignment.Right);
             }
 
@@ -160,6 +166,15 @@ namespace BusStopClient.Controllers
                     return ms.ToArray();
                 }
             }
+        }
+
+        string Truncate(string source, int length)
+        {
+            if (source.Length > length)
+            {
+                source = source.Substring(0, length);
+            }
+            return source;
         }
     }
 }

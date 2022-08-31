@@ -34,8 +34,6 @@ namespace BusStopClient.Services
                 {
                     client.DefaultRequestHeaders.Accept.Add(MediaTypeWithQualityHeaderValue.Parse(AcceptHeaderApplicationJson));
 
-                    Console.WriteLine("Calling API...");
-
                     var response = await client.GetAsync($"{busNumber}/estimates?apiKey={API_KEY}", HttpCompletionOption.ResponseContentRead);
                     response.EnsureSuccessStatusCode();
 
@@ -43,7 +41,6 @@ namespace BusStopClient.Services
                         return schedules;
 
                     string json = await response.Content.ReadAsStringAsync();
-                    
                     var nextBuses = JsonSerializer.Deserialize<List<NextBus>>(json);
 
                     foreach (var nextBus in nextBuses)
@@ -63,12 +60,12 @@ namespace BusStopClient.Services
                 catch (TaskCanceledException)
                 {
                     Console.WriteLine("Request timed out.");
-                    return new List<Schedule>();
+                    return schedules;
                 }
                 catch (Exception e)
                 {
                     Console.WriteLine($"Request went sideways: {e.Message}");
-                    return new List<Schedule>();
+                    return schedules;
                 }
             }
 
