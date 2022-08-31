@@ -1,9 +1,9 @@
 ﻿using BusStopClient.Models;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace BusStopClient.Services
@@ -46,12 +46,14 @@ namespace BusStopClient.Services
 
                     Console.WriteLine($"Json Response = {json}");
 
-                    var nextBuses = JsonConvert.DeserializeObject<List<NextBus>>(json);
+                    var nextBuses = JsonSerializer.Deserialize<List<NextBus>>(json);
 
                     Console.WriteLine($"Next Busses {nextBuses.Count}");
 
                     foreach (var nextBus in nextBuses)
                     {
+                        Console.WriteLine($"Next Busses {nextBus.Schedules.Count}");
+
                         foreach (var schedule in nextBus.Schedules)
                         {
                             var scheduleItem = new Schedule();
@@ -67,12 +69,12 @@ namespace BusStopClient.Services
                 catch (TaskCanceledException)
                 {
                     Console.WriteLine("Request timed out.");
-                    return null;
+                    return new List<Schedule>();
                 }
                 catch (Exception e)
                 {
                     Console.WriteLine($"Request went sideways: {e.Message}");
-                    return null;
+                    return new List<Schedule>();
                 }
             }
 

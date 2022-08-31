@@ -113,31 +113,31 @@ namespace BusStopClient
             if (arrivals.Count == 0)
                 return;
 
-            if (arrivals[0] != null)
+            if (arrivals.Count > 0 && arrivals[0] != null)
             {
                 graphics.DrawText(15, 160, $"019 {arrivals[0].Destination}", darkFont);
                 graphics.DrawText(305, 160, $"{arrivals[0].ExpectedCountdown} MIN", darkFont, alignment: TextAlignment.Right);
             }
 
-            if (arrivals[1] != null)
+            if (arrivals.Count > 1 && arrivals[1] != null)
             {
                 graphics.DrawText(15, 200, $"019 {arrivals[1].Destination}", darkFont);
                 graphics.DrawText(305, 200, $"{arrivals[1].ExpectedCountdown} MIN", darkFont, alignment: TextAlignment.Right);
             }
 
-            if (arrivals[2] != null)
+            if (arrivals.Count > 2 && arrivals[2] != null)
             {
                 graphics.DrawText(15, 240, $"019 {arrivals[2].Destination}", darkFont);
                 graphics.DrawText(305, 240, $"{arrivals[2].ExpectedCountdown} MIN", darkFont, alignment: TextAlignment.Right);
             }
 
-            if (arrivals[3] != null)
+            if (arrivals.Count > 3 && arrivals[3] != null)
             {
                 graphics.DrawText(15, 280, $"019 {arrivals[3].Destination}", darkFont);
                 graphics.DrawText(305, 280, $"{arrivals[3].ExpectedCountdown} MIN", darkFont, alignment: TextAlignment.Right);
             }
 
-            if (arrivals[4] != null)
+            if (arrivals.Count > 4 && arrivals[4] != null)
             {
                 graphics.DrawText(15, 320, $"019 {arrivals[4].Destination}", darkFont);
                 graphics.DrawText(305, 320, $"{arrivals[4].ExpectedCountdown} MIN", darkFont, alignment: TextAlignment.Right);
