@@ -4,17 +4,17 @@ namespace BusStopClient.Models
 {
     public class Stop
     {
+        public int StopNo { get; set; }
+        public int WheelchairAccess { get; set; }
+        public float Distance { get; set; }
+        public float Latitude { get; set; }
+        public float Longitude { get; set; }
         public string City { get; set; }
         public string Name { get; set; }
         public string BayNo { get; set; }
         public string Routes { get; set; }
-        public string StopNo { get; set; }
         public string OnStreet { get; set; }
         public string AtStreet { get; set; }
-        public string Distance { get; set; }
-        public string Latitude { get; set; }
-        public string Longitude { get; set; }
-        public string WheelchairAccess { get; set; }
     }
 
     public class Schedule

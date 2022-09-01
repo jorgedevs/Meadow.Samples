@@ -57,7 +57,7 @@ namespace BusStopClient.Controllers
             large = new Font12x20();
             medium = new Font8x12();
 
-            isDay = false;
+            isDay = true;
 
             backgroundColor = isDay ? ColorConstants.DayBackground : ColorConstants.NightBackground;
             fontColor = isDay? ColorConstants.DarkFont : ColorConstants.LightFont;
@@ -79,11 +79,14 @@ namespace BusStopClient.Controllers
             DisplayJPG(0, 370, backgroundImage);
 
             DisplayJPG(19, 33, stopSignImage);
+        }
 
+        public void DrawStopInfo(Stop stop)
+        {
             graphics.CurrentFont = medium;
 
-            graphics.DrawText(95, 50, "WB KINGSWAY FS WINDSOR ST", fontColor);
-            graphics.DrawText(95, 85, "STOP #51195", fontColor, ScaleFactor.X2);
+            graphics.DrawText(95, 50, stop.Name, fontColor);
+            graphics.DrawText(95, 85, $"STOP #{stop.StopNo}", fontColor, ScaleFactor.X2);
 
             graphics.Show();
         }

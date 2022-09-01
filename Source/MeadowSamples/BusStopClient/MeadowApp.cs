@@ -1,4 +1,5 @@
 ﻿using BusStopClient.Controllers;
+using BusStopClient.Models;
 using BusStopClient.Services;
 using Meadow;
 using Meadow.Devices;
@@ -44,16 +45,18 @@ namespace BusStopClient
         {
             DisplayController.Instance.DrawBackgroundAndStopInfo();
 
-            while (true) 
-            {
-                onboardLed.StartBlink(Color.Orange);
+            var busStop = await BusService.Instance.GetStopInfoAsync(BUS_STOP_NUMBER);
+            DisplayController.Instance.DrawStopInfo(busStop);
 
-                var arrivals = await BusService.GetSchedulesAsync(BUS_STOP_NUMBER);
+            while (true)
+            {
+                onboardLed.StartPulse(Color.Orange);
+
+                var arrivals = await BusService.Instance.GetSchedulesAsync(BUS_STOP_NUMBER);
                 DisplayController.Instance.DrawBusArrivals(arrivals);
 
                 onboardLed.Stop();
                 onboardLed.SetColor(Color.Green);
-                onboardLed.IsOn = true;
 
                 await Task.Delay(TimeSpan.FromSeconds(30));
             }

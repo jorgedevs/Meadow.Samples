@@ -20,7 +20,49 @@ namespace BusStopClient.Services
 
         static BusService() { }
 
-        public static async Task<List<Schedule>> GetSchedulesAsync(string busNumber)
+        public async Task<Stop> GetStopInfoAsync(string busNumber)
+        {
+            var stop = new Stop();
+
+            using (HttpClient client = new HttpClient()
+            {
+                BaseAddress = new Uri(RestServiceBaseAddress),
+                Timeout = new TimeSpan(0, 5, 0)
+            })
+            {
+                try
+                {
+                    client.DefaultRequestHeaders.Accept.Add(MediaTypeWithQualityHeaderValue.Parse(AcceptHeaderApplicationJson));
+
+                    var response = await client.GetAsync($"{busNumber}?apiKey={API_KEY}", HttpCompletionOption.ResponseContentRead);
+                    response.EnsureSuccessStatusCode();
+
+                    if (!response.IsSuccessStatusCode)
+                        return stop;
+
+                    string json = await response.Content.ReadAsStringAsync();
+                    var stopInfo = JsonSerializer.Deserialize<Stop>(json);
+
+                    stop.Name = stopInfo.Name;
+                    stop.StopNo = stopInfo.StopNo;
+                    stop.Routes = stopInfo.Routes;
+                }
+                catch (TaskCanceledException)
+                {
+                    Console.WriteLine("Request timed out.");
+                    return stop;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine($"Request went sideways: {e.Message}");
+                    return stop;
+                }
+            }
+
+            return stop;
+        }
+
+        public async Task<List<Schedule>> GetSchedulesAsync(string busNumber)
         {
             var schedules = new List<Schedule>();
 
