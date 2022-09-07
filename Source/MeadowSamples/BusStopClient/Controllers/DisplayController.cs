@@ -18,8 +18,6 @@ namespace BusStopClient.Controllers
             new Lazy<DisplayController>(() => new DisplayController());
         public static DisplayController Instance => instance.Value;
 
-        bool isDay = true;
-
         MicroGraphics graphics;
         Font12x20 large;
         Font8x12 medium;
@@ -50,19 +48,28 @@ namespace BusStopClient.Controllers
 
             graphics = new MicroGraphics(display)
             {
-                IgnoreOutOfBoundsPixels = true,
-                CurrentFont = new Font8x8()
+                IgnoreOutOfBoundsPixels = true
             };
 
             large = new Font12x20();
             medium = new Font8x12();
 
-            isDay = true;
+            SetTheme();
+        }
 
-            backgroundColor = isDay ? ColorConstants.DayBackground : ColorConstants.NightBackground;
-            fontColor = isDay? ColorConstants.DarkFont : ColorConstants.LightFont;
-            backgroundImage = isDay? ImageConstants.DayBackground : ImageConstants.NightBackground;
-            stopSignImage = isDay? ImageConstants.DayStopSign : ImageConstants.NightStopSign;
+        public void SetTheme()
+        {
+            var today = DateTime.Now;
+            var sunset = DaylightTimes.GetDaylight(today.Month).Sunset;
+            var sunrise = DaylightTimes.GetDaylight(today.Month).Sunrise;
+
+            bool isDaylight = today.TimeOfDay >= sunrise.TimeOfDay 
+                && today.TimeOfDay <= sunset.TimeOfDay;
+
+            backgroundColor = isDaylight ? ColorConstants.DayBackground : ColorConstants.NightBackground;
+            fontColor = isDaylight ? ColorConstants.DarkFont : ColorConstants.LightFont;
+            backgroundImage = isDaylight ? ImageConstants.DayBackground : ImageConstants.NightBackground;
+            stopSignImage = isDaylight ? ImageConstants.DayStopSign : ImageConstants.NightStopSign;
         }
 
         public void DrawSplashScreen() 
