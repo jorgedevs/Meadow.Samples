@@ -18,6 +18,8 @@ namespace BusStopClient.Controllers
             new Lazy<DisplayController>(() => new DisplayController());
         public static DisplayController Instance => instance.Value;
 
+        bool currentTheme;
+
         MicroGraphics graphics;
         Font12x20 large;
         Font8x12 medium;
@@ -54,22 +56,33 @@ namespace BusStopClient.Controllers
             large = new Font12x20();
             medium = new Font8x12();
 
-            SetTheme();
+            currentTheme = true;
         }
 
-        public void SetTheme()
+        public bool IsChangeThemeTime() 
         {
             var today = DateTime.Now;
             var sunset = DaylightTimes.GetDaylight(today.Month).Sunset;
             var sunrise = DaylightTimes.GetDaylight(today.Month).Sunrise;
 
-            bool isDaylight = today.TimeOfDay >= sunrise.TimeOfDay 
+            bool actualTheme = today.TimeOfDay >= sunrise.TimeOfDay
                 && today.TimeOfDay <= sunset.TimeOfDay;
 
-            backgroundColor = isDaylight ? ColorConstants.DayBackground : ColorConstants.NightBackground;
-            fontColor = isDaylight ? ColorConstants.DarkFont : ColorConstants.LightFont;
-            backgroundImage = isDaylight ? ImageConstants.DayBackground : ImageConstants.NightBackground;
-            stopSignImage = isDaylight ? ImageConstants.DayStopSign : ImageConstants.NightStopSign;
+            if (currentTheme != actualTheme)
+            {
+                currentTheme = actualTheme;
+                return true;
+            }
+
+            return false;
+        }
+
+        public void UpdateTheme()
+        {
+            backgroundColor = currentTheme ? ColorConstants.DayBackground : ColorConstants.NightBackground;
+            fontColor = currentTheme ? ColorConstants.DarkFont : ColorConstants.LightFont;
+            backgroundImage = currentTheme ? ImageConstants.DayBackground : ImageConstants.NightBackground;
+            stopSignImage = currentTheme ? ImageConstants.DayStopSign : ImageConstants.NightStopSign;
         }
 
         public void DrawSplashScreen() 
