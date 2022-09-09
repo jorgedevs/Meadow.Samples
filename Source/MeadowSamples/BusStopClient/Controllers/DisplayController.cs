@@ -55,13 +55,10 @@ namespace BusStopClient.Controllers
 
             large = new Font12x20();
             medium = new Font8x12();
-
-            currentTheme = true;
         }
 
-        public bool IsChangeThemeTime() 
+        public bool IsChangeThemeTime(DateTime today) 
         {
-            var today = DateTime.Now;
             var sunset = DaylightTimes.GetDaylight(today.Month).Sunset;
             var sunrise = DaylightTimes.GetDaylight(today.Month).Sunrise;
 
@@ -83,6 +80,15 @@ namespace BusStopClient.Controllers
             fontColor = currentTheme ? ColorConstants.DarkFont : ColorConstants.LightFont;
             backgroundImage = currentTheme ? ImageConstants.DayBackground : ImageConstants.NightBackground;
             stopSignImage = currentTheme ? ImageConstants.DayStopSign : ImageConstants.NightStopSign;
+
+            DrawBackgroundAndStopInfo();
+        }
+
+        void DrawBackgroundAndStopInfo()
+        {
+            graphics.Clear(backgroundColor, false);
+            DisplayJPG(0, 370, backgroundImage);
+            DisplayJPG(19, 30, stopSignImage);
         }
 
         public void DrawSplashScreen() 
@@ -92,22 +98,19 @@ namespace BusStopClient.Controllers
             graphics.Show();
         }
 
-        public void DrawBackgroundAndStopInfo()
-        {
-            graphics.Clear(backgroundColor, false);
-
-            DisplayJPG(0, 370, backgroundImage);
-
-            DisplayJPG(19, 33, stopSignImage);
-        }
-
         public void DrawStopInfo(Stop stop)
         {
             graphics.CurrentFont = medium;
+            graphics.DrawText(95, 33, stop.Name, fontColor);
+            graphics.DrawText(95, 60, $"STOP #{stop.StopNo}", fontColor, ScaleFactor.X2);
+            graphics.Show();
+        }
 
-            graphics.DrawText(95, 50, stop.Name, fontColor);
-            graphics.DrawText(95, 85, $"STOP #{stop.StopNo}", fontColor, ScaleFactor.X2);
-
+        public void UpdateClock(string time)
+        {
+            graphics.CurrentFont = medium;
+            graphics.DrawRectangle(95, 95, 176, 24, backgroundColor, true);
+            graphics.DrawText(95, 95, time, fontColor, ScaleFactor.X2);
             graphics.Show();
         }
 
@@ -150,6 +153,13 @@ namespace BusStopClient.Controllers
                 graphics.DrawText(305, 320, $"{arrivals[4].ExpectedCountdown} MIN", fontColor, alignment: TextAlignment.Right);
             }
 
+            graphics.Show();
+        }
+
+        public void ClearBusArrivals() 
+        {
+            graphics.DrawRectangle(15, 160, 290, 180, backgroundColor, true);
+            graphics.DrawText(160, 240, "READY", fontColor, ScaleFactor.X2, TextAlignment.Center);
             graphics.Show();
         }
 

@@ -1,13 +1,14 @@
 ﻿using BusStopClient.Controllers;
-using BusStopClient.Models;
 using BusStopClient.Services;
 using Meadow;
 using Meadow.Devices;
 using Meadow.Foundation;
 using Meadow.Foundation.Leds;
+using Meadow.Foundation.Sensors.Buttons;
 using Meadow.Gateway.WiFi;
 using Meadow.Hardware;
 using System;
+using System.Globalization;
 using System.Threading.Tasks;
 
 namespace BusStopClient
@@ -15,9 +16,13 @@ namespace BusStopClient
     public class MeadowApp : App<F7FeatherV2>
     {
         string BUS_STOP_NUMBER = "51195";
-        Stop busStop;
 
         RgbPwmLed onboardLed;
+        PushButton button;
+
+        DateTime activeTime;
+        bool isFirstRun = true;
+        bool isBusy;
 
         public override async Task Initialize()
         {
@@ -27,6 +32,9 @@ namespace BusStopClient
                 greenPwmPin: Device.Pins.OnboardLedGreen,
                 bluePwmPin: Device.Pins.OnboardLedBlue);
             onboardLed.SetColor(Color.Red);
+
+            DisplayController.Instance.Initialize();
+            DisplayController.Instance.DrawSplashScreen();
 
             var wifi = Device.NetworkAdapters.Primary<IWiFiNetworkAdapter>();
 
@@ -38,38 +46,71 @@ namespace BusStopClient
 
             await DateTimeService.Instance.GetDateTime();
 
-            DisplayController.Instance.Initialize();
-            DisplayController.Instance.DrawSplashScreen();
+            button = new PushButton(Device, Device.Pins.D04);
+            button.Clicked += ButtonClicked;
 
             onboardLed.SetColor(Color.Green);
         }
 
+        async void ButtonClicked(object sender, EventArgs e)
+        {
+            await UpdateBusArrivals();
+
+            activeTime = DateTime.Now;
+            activeTime = activeTime.Add(TimeSpan.FromMinutes(5));
+        }
+
+        async Task UpdateBusArrivals() 
+        {
+            if (isBusy)
+                return;
+            isBusy = true;
+
+            onboardLed.StartPulse(Color.Magenta);
+
+            var arrivals = await BusService.Instance.GetSchedulesAsync(BUS_STOP_NUMBER);
+            DisplayController.Instance.DrawBusArrivals(arrivals);
+
+            onboardLed.Stop();
+            onboardLed.SetColor(Color.Green);
+
+            isBusy = false;
+        }
+
         public override async Task Run()
         {
-            busStop = await BusService.Instance.GetStopInfoAsync(BUS_STOP_NUMBER);
-
-            DisplayController.Instance.UpdateTheme();
-            DisplayController.Instance.DrawBackgroundAndStopInfo();
-            DisplayController.Instance.DrawStopInfo(busStop);
+            var busStop = await BusService.Instance.GetStopInfoAsync(BUS_STOP_NUMBER);
 
             while (true)
             {
-                onboardLed.StartPulse(Color.Orange, 1, 0);
+                var today = DateTime.Now;
 
-                if (DisplayController.Instance.IsChangeThemeTime()) 
+                if (today.Second == 0 && DisplayController.Instance.IsChangeThemeTime(today) || isFirstRun)
                 {
+                    isFirstRun = false;
                     DisplayController.Instance.UpdateTheme();
-                    DisplayController.Instance.DrawBackgroundAndStopInfo();
                     DisplayController.Instance.DrawStopInfo(busStop);
                 }
 
-                var arrivals = await BusService.Instance.GetSchedulesAsync(BUS_STOP_NUMBER);
-                DisplayController.Instance.DrawBusArrivals(arrivals);
+                DisplayController.Instance.UpdateClock(
+                    today.ToString("T", CultureInfo.CreateSpecificCulture("en-us")));
 
-                onboardLed.Stop();
-                onboardLed.SetColor(Color.Green);
+                if (today < activeTime)
+                {
+                    if (today.Second == 0 
+                        || today.Second == 1 
+                        || today.Second == 30 
+                        || today.Second == 31)
+                    {
+                        await UpdateBusArrivals();
+                    }
+                }
+                else
+                {
+                    DisplayController.Instance.ClearBusArrivals();
+                }
 
-                await Task.Delay(TimeSpan.FromSeconds(15));
+                await Task.Delay(TimeSpan.FromSeconds(1));
             }
         }
     }
