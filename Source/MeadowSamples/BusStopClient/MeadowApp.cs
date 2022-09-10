@@ -57,7 +57,7 @@ namespace BusStopClient
             await UpdateBusArrivals();
 
             activeTime = DateTime.Now;
-            activeTime = activeTime.Add(TimeSpan.FromMinutes(5));
+            activeTime = activeTime.Add(TimeSpan.FromMinutes(20));
         }
 
         async Task UpdateBusArrivals() 
@@ -85,7 +85,7 @@ namespace BusStopClient
             {
                 var today = DateTime.Now;
 
-                if (today.Second == 0 && DisplayController.Instance.IsChangeThemeTime(today) || isFirstRun)
+                if (DisplayController.Instance.IsChangeThemeTime(today) || isFirstRun)
                 {
                     isFirstRun = false;
                     DisplayController.Instance.UpdateTheme();
