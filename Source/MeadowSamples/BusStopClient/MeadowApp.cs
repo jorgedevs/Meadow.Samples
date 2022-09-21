@@ -110,6 +110,8 @@ namespace BusStopClient
                     DisplayController.Instance.ClearBusArrivals();
                 }
 
+                DisplayController.Instance.Show();
+
                 await Task.Delay(TimeSpan.FromSeconds(1));
             }
         }

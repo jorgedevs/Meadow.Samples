@@ -103,7 +103,6 @@ namespace BusStopClient.Controllers
             graphics.CurrentFont = medium;
             graphics.DrawText(95, 33, stop.Name, fontColor);
             graphics.DrawText(95, 60, $"STOP #{stop.StopNo}", fontColor, ScaleFactor.X2);
-            graphics.Show();
         }
 
         public void UpdateClock(string time)
@@ -111,7 +110,6 @@ namespace BusStopClient.Controllers
             graphics.CurrentFont = medium;
             graphics.DrawRectangle(95, 95, 176, 24, backgroundColor, true);
             graphics.DrawText(95, 95, time, fontColor, ScaleFactor.X2);
-            graphics.Show();
         }
 
         public void DrawBusArrivals(List<Schedule> arrivals)
@@ -152,14 +150,17 @@ namespace BusStopClient.Controllers
                 graphics.DrawText(15, 320, Truncate($"{arrivals[4].RouteNo} {arrivals[4].Destination}", 16), fontColor);
                 graphics.DrawText(305, 320, $"{arrivals[4].ExpectedCountdown} MIN", fontColor, alignment: TextAlignment.Right);
             }
-
-            graphics.Show();
         }
 
         public void ClearBusArrivals() 
         {
             graphics.DrawRectangle(15, 160, 290, 180, backgroundColor, true);
             graphics.DrawText(160, 240, "READY", fontColor, ScaleFactor.X2, TextAlignment.Center);
+            
+        }
+
+        public void Show() 
+        {
             graphics.Show();
         }
 
