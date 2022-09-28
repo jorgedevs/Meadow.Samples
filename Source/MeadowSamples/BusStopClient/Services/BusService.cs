@@ -98,6 +98,8 @@ namespace BusStopClient.Services
                         }
                     }
                     schedules.Sort((b0, b1) => b0.ExpectedCountdown.CompareTo(b1.ExpectedCountdown));
+
+                    return schedules;
                 }
                 catch (TaskCanceledException)
                 {
@@ -110,8 +112,6 @@ namespace BusStopClient.Services
                     return schedules;
                 }
             }
-
-            return schedules;
         }
     }
 }

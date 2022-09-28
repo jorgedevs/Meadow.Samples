@@ -22,7 +22,7 @@ namespace BusStopClient
 
         DateTime activeTime;
         bool isFirstRun = true;
-        bool isBusy;
+        bool isBusy, isMonitoring;
 
         public override async Task Initialize()
         {
@@ -60,6 +60,23 @@ namespace BusStopClient
             activeTime = activeTime.Add(TimeSpan.FromMinutes(20));
         }
 
+        async Task UpdateWeatherStatus() 
+        {
+            if (isBusy)
+                return;
+            isBusy = true;
+
+            onboardLed.StartPulse(Color.Yellow);
+
+            var weather = await WeatherService.Instance.GetWeatherForecast();
+            DisplayController.Instance.UpdateWeatherStatus(weather);
+
+            onboardLed.Stop();
+            onboardLed.SetColor(Color.Green);
+
+            isBusy = false;
+        }
+
         async Task UpdateBusArrivals() 
         {
             if (isBusy)
@@ -90,6 +107,7 @@ namespace BusStopClient
                     isFirstRun = false;
                     DisplayController.Instance.UpdateTheme();
                     DisplayController.Instance.DrawStopInfo(busStop);
+                    await UpdateWeatherStatus();
                 }
 
                 DisplayController.Instance.UpdateClock(
@@ -97,6 +115,8 @@ namespace BusStopClient
 
                 if (today < activeTime)
                 {
+                    isMonitoring = true;
+
                     if (today.Second == 0 
                         || today.Second == 1 
                         || today.Second == 30 
@@ -107,7 +127,15 @@ namespace BusStopClient
                 }
                 else
                 {
-                    DisplayController.Instance.ClearBusArrivals();
+                    if (isMonitoring 
+                        || (today.Minute == 0 && today.Second == 0)
+                        || (today.Minute == 15 && today.Second == 0)
+                        || (today.Minute == 30 && today.Second == 0)
+                        || (today.Minute == 45 && today.Second == 0))
+                    {
+                        isMonitoring = false;
+                        await UpdateWeatherStatus();
+                    }
                 }
 
                 DisplayController.Instance.Show();

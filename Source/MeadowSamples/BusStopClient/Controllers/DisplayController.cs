@@ -152,11 +152,14 @@ namespace BusStopClient.Controllers
             }
         }
 
-        public void ClearBusArrivals() 
+        public void UpdateWeatherStatus(WeatherReading weather) 
         {
             graphics.DrawRectangle(15, 160, 290, 180, backgroundColor, true);
-            graphics.DrawText(160, 240, "READY", fontColor, ScaleFactor.X2, TextAlignment.Center);
-            
+            graphics.DrawText(25, 168, weather.weather[0].description.ToUpper(), fontColor, ScaleFactor.X2);
+            graphics.DrawText(25, 203, $"Temperat: {weather.main.temp - 273}°C", fontColor, ScaleFactor.X2);
+            graphics.DrawText(25, 238, $"Pressure: {weather.main.pressure}hPa", fontColor, ScaleFactor.X2);
+            graphics.DrawText(25, 273, $"Humidity: {weather.main.humidity}%", fontColor, ScaleFactor.X2);
+            graphics.DrawText(25, 308, $"Wind Spd: {weather.wind.speed}m/s", fontColor, ScaleFactor.X2);
         }
 
         public void Show() 

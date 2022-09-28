@@ -19,20 +19,22 @@ namespace BusStopClient.Services
 
         public async Task GetDateTime()
         {
-            using (HttpClient client = new HttpClient())
+            using (HttpClient client = new HttpClient() 
+            {
+                Timeout = new TimeSpan(0, 5, 0)
+            })
             {
                 try
                 {
-                    client.Timeout = new TimeSpan(0, 5, 0);
-
                     var response = await client.GetAsync($"{clockDataUri}");
+                    response.EnsureSuccessStatusCode();
 
                     var stopwatch = new Stopwatch();
                     stopwatch.Start();
 
-                    response.EnsureSuccessStatusCode();
                     string json = await response.Content.ReadAsStringAsync();
                     var values = JsonSerializer.Deserialize<DateTimeEntity>(json);
+
                     stopwatch.Stop();
 
                     var dateTime = values.datetime.Add(stopwatch.Elapsed);
