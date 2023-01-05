@@ -5,7 +5,6 @@ using Meadow.Devices;
 using Meadow.Foundation;
 using Meadow.Foundation.Leds;
 using Meadow.Foundation.Sensors.Buttons;
-using Meadow.Gateway.WiFi;
 using Meadow.Hardware;
 using System;
 using System.Globalization;
@@ -33,21 +32,24 @@ namespace BusStopClient
                 bluePwmPin: Device.Pins.OnboardLedBlue);
             onboardLed.SetColor(Color.Red);
 
+            Resolver.Log.Loglevel = Meadow.Logging.LogLevel.Trace;
+
+            Console.WriteLine("1");
+
             DisplayController.Instance.Initialize();
             DisplayController.Instance.DrawSplashScreen();
 
+            Console.WriteLine("2");
+
             var wifi = Device.NetworkAdapters.Primary<IWiFiNetworkAdapter>();
+            await wifi.Connect(Secrets.WIFI_NAME, Secrets.WIFI_PASSWORD, TimeSpan.FromSeconds(45));
 
-            var connectionResult = await wifi.Connect(Secrets.WIFI_NAME, Secrets.WIFI_PASSWORD, TimeSpan.FromSeconds(45));
-            if (connectionResult.ConnectionStatus != ConnectionStatus.Success)
-            {
-                throw new Exception($"Cannot connect to network: {connectionResult.ConnectionStatus}");
-            }
-
-            await DateTimeService.Instance.GetDateTime();
+            Console.WriteLine("3");
 
             button = new PushButton(Device, Device.Pins.D04);
             button.Clicked += ButtonClicked;
+
+            Console.WriteLine("4");
 
             onboardLed.SetColor(Color.Green);
         }
@@ -96,10 +98,19 @@ namespace BusStopClient
 
         public override async Task Run()
         {
+            Console.WriteLine("5");
+
+            await DateTimeService.Instance.GetDateTime();
+
+            Console.WriteLine("6");
+
             var busStop = await BusService.Instance.GetStopInfoAsync(BUS_STOP_NUMBER);
+
+            Console.WriteLine("7");
 
             while (true)
             {
+                Console.WriteLine($"{DateTime.Now}");
                 var today = DateTime.Now;
 
                 if (DisplayController.Instance.IsChangeThemeTime(today) || isFirstRun)

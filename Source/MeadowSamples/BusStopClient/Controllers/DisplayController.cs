@@ -124,31 +124,31 @@ namespace BusStopClient.Controllers
             if (arrivals.Count > 0 && arrivals[0] != null)
             {
                 graphics.DrawText(15, 160, Truncate($"{arrivals[0].RouteNo} {arrivals[0].Destination}", 16), fontColor);
-                graphics.DrawText(305, 160, $"{arrivals[0].ExpectedCountdown} MIN", fontColor, alignment: TextAlignment.Right);
+                graphics.DrawText(305, 160, $"{arrivals[0].ExpectedCountdown} MIN", fontColor, alignmentH: HorizontalAlignment.Right);
             }
 
             if (arrivals.Count > 1 && arrivals[1] != null)
             {
                 graphics.DrawText(15, 200, Truncate($"{arrivals[1].RouteNo} {arrivals[1].Destination}", 16), fontColor);
-                graphics.DrawText(305, 200, $"{arrivals[1].ExpectedCountdown} MIN", fontColor, alignment: TextAlignment.Right);
+                graphics.DrawText(305, 200, $"{arrivals[1].ExpectedCountdown} MIN", fontColor, alignmentH: HorizontalAlignment.Right);
             }
 
             if (arrivals.Count > 2 && arrivals[2] != null)
             {
                 graphics.DrawText(15, 240, Truncate($"{arrivals[2].RouteNo} {arrivals[2].Destination}", 16), fontColor);
-                graphics.DrawText(305, 240, $"{arrivals[2].ExpectedCountdown} MIN", fontColor, alignment: TextAlignment.Right);
+                graphics.DrawText(305, 240, $"{arrivals[2].ExpectedCountdown} MIN", fontColor, alignmentH: HorizontalAlignment.Right);
             }
 
             if (arrivals.Count > 3 && arrivals[3] != null)
             {
                 graphics.DrawText(15, 280, Truncate($"{arrivals[3].RouteNo} {arrivals[3].Destination}", 16), fontColor);
-                graphics.DrawText(305, 280, $"{arrivals[3].ExpectedCountdown} MIN", fontColor, alignment: TextAlignment.Right);
+                graphics.DrawText(305, 280, $"{arrivals[3].ExpectedCountdown} MIN", fontColor, alignmentH: HorizontalAlignment.Right);
             }
 
             if (arrivals.Count > 4 && arrivals[4] != null)
             {
                 graphics.DrawText(15, 320, Truncate($"{arrivals[4].RouteNo} {arrivals[4].Destination}", 16), fontColor);
-                graphics.DrawText(305, 320, $"{arrivals[4].ExpectedCountdown} MIN", fontColor, alignment: TextAlignment.Right);
+                graphics.DrawText(305, 320, $"{arrivals[4].ExpectedCountdown} MIN", fontColor, alignmentH: HorizontalAlignment.Right);
             }
         }
 
@@ -156,7 +156,7 @@ namespace BusStopClient.Controllers
         {
             graphics.DrawRectangle(15, 160, 290, 180, backgroundColor, true);
             graphics.DrawText(25, 168, weather.weather[0].description.ToUpper(), fontColor, ScaleFactor.X2);
-            graphics.DrawText(25, 203, $"Temperat: {weather.main.temp - 273}°C", fontColor, ScaleFactor.X2);
+            graphics.DrawText(25, 203, $"Temperat: {weather.main.temp - 273:00.0}°C", fontColor, ScaleFactor.X2);
             graphics.DrawText(25, 238, $"Pressure: {weather.main.pressure}hPa", fontColor, ScaleFactor.X2);
             graphics.DrawText(25, 273, $"Humidity: {weather.main.humidity}%", fontColor, ScaleFactor.X2);
             graphics.DrawText(25, 308, $"Wind Spd: {weather.wind.speed}m/s", fontColor, ScaleFactor.X2);

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace HelloLed
 {
-    public class MeadowApp : App<F7FeatherV1>
+    public class MeadowApp : App<F7FeatherV2>
     {
         RgbPwmLed onboardLed;
 
