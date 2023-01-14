@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace BusStopClient
 {
-    public class MeadowApp : App<F7FeatherV2>
+    public class MeadowApp : App<F7FeatherV1>
     {
         string BUS_STOP_NUMBER = "51195";
 
@@ -98,60 +98,64 @@ namespace BusStopClient
 
         public override async Task Run()
         {
-            Console.WriteLine("5");
 
-            await DateTimeService.Instance.GetDateTime();
-
-            Console.WriteLine("6");
-
-            var busStop = await BusService.Instance.GetStopInfoAsync(BUS_STOP_NUMBER);
-
-            Console.WriteLine("7");
-
-            while (true)
+            try
             {
-                Console.WriteLine($"{DateTime.Now}");
-                var today = DateTime.Now;
+                var busStop = await BusService.Instance.GetStopInfoAsync(BUS_STOP_NUMBER);
 
-                if (DisplayController.Instance.IsChangeThemeTime(today) || isFirstRun)
+                while (true)
                 {
-                    isFirstRun = false;
-                    DisplayController.Instance.UpdateTheme();
-                    DisplayController.Instance.DrawStopInfo(busStop);
-                    await UpdateWeatherStatus();
-                }
+                    int TIMEZONE_OFFSET = -8;
+                    var today = DateTime.Now.AddHours(TIMEZONE_OFFSET);
 
-                DisplayController.Instance.UpdateClock(
-                    today.ToString("T", CultureInfo.CreateSpecificCulture("en-us")));
-
-                if (today < activeTime)
-                {
-                    isMonitoring = true;
-
-                    if (today.Second == 0 
-                        || today.Second == 1 
-                        || today.Second == 30 
-                        || today.Second == 31)
+                    if (DisplayController.Instance.IsChangeThemeTime(today) || isFirstRun)
                     {
-                        await UpdateBusArrivals();
-                    }
-                }
-                else
-                {
-                    if (isMonitoring 
-                        || (today.Minute == 0 && today.Second == 0)
-                        || (today.Minute == 15 && today.Second == 0)
-                        || (today.Minute == 30 && today.Second == 0)
-                        || (today.Minute == 45 && today.Second == 0))
-                    {
-                        isMonitoring = false;
+                        isFirstRun = false;
+                        DisplayController.Instance.UpdateTheme();
+                        DisplayController.Instance.DrawStopInfo(busStop);
                         await UpdateWeatherStatus();
                     }
+
+                    DisplayController.Instance.UpdateClock(
+                        today.ToString("T", CultureInfo.CreateSpecificCulture("en-us")));
+
+                    if (today < activeTime)
+                    {
+                        isMonitoring = true;
+
+                        if (today.Second == 0 
+                            || today.Second == 1 
+                            || today.Second == 30 
+                            || today.Second == 31)
+                        {
+                            await UpdateBusArrivals();
+
+                            GC.Collect();
+                        }
+                    }
+                    else
+                    {
+                        if (isMonitoring 
+                            || (today.Minute == 0 && today.Second == 0)
+                            || (today.Minute == 15 && today.Second == 0)
+                            || (today.Minute == 30 && today.Second == 0)
+                            || (today.Minute == 45 && today.Second == 0))
+                        {
+                            isMonitoring = false;
+                            await UpdateWeatherStatus();
+
+                            GC.Collect();
+                        }
+                    }
+
+                    DisplayController.Instance.Show();
+
+                    await Task.Delay(TimeSpan.FromSeconds(1));
                 }
-
-                DisplayController.Instance.Show();
-
-                await Task.Delay(TimeSpan.FromSeconds(1));
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"{ex.Message}");
             }
         }
     }
