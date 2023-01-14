@@ -11,4 +11,9 @@
     <PackageReference Include="Meadow.Foundation.Displays.Ssd130x" Version="0.*" />
     <PackageReference Include="Meadow.Foundation.Displays.TftSpi" Version="0.*" />
   </ItemGroup>
+  <ItemGroup>
+    <None Update="meadow.config.yaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 </Project>
