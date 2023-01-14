@@ -140,8 +140,9 @@ namespace I2cSpiAnalogTemperature_Sample
                 graphicsSPI.Show();
             
                 Console.WriteLine($"Connecting to WiFi Network {Secrets.WIFI_NAME}");
-                var connectionResult = await wifi.Connect(Secrets.WIFI_NAME, Secrets.WIFI_PASSWORD, TimeSpan.FromSeconds(45));
-                if (connectionResult.ConnectionStatus != ConnectionStatus.Success)
+                await wifi.Connect(Secrets.WIFI_NAME, Secrets.WIFI_PASSWORD, TimeSpan.FromSeconds(45));
+
+                if (wifi.IsConnected)
                 {
                     testPassed = true;
                     graphicsSPI.DrawText(32, 140, "Connected!", Color.FromHex("#00FF00"), ScaleFactor.X2);
