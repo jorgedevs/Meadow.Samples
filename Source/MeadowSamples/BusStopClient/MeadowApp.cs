@@ -34,22 +34,14 @@ namespace BusStopClient
 
             Resolver.Log.Loglevel = Meadow.Logging.LogLevel.Trace;
 
-            Console.WriteLine("1");
-
             DisplayController.Instance.Initialize();
             DisplayController.Instance.DrawSplashScreen();
-
-            Console.WriteLine("2");
 
             var wifi = Device.NetworkAdapters.Primary<IWiFiNetworkAdapter>();
             await wifi.Connect(Secrets.WIFI_NAME, Secrets.WIFI_PASSWORD, TimeSpan.FromSeconds(45));
 
-            Console.WriteLine("3");
-
             button = new PushButton(Device, Device.Pins.D04);
             button.Clicked += ButtonClicked;
-
-            Console.WriteLine("4");
 
             onboardLed.SetColor(Color.Green);
         }
@@ -105,8 +97,10 @@ namespace BusStopClient
 
                 while (true)
                 {
-                    int TIMEZONE_OFFSET = -8;
-                    var today = DateTime.Now.AddHours(TIMEZONE_OFFSET);
+                    //int TIMEZONE_OFFSET = -8;
+                    var today = DateTime.Now;//.AddHours(TIMEZONE_OFFSET);
+
+                    Console.WriteLine(today.ToString());
 
                     if (DisplayController.Instance.IsChangeThemeTime(today) || isFirstRun)
                     {

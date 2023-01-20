@@ -38,8 +38,6 @@ namespace BusStopClient.Services
                     string json = await response.Content.ReadAsStringAsync();
                     var values = JsonSerializer.Deserialize<WeatherReading>(json);
 
-
-
                     return values;
                 }
                 catch (TaskCanceledException)
