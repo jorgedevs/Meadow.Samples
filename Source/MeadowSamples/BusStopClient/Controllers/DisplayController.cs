@@ -50,7 +50,8 @@ namespace BusStopClient.Controllers
 
             graphics = new MicroGraphics(display)
             {
-                IgnoreOutOfBoundsPixels = true
+                IgnoreOutOfBoundsPixels = true,
+                Stroke = 2
             };
 
             large = new Font12x20();
@@ -156,7 +157,8 @@ namespace BusStopClient.Controllers
         {
             graphics.DrawRectangle(15, 160, 290, 180, backgroundColor, true);
             graphics.DrawText(25, 168, weather.weather[0].description.ToUpper(), fontColor, ScaleFactor.X2);
-            graphics.DrawText(25, 203, $"Temperat: {weather.main.temp - 273:00.0}°C", fontColor, ScaleFactor.X2);
+            graphics.DrawText(25, 203, $"Temperat: {weather.main.temp - 273:00.0} C", fontColor, ScaleFactor.X2);
+            graphics.DrawCircle(256, 208, 5, fontColor);
             graphics.DrawText(25, 238, $"Pressure: {weather.main.pressure}hPa", fontColor, ScaleFactor.X2);
             graphics.DrawText(25, 273, $"Humidity: {weather.main.humidity}%", fontColor, ScaleFactor.X2);
             graphics.DrawText(25, 308, $"Wind Spd: {weather.wind.speed}m/s", fontColor, ScaleFactor.X2);

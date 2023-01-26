@@ -30,7 +30,7 @@ Coprocessor:
 Network:
 
     # Automatically attempt to get the time at startup?
-    GetNetworkTimeAtStartup: 1
+    GetNetworkTimeAtStartup: false
 
     # Time synchronization period in seconds.
     NtpRefreshPeriod: 600
