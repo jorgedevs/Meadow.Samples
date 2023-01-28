@@ -35,6 +35,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Meadow.Foundation.Core", ".
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Displays.TftSpi", "..\..\..\Meadow.Foundation\Source\Meadow.Foundation.Peripherals\Displays.TftSpi\Driver\Displays.TftSpi.csproj", "{B93A7C7B-40DB-4A16-B28B-0C93FB1C0F7D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageShow", "ImageShow\ImageShow.csproj", "{70E8C688-44A3-481B-A154-D0DE13ED62FC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -237,6 +239,24 @@ Global
 		{B93A7C7B-40DB-4A16-B28B-0C93FB1C0F7D}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{B93A7C7B-40DB-4A16-B28B-0C93FB1C0F7D}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 		{B93A7C7B-40DB-4A16-B28B-0C93FB1C0F7D}.Release|iPhoneSimulator.Deploy.0 = Release|Any CPU
+		{70E8C688-44A3-481B-A154-D0DE13ED62FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70E8C688-44A3-481B-A154-D0DE13ED62FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70E8C688-44A3-481B-A154-D0DE13ED62FC}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{70E8C688-44A3-481B-A154-D0DE13ED62FC}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{70E8C688-44A3-481B-A154-D0DE13ED62FC}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{70E8C688-44A3-481B-A154-D0DE13ED62FC}.Debug|iPhone.Deploy.0 = Debug|Any CPU
+		{70E8C688-44A3-481B-A154-D0DE13ED62FC}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{70E8C688-44A3-481B-A154-D0DE13ED62FC}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{70E8C688-44A3-481B-A154-D0DE13ED62FC}.Debug|iPhoneSimulator.Deploy.0 = Debug|Any CPU
+		{70E8C688-44A3-481B-A154-D0DE13ED62FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70E8C688-44A3-481B-A154-D0DE13ED62FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70E8C688-44A3-481B-A154-D0DE13ED62FC}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{70E8C688-44A3-481B-A154-D0DE13ED62FC}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{70E8C688-44A3-481B-A154-D0DE13ED62FC}.Release|iPhone.Build.0 = Release|Any CPU
+		{70E8C688-44A3-481B-A154-D0DE13ED62FC}.Release|iPhone.Deploy.0 = Release|Any CPU
+		{70E8C688-44A3-481B-A154-D0DE13ED62FC}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{70E8C688-44A3-481B-A154-D0DE13ED62FC}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{70E8C688-44A3-481B-A154-D0DE13ED62FC}.Release|iPhoneSimulator.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -251,8 +271,8 @@ Global
 		{B93A7C7B-40DB-4A16-B28B-0C93FB1C0F7D} = {A1E37EBA-7660-413D-93AF-D008D2C4BD29}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		        SolutionGuid = {9105841E-2E41-4992-AC47-1AB23EF8DC57}
 		SolutionGuid = {859892DE-B9E3-452B-AC48-ED046B61B4B7}
+		        SolutionGuid = {9105841E-2E41-4992-AC47-1AB23EF8DC57}
 	EndGlobalSection
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		ConnectedPlant\SharedPlantSample\PlantWing.Shared.projitems*{4ca8dfed-aef2-4839-9036-6be58cae1ffb}*SharedItemsImports = 5
