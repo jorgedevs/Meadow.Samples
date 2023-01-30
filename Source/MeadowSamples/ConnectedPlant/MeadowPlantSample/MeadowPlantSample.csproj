@@ -6,10 +6,15 @@
     <AssemblyName>App</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\Meadow.Core\source\implementations\f7\Meadow.F7\Meadow.F7.csproj" />
+    <ProjectReference Include="..\..\..\..\..\Meadow.Foundation\Source\Meadow.Foundation.Core\Meadow.Foundation.Core.csproj" />
+    <ProjectReference Include="..\..\..\..\..\Meadow.Foundation\Source\Meadow.Foundation.Peripherals\Sensors.Moisture.Capacitive\Driver\Sensors.Moisture.Capacitive.csproj" />
+  </ItemGroup>
+  <!--<ItemGroup>
     <PackageReference Include="Meadow.F7" Version="0.*" />
     <PackageReference Include="Meadow.Foundation" Version="0.*" />
     <PackageReference Include="Meadow.Foundation.Sensors.Moisture.Capacitive" Version="0.*" />
-  </ItemGroup>
+  </ItemGroup>-->
   <ItemGroup>
     <None Update="meadow.config.yaml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

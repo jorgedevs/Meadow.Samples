@@ -2,6 +2,7 @@
 using Meadow.Devices;
 using Meadow.Foundation.Leds;
 using Meadow.Foundation.Sensors.Moisture;
+using Meadow.Gateways.Bluetooth;
 using Meadow.Hardware;
 using Meadow.Peripherals.Leds;
 using Meadow.Units;
@@ -13,7 +14,7 @@ namespace MeadowPlantSample
 {
     public class MeadowApp : App<F7FeatherV1>
     {
-        const float MINIMUM_VOLTAGE_CALIBRATION = 2.81f;
+        const float MINIMUM_VOLTAGE_CALIBRATION = 2.10f;
         const float MAXIMUM_VOLTAGE_CALIBRATION = 1.50f;
 
         Capacitive capacitive;
@@ -21,7 +22,11 @@ namespace MeadowPlantSample
 
         public override async Task Initialize()
         {
-            var led = new RgbLed(Device, Device.Pins.OnboardLedRed, Device.Pins.OnboardLedGreen, Device.Pins.OnboardLedBlue);
+            var led = new RgbLed(
+                Device, 
+                Device.Pins.OnboardLedRed, 
+                Device.Pins.OnboardLedGreen, 
+                Device.Pins.OnboardLedBlue);
             led.SetColor(RgbLedColors.Red);
 
             IDigitalOutputPort[] ports =
@@ -44,9 +49,9 @@ namespace MeadowPlantSample
 
             capacitive = new Capacitive
             (
-                Device.CreateAnalogInputPort(Device.Pins.A00), 
-                new Voltage(MINIMUM_VOLTAGE_CALIBRATION, Voltage.UnitType.Volts),
-                new Voltage(MAXIMUM_VOLTAGE_CALIBRATION, Voltage.UnitType.Volts)
+                Device.CreateAnalogInputPort(Device.Pins.A00),
+                minimumVoltageCalibration: new Voltage(2.84f),
+                maximumVoltageCalibration: new Voltage(1.63f)
             );
             capacitive.Updated += CapacitiveUpdated;
 
@@ -55,7 +60,7 @@ namespace MeadowPlantSample
 
         private void CapacitiveUpdated(object sender, IChangeResult<double> e)
         {
-            var percentage = ExtensionMethods.Map(e.New, 0.30, 1.10, 0, 1);
+            var percentage = e.New;
             Console.WriteLine($"{percentage}");
             
             if (percentage > 1) { percentage = 1; }
@@ -67,13 +72,13 @@ namespace MeadowPlantSample
 
         async Task Calibration()
         {
-            IAnalogInputPort analogIn = Device.CreateAnalogInputPort(Device.Pins.A00);
+            IAnalogInputPort analogIn = Device.CreateAnalogInputPort(Device.Pins.A00, 5, TimeSpan.FromMilliseconds(40), new Voltage(3.3));
             Voltage voltage;
 
             while (true)
             {
                 voltage = await analogIn.Read();
-                Console.WriteLine("Voltage: " + voltage.ToString());
+                Console.WriteLine("Voltage: " + voltage.Millivolts.ToString());
                 Thread.Sleep(1000);
             }
         }
@@ -81,6 +86,8 @@ namespace MeadowPlantSample
         public override Task Run()
         {
             capacitive.StartUpdating(TimeSpan.FromSeconds(1));
+
+            //Calibration();
 
             return Task.CompletedTask;
         }
