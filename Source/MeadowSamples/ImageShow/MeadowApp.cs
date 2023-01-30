@@ -42,14 +42,15 @@ namespace ImageShow
                 spiBus: spiBus,
                 chipSelectPin: Device.Pins.D02,
                 dcPin: Device.Pins.D00,
-                resetPin: Device.Pins.D01
+                resetPin: Device.Pins.D01,
+                width: 480, height: 320
             );
 
             graphics = new MicroGraphics(display)
             {
+                Rotation = RotationType._270Degrees,
                 IgnoreOutOfBoundsPixels = true
             };
-            graphics.Rotation = RotationType._90Degrees;
 
             onboardLed.SetColor(Color.Green);
 

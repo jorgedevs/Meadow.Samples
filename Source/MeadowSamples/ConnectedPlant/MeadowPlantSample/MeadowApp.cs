@@ -2,7 +2,6 @@
 using Meadow.Devices;
 using Meadow.Foundation.Leds;
 using Meadow.Foundation.Sensors.Moisture;
-using Meadow.Gateways.Bluetooth;
 using Meadow.Hardware;
 using Meadow.Peripherals.Leds;
 using Meadow.Units;
@@ -50,8 +49,8 @@ namespace MeadowPlantSample
             capacitive = new Capacitive
             (
                 Device.CreateAnalogInputPort(Device.Pins.A00),
-                minimumVoltageCalibration: new Voltage(2.84f),
-                maximumVoltageCalibration: new Voltage(1.63f)
+                minimumVoltageCalibration: new Voltage(MINIMUM_VOLTAGE_CALIBRATION),
+                maximumVoltageCalibration: new Voltage(MAXIMUM_VOLTAGE_CALIBRATION)
             );
             capacitive.Updated += CapacitiveUpdated;
 
