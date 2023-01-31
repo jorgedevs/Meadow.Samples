@@ -16,7 +16,6 @@ namespace BusStopClient.Services
 
         private const string RestServiceBaseAddress = "https://api.translink.ca/RTTIAPI/V1/stops/";
         private const string AcceptHeaderApplicationJson = "application/json";
-        private const string API_KEY = "[API KEY]";
 
         static BusService() { }
 
@@ -34,7 +33,7 @@ namespace BusStopClient.Services
                 {
                     client.DefaultRequestHeaders.Accept.Add(MediaTypeWithQualityHeaderValue.Parse(AcceptHeaderApplicationJson));
 
-                    var response = await client.GetAsync($"{busNumber}?apiKey={API_KEY}", HttpCompletionOption.ResponseContentRead);
+                    var response = await client.GetAsync($"{busNumber}?apiKey={Secrets.BUS_API_KEY}", HttpCompletionOption.ResponseContentRead);
                     response.EnsureSuccessStatusCode();
 
                     if (!response.IsSuccessStatusCode)
@@ -76,7 +75,7 @@ namespace BusStopClient.Services
                 {
                     client.DefaultRequestHeaders.Accept.Add(MediaTypeWithQualityHeaderValue.Parse(AcceptHeaderApplicationJson));
 
-                    var response = await client.GetAsync($"{busNumber}/estimates?apiKey={API_KEY}", HttpCompletionOption.ResponseContentRead);
+                    var response = await client.GetAsync($"{busNumber}/estimates?apiKey={Secrets.BUS_API_KEY}", HttpCompletionOption.ResponseContentRead);
                     response.EnsureSuccessStatusCode();
 
                     if (!response.IsSuccessStatusCode)

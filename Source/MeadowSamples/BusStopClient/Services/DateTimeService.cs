@@ -13,7 +13,7 @@ namespace BusStopClient.Services
             new Lazy<DateTimeService>(() => new DateTimeService());
         public static DateTimeService Instance => instance.Value;
 
-        static string clockDataUri = "http://worldtimeapi.org/api/timezone/America/[CITY]/";
+        static string clockDataUri = $"http://worldtimeapi.org/api/timezone/America/{Secrets.DATE_TIME_CITY}/";
 
         static DateTimeService() { }
 

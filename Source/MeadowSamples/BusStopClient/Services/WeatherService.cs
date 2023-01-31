@@ -14,7 +14,6 @@ namespace BusStopClient.Services
 
         static string climateDataUri = "http://api.openweathermap.org/data/2.5/weather";
         static string city = $"q=Vancouver";
-        static string apiKey = $"appid=[API KEY]";
 
         static WeatherService() { }
 
@@ -29,7 +28,7 @@ namespace BusStopClient.Services
             {
                 try
                 {
-                    var response = await client.GetAsync($"{climateDataUri}?{city}&{apiKey}");
+                    var response = await client.GetAsync($"{climateDataUri}?{city}&{Secrets.WEATHER_API_KEY}");
                     response.EnsureSuccessStatusCode();
 
                     if (!response.IsSuccessStatusCode)
