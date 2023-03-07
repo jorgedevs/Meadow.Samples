@@ -26,7 +26,6 @@ namespace BusStopClient
         public override async Task Initialize()
         {
             onboardLed = new RgbPwmLed(
-                device: Device,
                 redPwmPin: Device.Pins.OnboardLedRed,
                 greenPwmPin: Device.Pins.OnboardLedGreen,
                 bluePwmPin: Device.Pins.OnboardLedBlue);
@@ -40,7 +39,7 @@ namespace BusStopClient
             var wifi = Device.NetworkAdapters.Primary<IWiFiNetworkAdapter>();
             await wifi.Connect(Secrets.WIFI_NAME, Secrets.WIFI_PASSWORD, TimeSpan.FromSeconds(45));
 
-            button = new PushButton(Device, Device.Pins.D04);
+            button = new PushButton(Device.Pins.D04);
             button.Clicked += ButtonClicked;
 
             onboardLed.SetColor(Color.Green);

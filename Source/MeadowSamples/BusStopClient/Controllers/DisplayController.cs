@@ -41,7 +41,6 @@ namespace BusStopClient.Controllers
 
             var display = new Ili9488
             (
-                device: MeadowApp.Device,
                 spiBus: spiBus,
                 chipSelectPin: MeadowApp.Device.Pins.D02,
                 dcPin: MeadowApp.Device.Pins.D00,

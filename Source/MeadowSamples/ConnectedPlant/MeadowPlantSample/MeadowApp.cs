@@ -22,7 +22,6 @@ namespace MeadowPlantSample
         public override async Task Initialize()
         {
             var led = new RgbLed(
-                Device, 
                 Device.Pins.OnboardLedRed, 
                 Device.Pins.OnboardLedGreen, 
                 Device.Pins.OnboardLedBlue);

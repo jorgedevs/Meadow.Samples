@@ -28,7 +28,7 @@ namespace TwitterClient
 
         public override Task Initialize()
         {
-            var onboardLed = new RgbPwmLed(device: Device,
+            var onboardLed = new RgbPwmLed(
                 redPwmPin: Device.Pins.OnboardLedRed,
                 greenPwmPin: Device.Pins.OnboardLedGreen,
                 bluePwmPin: Device.Pins.OnboardLedBlue);
@@ -42,7 +42,6 @@ namespace TwitterClient
 
             var display = new Ili9488
             (
-                device: Device,
                 spiBus: spiBus,
                 chipSelectPin: Device.Pins.D02,
                 dcPin: Device.Pins.D00,

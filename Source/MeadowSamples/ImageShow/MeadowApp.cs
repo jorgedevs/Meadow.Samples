@@ -24,7 +24,6 @@ namespace ImageShow
             Console.WriteLine("Initialize...");
 
             onboardLed = new RgbPwmLed(
-                Device,
                 Device.Pins.OnboardLedRed,
                 Device.Pins.OnboardLedGreen,
                 Device.Pins.OnboardLedBlue);
@@ -38,7 +37,6 @@ namespace ImageShow
 
             var display = new Ili9488
             (
-                device: Device,
                 spiBus: spiBus,
                 chipSelectPin: Device.Pins.D02,
                 dcPin: Device.Pins.D00,

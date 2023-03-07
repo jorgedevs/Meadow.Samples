@@ -36,7 +36,7 @@ namespace TunePlayer
                 new Frequency(NoteFrequencies.NOTE_A3),
             };
 
-            piezo = new PiezoSpeaker(Device, Device.Pins.D10);
+            piezo = new PiezoSpeaker(Device.Pins.D10);
 
             return Task.CompletedTask;
         }

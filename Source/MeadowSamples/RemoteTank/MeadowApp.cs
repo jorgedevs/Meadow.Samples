@@ -18,9 +18,9 @@ namespace RemoteTank
         public override Task Initialize()
         {
             Console.WriteLine("Creating Outputs...");
-            ledRed = new Led(Device, Device.Pins.D00);
-            ledGreen = new Led(Device, Device.Pins.D01);
-            ledBlue = new Led(Device, Device.Pins.D02);
+            ledRed = new Led(Device.Pins.D00);
+            ledGreen = new Led(Device.Pins.D01);
+            ledBlue = new Led(Device.Pins.D02);
 
             tankController = new TankController
             (

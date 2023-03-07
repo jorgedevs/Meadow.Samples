@@ -29,7 +29,6 @@ namespace I2cSpiAnalogTemperature_Sample
         public MeadowApp()
         {
             led = new RgbLed(
-                Device, 
                 Device.Pins.OnboardLedRed, 
                 Device.Pins.OnboardLedGreen, 
                 Device.Pins.OnboardLedBlue);
@@ -58,7 +57,6 @@ namespace I2cSpiAnalogTemperature_Sample
                 cipo: Device.Pins.MISO,
                 config: config);
             var displaySPI = new St7789(
-                device: Device,
                 spiBus: spiBus,
                 chipSelectPin: null,
                 dcPin: Device.Pins.D14,
@@ -78,12 +76,12 @@ namespace I2cSpiAnalogTemperature_Sample
 
             temperatures = new List<AnalogTemperature>
             {
-                new AnalogTemperature(Device, Device.Pins.A00, AnalogTemperature.KnownSensorType.LM35),
-                new AnalogTemperature(Device, Device.Pins.A01, AnalogTemperature.KnownSensorType.LM35),
-                new AnalogTemperature(Device, Device.Pins.A02, AnalogTemperature.KnownSensorType.LM35),
-                new AnalogTemperature(Device, Device.Pins.A03, AnalogTemperature.KnownSensorType.LM35),
-                new AnalogTemperature(Device, Device.Pins.A04, AnalogTemperature.KnownSensorType.LM35), 
-                new AnalogTemperature(Device, Device.Pins.A05, AnalogTemperature.KnownSensorType.LM35),
+                new AnalogTemperature(Device.Pins.A00, AnalogTemperature.KnownSensorType.LM35),
+                new AnalogTemperature(Device.Pins.A01, AnalogTemperature.KnownSensorType.LM35),
+                new AnalogTemperature(Device.Pins.A02, AnalogTemperature.KnownSensorType.LM35),
+                new AnalogTemperature(Device.Pins.A03, AnalogTemperature.KnownSensorType.LM35),
+                new AnalogTemperature(Device.Pins.A04, AnalogTemperature.KnownSensorType.LM35), 
+                new AnalogTemperature(Device.Pins.A05, AnalogTemperature.KnownSensorType.LM35),
             };
 
             led.SetColor(RgbLedColors.Green);
