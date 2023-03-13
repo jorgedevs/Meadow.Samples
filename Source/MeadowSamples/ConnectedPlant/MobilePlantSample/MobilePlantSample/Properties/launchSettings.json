@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "MobilePlantSample": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:61966;http://localhost:61973"
+    }
+  }
+}
