@@ -25,6 +25,8 @@ namespace MeadowWifi
         string ssid;
         string password;
 
+        IWiFiNetworkAdapter wifi;
+
         RgbPwmLed onboardLed;
 
         public override Task Initialize()
@@ -35,6 +37,9 @@ namespace MeadowWifi
                 bluePwmPin: Device.Pins.OnboardLedBlue);
             onboardLed.SetColor(Color.Red);
 
+            wifi = Device.NetworkAdapters.Primary<IWiFiNetworkAdapter>();
+            wifi.NetworkConnected += WifiNetworkConnected;
+
             bleTreeDefinition = GetDefinition();
             Device.BluetoothAdapter.StartBluetoothServer(bleTreeDefinition);
 
@@ -42,15 +47,20 @@ namespace MeadowWifi
             Password.ValueSet += (s, e) => { password = (string) e; };
             Connect.ValueSet += async (s, e) =>
             {
-                var wifi = Device.NetworkAdapters.Primary<IWiFiNetworkAdapter>();
                 await wifi.Connect(ssid, password, TimeSpan.FromSeconds(45));
 
-                onboardLed.SetColor(Color.Orange);
+                ConfigFileManager.CreateMeadowConfigFile();
+                ConfigFileManager.CreateWifiConfigFile(ssid, password);
             };
 
             onboardLed.SetColor(Color.Green);
 
             return base.Initialize();
+        }
+
+        private void WifiNetworkConnected(INetworkAdapter sender, NetworkConnectionEventArgs args)
+        {
+            onboardLed.SetColor(Color.Purple);
         }
 
         Definition GetDefinition()
