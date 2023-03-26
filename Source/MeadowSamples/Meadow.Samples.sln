@@ -21,8 +21,6 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "SharedPlantSample", "Connec
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeadowPlantSample", "ConnectedPlant\MeadowPlantSample\MeadowPlantSample.csproj", "{A334AD7C-9AC0-49EF-A04C-B0DE9B4F344F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServerPlantSample", "ConnectedPlant\ServerPlantSample\ServerPlantSample.csproj", "{4CA8DFED-AEF2-4839-9036-6BE58CAE1FFB}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TwitterClient", "TwitterClient\TwitterClient.csproj", "{7154A27E-CFA8-48D3-AD4B-29CBDF660056}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BusStopClient", "BusStopClient\BusStopClient.csproj", "{1E04F2D1-E4D9-4883-BDEC-305E8EE91DAD}"
@@ -33,17 +31,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SmartFrame", "SmartFrame", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeadowSmartFrame", "SmartFrame\MeadowSmartFrame\MeadowSmartFrame.csproj", "{2AC9C692-6C18-4822-872F-096A93903F16}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServerSmartFrame", "SmartFrame\ServerSmartFrame\ServerSmartFrame.csproj", "{D9D0BA01-2645-4B3B-A1C8-6F04AE3B4693}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Marketing", "Marketing", "{5C213718-6AF1-45A0-894F-88679F056871}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarketCharacterDisplay", "MarketCharacterDisplay\MarketCharacterDisplay.csproj", "{302BCD1A-81E0-438A-B86D-9BF2414F0AC8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarketCharacterDisplay", "MarketCharacterDisplay\MarketCharacterDisplay.csproj", "{302BCD1A-81E0-438A-B86D-9BF2414F0AC8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarketIli9488Display", "MarketIli9488Display\MarketIli9488Display.csproj", "{F427C120-8E35-42EE-B5DA-54DBA6B0A009}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarketIli9488Display", "MarketIli9488Display\MarketIli9488Display.csproj", "{F427C120-8E35-42EE-B5DA-54DBA6B0A009}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarketDualDisplay", "MarketDualDisplay\MarketDualDisplay.csproj", "{BD7146CE-33FF-40F2-B28B-B07CE6536628}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarketDualDisplay", "MarketDualDisplay\MarketDualDisplay.csproj", "{BD7146CE-33FF-40F2-B28B-B07CE6536628}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarketProjectLab", "MarketProjectLab\MarketProjectLab.csproj", "{86578C3C-6BE1-4973-9D0C-424A18C7AFD3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarketProjectLab", "MarketProjectLab\MarketProjectLab.csproj", "{86578C3C-6BE1-4973-9D0C-424A18C7AFD3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -156,18 +152,6 @@ Global
 		{A334AD7C-9AC0-49EF-A04C-B0DE9B4F344F}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{A334AD7C-9AC0-49EF-A04C-B0DE9B4F344F}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 		{A334AD7C-9AC0-49EF-A04C-B0DE9B4F344F}.Release|iPhoneSimulator.Deploy.0 = Release|Any CPU
-		{4CA8DFED-AEF2-4839-9036-6BE58CAE1FFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4CA8DFED-AEF2-4839-9036-6BE58CAE1FFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4CA8DFED-AEF2-4839-9036-6BE58CAE1FFB}.Debug|iPhone.ActiveCfg = Debug|Any CPU
-		{4CA8DFED-AEF2-4839-9036-6BE58CAE1FFB}.Debug|iPhone.Build.0 = Debug|Any CPU
-		{4CA8DFED-AEF2-4839-9036-6BE58CAE1FFB}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
-		{4CA8DFED-AEF2-4839-9036-6BE58CAE1FFB}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
-		{4CA8DFED-AEF2-4839-9036-6BE58CAE1FFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4CA8DFED-AEF2-4839-9036-6BE58CAE1FFB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4CA8DFED-AEF2-4839-9036-6BE58CAE1FFB}.Release|iPhone.ActiveCfg = Release|Any CPU
-		{4CA8DFED-AEF2-4839-9036-6BE58CAE1FFB}.Release|iPhone.Build.0 = Release|Any CPU
-		{4CA8DFED-AEF2-4839-9036-6BE58CAE1FFB}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
-		{4CA8DFED-AEF2-4839-9036-6BE58CAE1FFB}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 		{7154A27E-CFA8-48D3-AD4B-29CBDF660056}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7154A27E-CFA8-48D3-AD4B-29CBDF660056}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7154A27E-CFA8-48D3-AD4B-29CBDF660056}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
@@ -240,18 +224,6 @@ Global
 		{2AC9C692-6C18-4822-872F-096A93903F16}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{2AC9C692-6C18-4822-872F-096A93903F16}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 		{2AC9C692-6C18-4822-872F-096A93903F16}.Release|iPhoneSimulator.Deploy.0 = Release|Any CPU
-		{D9D0BA01-2645-4B3B-A1C8-6F04AE3B4693}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D9D0BA01-2645-4B3B-A1C8-6F04AE3B4693}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D9D0BA01-2645-4B3B-A1C8-6F04AE3B4693}.Debug|iPhone.ActiveCfg = Debug|Any CPU
-		{D9D0BA01-2645-4B3B-A1C8-6F04AE3B4693}.Debug|iPhone.Build.0 = Debug|Any CPU
-		{D9D0BA01-2645-4B3B-A1C8-6F04AE3B4693}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
-		{D9D0BA01-2645-4B3B-A1C8-6F04AE3B4693}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
-		{D9D0BA01-2645-4B3B-A1C8-6F04AE3B4693}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D9D0BA01-2645-4B3B-A1C8-6F04AE3B4693}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D9D0BA01-2645-4B3B-A1C8-6F04AE3B4693}.Release|iPhone.ActiveCfg = Release|Any CPU
-		{D9D0BA01-2645-4B3B-A1C8-6F04AE3B4693}.Release|iPhone.Build.0 = Release|Any CPU
-		{D9D0BA01-2645-4B3B-A1C8-6F04AE3B4693}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
-		{D9D0BA01-2645-4B3B-A1C8-6F04AE3B4693}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 		{302BCD1A-81E0-438A-B86D-9BF2414F0AC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{302BCD1A-81E0-438A-B86D-9BF2414F0AC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{302BCD1A-81E0-438A-B86D-9BF2414F0AC8}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
@@ -332,20 +304,17 @@ Global
 		{D5667949-37EB-4343-A5F0-25B326892E40} = {9A8C24C0-1F22-47D8-9ECC-3B75898F544A}
 		{DDCDB190-3E72-43AC-9BA3-47BFDE0EC1E6} = {9A8C24C0-1F22-47D8-9ECC-3B75898F544A}
 		{A334AD7C-9AC0-49EF-A04C-B0DE9B4F344F} = {9A8C24C0-1F22-47D8-9ECC-3B75898F544A}
-		{4CA8DFED-AEF2-4839-9036-6BE58CAE1FFB} = {9A8C24C0-1F22-47D8-9ECC-3B75898F544A}
 		{2AC9C692-6C18-4822-872F-096A93903F16} = {34507749-F29B-40B9-B3C1-C83DCB3C63B4}
-		{D9D0BA01-2645-4B3B-A1C8-6F04AE3B4693} = {34507749-F29B-40B9-B3C1-C83DCB3C63B4}
 		{302BCD1A-81E0-438A-B86D-9BF2414F0AC8} = {5C213718-6AF1-45A0-894F-88679F056871}
 		{F427C120-8E35-42EE-B5DA-54DBA6B0A009} = {5C213718-6AF1-45A0-894F-88679F056871}
 		{BD7146CE-33FF-40F2-B28B-B07CE6536628} = {5C213718-6AF1-45A0-894F-88679F056871}
 		{86578C3C-6BE1-4973-9D0C-424A18C7AFD3} = {5C213718-6AF1-45A0-894F-88679F056871}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		        SolutionGuid = {9105841E-2E41-4992-AC47-1AB23EF8DC57}
 		SolutionGuid = {859892DE-B9E3-452B-AC48-ED046B61B4B7}
+		        SolutionGuid = {9105841E-2E41-4992-AC47-1AB23EF8DC57}
 	EndGlobalSection
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		ConnectedPlant\SharedPlantSample\PlantWing.Shared.projitems*{4ca8dfed-aef2-4839-9036-6be58cae1ffb}*SharedItemsImports = 5
 		ConnectedPlant\SharedPlantSample\PlantWing.Shared.projitems*{d5667949-37eb-4343-a5f0-25b326892e40}*SharedItemsImports = 5
 		ConnectedPlant\SharedPlantSample\PlantWing.Shared.projitems*{ddcdb190-3e72-43ac-9ba3-47bfde0ec1e6}*SharedItemsImports = 13
 	EndGlobalSection

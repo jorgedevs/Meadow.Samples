@@ -1,10 +1,10 @@
 ﻿using Meadow;
 using Meadow.Devices;
 using Meadow.Foundation;
+using Meadow.Foundation.Displays.Lcd;
 using Meadow.Foundation.Leds;
-using Meadow.Peripherals.Leds;
+using Meadow.Hardware;
 using System;
-using System.Threading;
 using System.Threading.Tasks;
 
 namespace MarketCharacterDisplay
@@ -12,55 +12,66 @@ namespace MarketCharacterDisplay
     // Change F7FeatherV2 to F7FeatherV1 for V1.x boards
     public class MeadowApp : App<F7FeatherV2>
     {
-        RgbPwmLed onboardLed;
-
-        public override Task Run()
-        {
-            Console.WriteLine("Run...");
-
-            CycleColors(TimeSpan.FromMilliseconds(1000));
-            return base.Run();
-        }
+        CharacterDisplay display;
 
         public override Task Initialize()
         {
-            Console.WriteLine("Initialize...");
+            var onboardLed = new RgbPwmLed(
+                    redPwmPin: Device.Pins.OnboardLedRed,
+                    greenPwmPin: Device.Pins.OnboardLedGreen,
+                    bluePwmPin: Device.Pins.OnboardLedBlue);
+            onboardLed.SetColor(Color.Red);
 
-            onboardLed = new RgbPwmLed(
-                redPwmPin: Device.Pins.OnboardLedRed,
-                greenPwmPin: Device.Pins.OnboardLedGreen,
-                bluePwmPin: Device.Pins.OnboardLedBlue,
-                CommonType.CommonAnode);
+            display = new CharacterDisplay
+            (
+                pinRS: Device.Pins.D10,
+                pinE: Device.Pins.D09,
+                pinD4: Device.Pins.D08,
+                pinD5: Device.Pins.D07,
+                pinD6: Device.Pins.D06,
+                pinD7: Device.Pins.D05,
+                rows: 4, columns: 20
+            );
+            ShowSplashScreen();
+
+            var wifi = Device.NetworkAdapters.Primary<IWiFiNetworkAdapter>();
+            wifi.NetworkConnected += NetworkConnected;
+
+            onboardLed.SetColor(Color.Green);
 
             return base.Initialize();
         }
 
-        void CycleColors(TimeSpan duration)
+        private async void NetworkConnected(INetworkAdapter sender, NetworkConnectionEventArgs args)
         {
-            Console.WriteLine("Cycle colors...");
+            display.WriteLine($"  WILDERNESS LABS   ", 0);
+            display.WriteLine($" DEVCAMP STARTS IN: ", 1);
+            display.WriteLine($"  wldrn.es/devcamp  ", 3);
 
             while (true)
             {
-                ShowColorPulse(Color.Blue, duration);
-                ShowColorPulse(Color.Cyan, duration);
-                ShowColorPulse(Color.Green, duration);
-                ShowColorPulse(Color.GreenYellow, duration);
-                ShowColorPulse(Color.Yellow, duration);
-                ShowColorPulse(Color.Orange, duration);
-                ShowColorPulse(Color.OrangeRed, duration);
-                ShowColorPulse(Color.Red, duration);
-                ShowColorPulse(Color.MediumVioletRed, duration);
-                ShowColorPulse(Color.Purple, duration);
-                ShowColorPulse(Color.Magenta, duration);
-                ShowColorPulse(Color.Pink, duration);
+                UpdateCountdown();
+                await Task.Delay(1000);
             }
         }
 
-        void ShowColorPulse(Color color, TimeSpan duration)
+        void ShowSplashScreen()
         {
-            onboardLed.StartPulse(color, duration / 2);
-            Thread.Sleep(duration);
-            onboardLed.Stop();
+            display.WriteLine("====================", 0);
+            display.WriteLine(" DevCamp Countdown! ", 1);
+            display.WriteLine("=   Joining WIFI   =", 2);
+            display.WriteLine("====================", 3);
+        }
+
+        void UpdateCountdown()
+        {
+            int TimeZoneOffSet = -8; // PST
+            var today = DateTime.Now.AddHours(TimeZoneOffSet);
+
+            var christmasDate = new DateTime(today.Year, 05, 18);
+
+            var countdown = christmasDate.Subtract(today);
+            display.WriteLine($"  {countdown.Days.ToString("D3")}d {countdown.Hours.ToString("D2")}h {countdown.Minutes.ToString("D2")}m {countdown.Seconds.ToString("D2")}s", 2);
         }
     }
 }
