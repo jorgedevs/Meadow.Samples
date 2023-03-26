@@ -6,8 +6,18 @@
     <AssemblyName>App</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="img_devcamp.jpg" />
+    <None Remove="img_devcamp_qr.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="img_devcamp.jpg" />
+    <EmbeddedResource Include="img_devcamp_qr.jpg" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="Meadow.F7" Version="0.*" />
     <PackageReference Include="Meadow.Foundation" Version="0.*" />
+    <PackageReference Include="Meadow.Foundation.Displays.TftSpi" Version="0.*" />
+      <PackageReference Include="SimpleJpegDecoder" Version="*" />
   </ItemGroup>
   <ItemGroup>
     <None Update="meadow.config.yaml">
