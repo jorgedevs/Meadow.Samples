@@ -41,6 +41,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarketDualDisplay", "Market
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarketProjectLab", "MarketProjectLab\MarketProjectLab.csproj", "{86578C3C-6BE1-4973-9D0C-424A18C7AFD3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarketEpaperDisplay", "MarketEpaperDisplay\MarketEpaperDisplay.csproj", "{06BCE2E2-20D1-44EF-84C5-01A88FA57C47}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -296,6 +298,24 @@ Global
 		{86578C3C-6BE1-4973-9D0C-424A18C7AFD3}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{86578C3C-6BE1-4973-9D0C-424A18C7AFD3}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 		{86578C3C-6BE1-4973-9D0C-424A18C7AFD3}.Release|iPhoneSimulator.Deploy.0 = Release|Any CPU
+		{06BCE2E2-20D1-44EF-84C5-01A88FA57C47}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{06BCE2E2-20D1-44EF-84C5-01A88FA57C47}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{06BCE2E2-20D1-44EF-84C5-01A88FA57C47}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{06BCE2E2-20D1-44EF-84C5-01A88FA57C47}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{06BCE2E2-20D1-44EF-84C5-01A88FA57C47}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{06BCE2E2-20D1-44EF-84C5-01A88FA57C47}.Debug|iPhone.Deploy.0 = Debug|Any CPU
+		{06BCE2E2-20D1-44EF-84C5-01A88FA57C47}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{06BCE2E2-20D1-44EF-84C5-01A88FA57C47}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{06BCE2E2-20D1-44EF-84C5-01A88FA57C47}.Debug|iPhoneSimulator.Deploy.0 = Debug|Any CPU
+		{06BCE2E2-20D1-44EF-84C5-01A88FA57C47}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{06BCE2E2-20D1-44EF-84C5-01A88FA57C47}.Release|Any CPU.Build.0 = Release|Any CPU
+		{06BCE2E2-20D1-44EF-84C5-01A88FA57C47}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{06BCE2E2-20D1-44EF-84C5-01A88FA57C47}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{06BCE2E2-20D1-44EF-84C5-01A88FA57C47}.Release|iPhone.Build.0 = Release|Any CPU
+		{06BCE2E2-20D1-44EF-84C5-01A88FA57C47}.Release|iPhone.Deploy.0 = Release|Any CPU
+		{06BCE2E2-20D1-44EF-84C5-01A88FA57C47}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{06BCE2E2-20D1-44EF-84C5-01A88FA57C47}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{06BCE2E2-20D1-44EF-84C5-01A88FA57C47}.Release|iPhoneSimulator.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -309,10 +329,11 @@ Global
 		{F427C120-8E35-42EE-B5DA-54DBA6B0A009} = {5C213718-6AF1-45A0-894F-88679F056871}
 		{BD7146CE-33FF-40F2-B28B-B07CE6536628} = {5C213718-6AF1-45A0-894F-88679F056871}
 		{86578C3C-6BE1-4973-9D0C-424A18C7AFD3} = {5C213718-6AF1-45A0-894F-88679F056871}
+		{06BCE2E2-20D1-44EF-84C5-01A88FA57C47} = {5C213718-6AF1-45A0-894F-88679F056871}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {859892DE-B9E3-452B-AC48-ED046B61B4B7}
 		        SolutionGuid = {9105841E-2E41-4992-AC47-1AB23EF8DC57}
+		SolutionGuid = {859892DE-B9E3-452B-AC48-ED046B61B4B7}
 	EndGlobalSection
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		ConnectedPlant\SharedPlantSample\PlantWing.Shared.projitems*{d5667949-37eb-4343-a5f0-25b326892e40}*SharedItemsImports = 5
