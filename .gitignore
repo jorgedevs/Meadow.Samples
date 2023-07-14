@@ -177,3 +177,6 @@ Source/MeadowSamples/MarketProjectLab/bin/
 Source/MeadowSamples/MarketProjectLab/obj/
 Source/MeadowSamples/MarketEpaperDisplay/bin/
 Source/MeadowSamples/MarketEpaperDisplay/obj/
+*.json
+Source/MeadowSamples/WifiWeather_WinForms/bin/
+Source/MeadowSamples/WifiWeather_WinForms/obj/
