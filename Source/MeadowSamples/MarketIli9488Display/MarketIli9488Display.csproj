@@ -14,9 +14,9 @@
     <EmbeddedResource Include="img_devcamp_qr.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Meadow.F7" Version="0.*" />
-    <PackageReference Include="Meadow.Foundation" Version="0.*" />
-    <PackageReference Include="Meadow.Foundation.Displays.TftSpi" Version="0.*" />
+    <PackageReference Include="Meadow.F7" Version="1.*" />
+    <PackageReference Include="Meadow.Foundation" Version="1.*" />
+    <PackageReference Include="Meadow.Foundation.Displays.TftSpi" Version="1.*" />
     <PackageReference Include="SimpleJpegDecoder" Version="*" />
   </ItemGroup>
   <ItemGroup>

@@ -43,7 +43,7 @@ namespace MeadowPlantSample
             ledBarGraph = new LedBarGraph(ports);
             ledBarGraph.StartBlink(TimeSpan.FromMilliseconds(500), TimeSpan.FromMilliseconds(500));
             await Task.Delay(5000);
-            ledBarGraph.Stop();
+            ledBarGraph.StopAnimation();
 
             capacitive = new Capacitive
             (
@@ -64,7 +64,7 @@ namespace MeadowPlantSample
             if (percentage > 1) { percentage = 1; }
             else if (percentage < 0) { percentage = 0; }
 
-            ledBarGraph.Percentage = (float)percentage;
+            ledBarGraph.SetPercentage((float)percentage);
             ledBarGraph.StartBlink(ledBarGraph.GetTopLedForPercentage());
         }
 

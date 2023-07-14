@@ -60,7 +60,7 @@ namespace MarketProjectLab
         {
             onboardLed.StartPulse(color, duration / 2);
             Thread.Sleep(duration);
-            onboardLed.Stop();
+            onboardLed.StopAnimation();
         }
     }
 }

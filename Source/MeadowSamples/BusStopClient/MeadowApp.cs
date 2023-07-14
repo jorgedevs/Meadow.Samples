@@ -31,7 +31,7 @@ namespace BusStopClient
                 bluePwmPin: Device.Pins.OnboardLedBlue);
             onboardLed.SetColor(Color.Red);
 
-            Resolver.Log.Loglevel = Meadow.Logging.LogLevel.Trace;
+            Resolver.Log.LogLevel = Meadow.Logging.LogLevel.Trace;
 
             DisplayController.Instance.Initialize();
             DisplayController.Instance.DrawSplashScreen();
@@ -64,7 +64,7 @@ namespace BusStopClient
             var weather = await WeatherService.Instance.GetWeatherForecast();
             DisplayController.Instance.UpdateWeatherStatus(weather);
 
-            onboardLed.Stop();
+            onboardLed.StopAnimation();
             onboardLed.SetColor(Color.Green);
 
             isBusy = false;
@@ -81,7 +81,7 @@ namespace BusStopClient
             var arrivals = await BusService.Instance.GetSchedulesAsync(BUS_STOP_NUMBER);
             DisplayController.Instance.DrawBusArrivals(arrivals);
 
-            onboardLed.Stop();
+            onboardLed.StopAnimation();
             onboardLed.SetColor(Color.Green);
 
             isBusy = false;

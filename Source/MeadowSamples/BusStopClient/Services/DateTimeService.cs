@@ -39,7 +39,7 @@ namespace BusStopClient.Services
 
                     var dateTime = values.datetime.Add(stopwatch.Elapsed);
 
-                    MeadowApp.Device.SetClock(new DateTime(
+                    MeadowApp.Device.PlatformOS.SetClock(new DateTime(
                         year: dateTime.Year,
                         month: dateTime.Month,
                         day: dateTime.Day,
