@@ -49,7 +49,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WifiWeather_WinForms", "Wif
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Azure Digital Twin", "Azure Digital Twin", "{872F39A9-86C2-4E61-9116-D05A34B676DB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeadowDigitalTwin", "MeadowDigitalTwin\MeadowDigitalTwin.csproj", "{CDE71664-F346-4220-9ED3-E0BA1897967E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeadowDigitalTwin", "MeadowDigitalTwin\MeadowDigitalTwin.csproj", "{CDE71664-F346-4220-9ED3-E0BA1897967E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarketGnss", "MarketGnss\MarketGnss.csproj", "{2C83F355-867E-4875-95F2-23F11A87038D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -354,6 +356,24 @@ Global
 		{CDE71664-F346-4220-9ED3-E0BA1897967E}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{CDE71664-F346-4220-9ED3-E0BA1897967E}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 		{CDE71664-F346-4220-9ED3-E0BA1897967E}.Release|iPhoneSimulator.Deploy.0 = Release|Any CPU
+		{2C83F355-867E-4875-95F2-23F11A87038D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C83F355-867E-4875-95F2-23F11A87038D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C83F355-867E-4875-95F2-23F11A87038D}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{2C83F355-867E-4875-95F2-23F11A87038D}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{2C83F355-867E-4875-95F2-23F11A87038D}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{2C83F355-867E-4875-95F2-23F11A87038D}.Debug|iPhone.Deploy.0 = Debug|Any CPU
+		{2C83F355-867E-4875-95F2-23F11A87038D}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{2C83F355-867E-4875-95F2-23F11A87038D}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{2C83F355-867E-4875-95F2-23F11A87038D}.Debug|iPhoneSimulator.Deploy.0 = Debug|Any CPU
+		{2C83F355-867E-4875-95F2-23F11A87038D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C83F355-867E-4875-95F2-23F11A87038D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2C83F355-867E-4875-95F2-23F11A87038D}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{2C83F355-867E-4875-95F2-23F11A87038D}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{2C83F355-867E-4875-95F2-23F11A87038D}.Release|iPhone.Build.0 = Release|Any CPU
+		{2C83F355-867E-4875-95F2-23F11A87038D}.Release|iPhone.Deploy.0 = Release|Any CPU
+		{2C83F355-867E-4875-95F2-23F11A87038D}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{2C83F355-867E-4875-95F2-23F11A87038D}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{2C83F355-867E-4875-95F2-23F11A87038D}.Release|iPhoneSimulator.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -370,10 +390,11 @@ Global
 		{06BCE2E2-20D1-44EF-84C5-01A88FA57C47} = {5C213718-6AF1-45A0-894F-88679F056871}
 		{11EFDB48-F820-491E-9D97-EE59CB7704E4} = {B8D6D826-AE9E-4BF6-9E13-0A30F6A51D6F}
 		{CDE71664-F346-4220-9ED3-E0BA1897967E} = {872F39A9-86C2-4E61-9116-D05A34B676DB}
+		{2C83F355-867E-4875-95F2-23F11A87038D} = {5C213718-6AF1-45A0-894F-88679F056871}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {859892DE-B9E3-452B-AC48-ED046B61B4B7}
 		        SolutionGuid = {9105841E-2E41-4992-AC47-1AB23EF8DC57}
+		SolutionGuid = {859892DE-B9E3-452B-AC48-ED046B61B4B7}
 	EndGlobalSection
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		ConnectedPlant\SharedPlantSample\PlantWing.Shared.projitems*{d5667949-37eb-4343-a5f0-25b326892e40}*SharedItemsImports = 5
