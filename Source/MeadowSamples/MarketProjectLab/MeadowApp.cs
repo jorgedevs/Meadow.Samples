@@ -1,66 +1,77 @@
 ﻿using Meadow;
 using Meadow.Devices;
 using Meadow.Foundation;
+using Meadow.Foundation.Graphics;
+using Meadow.Foundation.Graphics.Buffers;
 using Meadow.Foundation.Leds;
-using Meadow.Peripherals.Leds;
-using System;
-using System.Threading;
+using SimpleJpegDecoder;
+using System.IO;
+using System.Reflection;
 using System.Threading.Tasks;
 
 namespace MarketProjectLab
 {
     // Change F7FeatherV2 to F7FeatherV1 for V1.x boards
-    public class MeadowApp : App<F7FeatherV2>
+    public class MeadowApp : App<F7CoreComputeV2>
     {
         RgbPwmLed onboardLed;
-
-        public override Task Run()
-        {
-            Console.WriteLine("Run...");
-
-            CycleColors(TimeSpan.FromMilliseconds(1000));
-            return base.Run();
-        }
+        MicroGraphics graphics;
+        IProjectLabHardware projectLab;
 
         public override Task Initialize()
         {
-            Console.WriteLine("Initialize...");
+            Resolver.Log.Info("Initialize...");
 
-            onboardLed = new RgbPwmLed(
-                redPwmPin: Device.Pins.OnboardLedRed,
-                greenPwmPin: Device.Pins.OnboardLedGreen,
-                bluePwmPin: Device.Pins.OnboardLedBlue,
-                CommonType.CommonAnode);
+            projectLab = ProjectLab.Create();
+            Resolver.Log.Info($"Running on ProjectLab Hardware {projectLab.RevisionString}");
+
+            onboardLed = projectLab.RgbLed;
+            onboardLed.SetColor(Color.Red);
+
+            graphics = new MicroGraphics(projectLab.Display)
+            {
+                IgnoreOutOfBoundsPixels = true
+            };
+
+            onboardLed.SetColor(Color.Green);
 
             return base.Initialize();
         }
 
-        void CycleColors(TimeSpan duration)
+        void DrawImage()
         {
-            Console.WriteLine("Cycle colors...");
+            var buffer = LoadJpeg(LoadResource("MarketProjectLab.image2.jpg"));
+            graphics.DrawBuffer((graphics.Width - buffer.Width) / 2, 0, buffer);
+            graphics.Show();
+        }
 
-            while (true)
+        IPixelBuffer LoadJpeg(byte[] jpgData)
+        {
+            var decoder = new JpegDecoder();
+            var jpg = decoder.DecodeJpeg(jpgData);
+
+            return new BufferRgb888(decoder.Width, decoder.Height, jpg);
+        }
+
+        byte[] LoadResource(string fileName)
+        {
+            var assembly = Assembly.GetExecutingAssembly();
+
+            using (Stream stream = assembly.GetManifestResourceStream(fileName))
             {
-                ShowColorPulse(Color.Blue, duration);
-                ShowColorPulse(Color.Cyan, duration);
-                ShowColorPulse(Color.Green, duration);
-                ShowColorPulse(Color.GreenYellow, duration);
-                ShowColorPulse(Color.Yellow, duration);
-                ShowColorPulse(Color.Orange, duration);
-                ShowColorPulse(Color.OrangeRed, duration);
-                ShowColorPulse(Color.Red, duration);
-                ShowColorPulse(Color.MediumVioletRed, duration);
-                ShowColorPulse(Color.Purple, duration);
-                ShowColorPulse(Color.Magenta, duration);
-                ShowColorPulse(Color.Pink, duration);
+                using (var ms = new MemoryStream())
+                {
+                    stream.CopyTo(ms);
+                    return ms.ToArray();
+                }
             }
         }
 
-        void ShowColorPulse(Color color, TimeSpan duration)
+        public override Task Run()
         {
-            onboardLed.StartPulse(color, duration / 2);
-            Thread.Sleep(duration);
-            onboardLed.StopAnimation();
+            DrawImage();
+
+            return base.Run();
         }
     }
 }
