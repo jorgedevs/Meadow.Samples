@@ -7,8 +7,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Meadow.Foundation.Displays.WinForms" Version="1.*" />
-    <PackageReference Include="Meadow.Foundation.Graphics.MicroLayout" Version="1.*" />
-    <PackageReference Include="Meadow.Windows" Version="1.*" />
+    <PackageReference Include="Meadow.Foundation.Displays.WinForms" Version="*" />
+    <PackageReference Include="Meadow.Foundation.Graphics.MicroLayout" Version="*" />
+    <PackageReference Include="Meadow.Windows" Version="*" />
   </ItemGroup>
 </Project>
