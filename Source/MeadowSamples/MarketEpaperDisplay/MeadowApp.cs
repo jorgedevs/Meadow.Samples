@@ -31,10 +31,10 @@ namespace MarketEpaperDisplay
 
             var display = new Epd4in2bV2(
                 spiBus: Device.CreateSpiBus(),
-                chipSelectPin: Device.Pins.A04,
-                dcPin: Device.Pins.A03,
-                resetPin: Device.Pins.A02,
-                busyPin: Device.Pins.A01);
+                chipSelectPin: Device.Pins.D03,
+                dcPin: Device.Pins.D02,
+                resetPin: Device.Pins.D01,
+                busyPin: Device.Pins.D00);
 
             graphics = new MicroGraphics(display)
             {

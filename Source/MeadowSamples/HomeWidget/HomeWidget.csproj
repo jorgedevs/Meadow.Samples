@@ -1,0 +1,76 @@
+﻿<Project Sdk="Meadow.Sdk/1.1.0">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    <OutputType>Library</OutputType>
+    <AssemblyName>App</AssemblyName>
+    <LangVersion>10</LangVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Remove="Resources\w_clear_moon.bmp" />
+    <None Remove="Resources\w_clear_sun.bmp" />
+    <None Remove="Resources\w_clouds.bmp" />
+    <None Remove="Resources\w_clouds_moon.bmp" />
+    <None Remove="Resources\w_clouds_sun.bmp" />
+    <None Remove="Resources\w_drizzle.bmp" />
+    <None Remove="Resources\w_drizzle_heavy.bmp" />
+    <None Remove="Resources\w_drizzle_light_moon.bmp" />
+    <None Remove="Resources\w_drizzle_light_sun.bmp" />
+    <None Remove="Resources\w_misc.bmp" />
+    <None Remove="Resources\w_mist.bmp" />
+    <None Remove="Resources\w_rain.bmp" />
+    <None Remove="Resources\w_rain_heavy.bmp" />
+    <None Remove="Resources\w_rain_light_moon.bmp" />
+    <None Remove="Resources\w_rain_light_sun.bmp" />
+    <None Remove="Resources\w_snow.bmp" />
+    <None Remove="Resources\w_snow_light_moon.bmp" />
+    <None Remove="Resources\w_snow_light_sun.bmp" />
+    <None Remove="Resources\w_snow_rain.bmp" />
+    <None Remove="Resources\w_storm.bmp" />
+    <None Remove="Resources\w_storm_heavy.bmp" />
+    <None Remove="Resources\w_storm_light_moon.bmp" />
+    <None Remove="Resources\w_storm_light_sun.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\w_clear_moon.bmp" />
+    <EmbeddedResource Include="Resources\w_clear_sun.bmp" />
+    <EmbeddedResource Include="Resources\w_clouds.bmp" />
+    <EmbeddedResource Include="Resources\w_clouds_moon.bmp" />
+    <EmbeddedResource Include="Resources\w_clouds_sun.bmp" />
+    <EmbeddedResource Include="Resources\w_drizzle.bmp" />
+    <EmbeddedResource Include="Resources\w_drizzle_heavy.bmp" />
+    <EmbeddedResource Include="Resources\w_drizzle_light_moon.bmp" />
+    <EmbeddedResource Include="Resources\w_drizzle_light_sun.bmp" />
+    <EmbeddedResource Include="Resources\w_misc.bmp" />
+    <EmbeddedResource Include="Resources\w_mist.bmp" />
+    <EmbeddedResource Include="Resources\w_rain.bmp" />
+    <EmbeddedResource Include="Resources\w_rain_heavy.bmp" />
+    <EmbeddedResource Include="Resources\w_rain_light_moon.bmp" />
+    <EmbeddedResource Include="Resources\w_rain_light_sun.bmp" />
+    <EmbeddedResource Include="Resources\w_snow.bmp" />
+    <EmbeddedResource Include="Resources\w_snow_light_moon.bmp" />
+    <EmbeddedResource Include="Resources\w_snow_light_sun.bmp" />
+    <EmbeddedResource Include="Resources\w_snow_rain.bmp" />
+    <EmbeddedResource Include="Resources\w_storm.bmp" />
+    <EmbeddedResource Include="Resources\w_storm_heavy.bmp" />
+    <EmbeddedResource Include="Resources\w_storm_light_moon.bmp" />
+    <EmbeddedResource Include="Resources\w_storm_light_sun.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Meadow.F7" Version="*" />
+    <PackageReference Include="Meadow.Foundation" Version="*" />
+    <PackageReference Include="Meadow.Foundation.Displays.ePaperWaveShare" Version="1.6.0" />
+    <PackageReference Include="Meadow.Foundation.Graphics.MicroLayout" Version="1.6.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="meadow.config.yaml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="app.config.yaml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="wifi.config.yaml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+</Project>
