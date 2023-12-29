@@ -1,25 +1,23 @@
-﻿using Meadow.Foundation.Graphics.MicroLayout;
-using Meadow.Foundation.Graphics;
-using System;
-using System.Threading.Tasks;
+﻿using Meadow;
 using Meadow.Foundation;
-using Meadow;
+using Meadow.Foundation.Graphics;
+using Meadow.Foundation.Graphics.MicroLayout;
+using System;
 
-namespace HomeWidget;
+namespace HomeWidget.Controllers;
 
 public class DisplayController
 {
     Image _weatherIcon = Image.LoadFromResource("HomeWidget.Resources.w_misc.bmp");
 
-    int x_padding = 10;
+    int padding = 10;
+    int small_padding = 5;
 
     protected DisplayScreen DisplayScreen { get; set; }
 
-    protected Label DayOfWeek { get; set; }
+    protected Label YearMonth { get; set; }
 
-    protected Label Month { get; set; }
-
-    protected Label Year { get; set; }
+    protected Label WeekdayDay { get; set; }
 
     protected Label Time { get; set; }
 
@@ -28,8 +26,6 @@ public class DisplayController
     protected Label Temperature { get; set; }
 
     protected Label Humidity { get; set; }
-
-    protected Label Pressure { get; set; }
 
     protected Label FeelsLike { get; set; }
 
@@ -49,47 +45,50 @@ public class DisplayController
             BackgroundColor = backgroundColor
         };
 
-        Weather = new Picture(x_padding, 10, 100, 100, _weatherIcon);
+        Weather = new Picture(padding, padding, 100, 100, _weatherIcon);
         DisplayScreen.Controls.Add(Weather);
 
-        DisplayScreen.Controls.Add(new Box(x_padding, x_padding, 100, 100)
+        DisplayScreen.Controls.Add(new Box(padding, padding, 100, 100)
         {
             ForeColor = Color.Black,
             Filled = false
         });
 
-        DisplayScreen.Controls.Add(new Label(120, 10, 170, font12X20.Height)
+        YearMonth = new Label(120, padding, 170, font12X20.Height)
         {
-            Text = $"2023 December",
+            Text = $"---- ----",
             TextColor = foregroundColor,
             BackColor = backgroundColor,
             Font = font12X20,
             VerticalAlignment = VerticalAlignment.Top,
             HorizontalAlignment = HorizontalAlignment.Right
-        });
+        };
+        DisplayScreen.Controls.Add(YearMonth);
 
-        DisplayScreen.Controls.Add(new Label(120, 40, 170, font12X20.Height)
+        WeekdayDay = new Label(120, 40, 170, font12X20.Height)
         {
-            Text = $"Monday 25th",
+            Text = $"---- ----",
             TextColor = foregroundColor,
             BackColor = backgroundColor,
             Font = font12X20,
             VerticalAlignment = VerticalAlignment.Top,
             HorizontalAlignment = HorizontalAlignment.Right
-        });
+        };
+        DisplayScreen.Controls.Add(WeekdayDay);
 
-        DisplayScreen.Controls.Add(new Label(120, 70, 170, font12X20.Height * 2)
+        Time = new Label(120, 70, 170, font12X20.Height * 2)
         {
-            Text = $"12:00",
+            Text = $"--:--",
             TextColor = foregroundColor,
             BackColor = backgroundColor,
             Font = font12X20,
             ScaleFactor = ScaleFactor.X2,
             VerticalAlignment = VerticalAlignment.Top,
             HorizontalAlignment = HorizontalAlignment.Right
-        });
+        };
+        DisplayScreen.Controls.Add(Time);
 
-        DisplayScreen.Controls.Add(new Label(x_padding, 120, 135, font12X20.Height)
+        DisplayScreen.Controls.Add(new Label(padding, 120, 135, font12X20.Height)
         {
             Text = $"TEMPERATURE",
             TextColor = foregroundColor,
@@ -109,34 +108,36 @@ public class DisplayController
             HorizontalAlignment = HorizontalAlignment.Right
         });
 
-        DisplayScreen.Controls.Add(new Label(x_padding, 150, 135, font12X20.Height * 2)
+        Temperature = new Label(padding, 150, 135, font12X20.Height * 2)
         {
-            Text = $"25.4C",
+            Text = $"--.-C",
             TextColor = foregroundColor,
             BackColor = backgroundColor,
             Font = font12X20,
             ScaleFactor = ScaleFactor.X2,
             VerticalAlignment = VerticalAlignment.Top,
             HorizontalAlignment = HorizontalAlignment.Left
-        });
+        };
+        DisplayScreen.Controls.Add(Temperature);
 
-        DisplayScreen.Controls.Add(new Label(155, 150, 135, font12X20.Height * 2)
+        Humidity = new Label(155, 150, 135, font12X20.Height * 2)
         {
-            Text = $"75%",
+            Text = $"--%",
             TextColor = foregroundColor,
             BackColor = backgroundColor,
             Font = font12X20,
             ScaleFactor = ScaleFactor.X2,
             VerticalAlignment = VerticalAlignment.Top,
             HorizontalAlignment = HorizontalAlignment.Right
-        });
+        };
+        DisplayScreen.Controls.Add(Humidity);
 
-        DisplayScreen.Controls.Add(new Box(10, 204, 280, 1)
+        DisplayScreen.Controls.Add(new Box(padding, 204, 280, 1)
         {
             ForeColor = Color.Black
         });
 
-        DisplayScreen.Controls.Add(new Label(x_padding, 220, DisplayScreen.Width / 2, font12X20.Height)
+        DisplayScreen.Controls.Add(new Label(padding, 220, DisplayScreen.Width / 2, font12X20.Height)
         {
             Text = $"UPCOMING WEEK (#2):",
             TextColor = foregroundColor,
@@ -146,7 +147,7 @@ public class DisplayController
             HorizontalAlignment = HorizontalAlignment.Left
         });
 
-        DisplayScreen.Controls.Add(new Label(x_padding, 250, DisplayScreen.Width / 2, font12X20.Height)
+        DisplayScreen.Controls.Add(new Label(padding, 250, DisplayScreen.Width / 2, font12X20.Height)
         {
             Text = $"- Japan Curry + Rice",
             TextColor = foregroundColor,
@@ -156,7 +157,7 @@ public class DisplayController
             HorizontalAlignment = HorizontalAlignment.Left
         });
 
-        DisplayScreen.Controls.Add(new Label(x_padding, 280, DisplayScreen.Width / 2, font12X20.Height)
+        DisplayScreen.Controls.Add(new Label(padding, 280, DisplayScreen.Width / 2, font12X20.Height)
         {
             Text = $"- Baked Pasta",
             TextColor = foregroundColor,
@@ -166,7 +167,7 @@ public class DisplayController
             HorizontalAlignment = HorizontalAlignment.Left
         });
 
-        DisplayScreen.Controls.Add(new Label(x_padding, 310, DisplayScreen.Width / 2, font12X20.Height)
+        DisplayScreen.Controls.Add(new Label(padding, 310, DisplayScreen.Width / 2, font12X20.Height)
         {
             Text = $"WEEK AFTER (#3):",
             TextColor = foregroundColor,
@@ -176,7 +177,7 @@ public class DisplayController
             HorizontalAlignment = HorizontalAlignment.Left
         });
 
-        DisplayScreen.Controls.Add(new Label(x_padding, 340, DisplayScreen.Width / 2, font12X20.Height)
+        DisplayScreen.Controls.Add(new Label(padding, 340, DisplayScreen.Width / 2, font12X20.Height)
         {
             Text = $"- Japan Curry + Rice",
             TextColor = foregroundColor,
@@ -186,7 +187,7 @@ public class DisplayController
             HorizontalAlignment = HorizontalAlignment.Left
         });
 
-        DisplayScreen.Controls.Add(new Label(x_padding, 370, DisplayScreen.Width / 2, font12X20.Height)
+        DisplayScreen.Controls.Add(new Label(padding, 370, DisplayScreen.Width / 2, font12X20.Height)
         {
             Text = $"- Baked Pasta",
             TextColor = foregroundColor,
@@ -211,39 +212,26 @@ public class DisplayController
         return "th";
     }
 
-    public void UpdateDisplay(string weatherIcon, string temperature, string humidity, string pressure, string feelsLike, string windDirection, string windSpeed)
+    public void UpdateDisplay(
+        string weatherIcon,
+        double temperature,
+        double humidity)
     {
+        DisplayScreen.BeginUpdate();
+
         _weatherIcon = Image.LoadFromResource(weatherIcon);
         Weather.Image = _weatherIcon;
 
-        //Temperature.Text = temperature;
-        //Humidity.Text = humidity;
-        //Pressure.Text = pressure;
-        //FeelsLike.Text = feelsLike;
-        //WindDirection.Text = windDirection;
-        //WindSpeed.Text = windSpeed;
-    }
+        int TIMEZONE_OFFSET = -8;
+        var today = DateTime.Now.AddHours(TIMEZONE_OFFSET);
 
-    public async Task Run()
-    {
-        UpdateDisplay(
-            weatherIcon: $"HomeWidget.Resources.w_drizzle.bmp",
-            temperature: $"23°C",
-            humidity: $"93%",
-            pressure: $"1102hPa",
-            feelsLike: $"26°C",
-            windDirection: $"178°",
-            windSpeed: $"19m/s");
+        YearMonth.Text = today.ToString("yyyy MMMM");
+        WeekdayDay.Text = $"{today.DayOfWeek},{today.Day}{GetOrdinalSuffix(today.Day)}";
+        Time.Text = today.ToString("hh:mm");
 
-        while (true)
-        {
-            //var today = DateTime.Now;
+        Temperature.Text = $"{temperature:N1}C";
+        Humidity.Text = $"{humidity:N0}%";
 
-            //DayOfWeek.Text = $"{today.DayOfWeek},{today.Day}{GetOrdinalSuffix(today.Day)}";
-            //Month.Text = $"{today.ToString("MMMM").Substring(0, today.ToString("MMMM").Length > 6 ? 7 : today.ToString("MMMM").Length)}";
-            //Year.Text = $"{today.ToString("yyyy")}";
-            //Time.Text = DateTime.Now.ToString("hh:mm:ss tt");
-            await Task.Delay(TimeSpan.FromSeconds(1));
-        }
+        DisplayScreen.EndUpdate();
     }
 }
