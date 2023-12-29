@@ -21,10 +21,10 @@ namespace HomeWidget.Hardware
 
             Display = new Epd4in2bV2(
                 spiBus: MeadowApp.Device.CreateSpiBus(),
-                chipSelectPin: MeadowApp.Device.Pins.D03,
-                dcPin: MeadowApp.Device.Pins.D02,
-                resetPin: MeadowApp.Device.Pins.D01,
-                busyPin: MeadowApp.Device.Pins.D00);
+                chipSelectPin: MeadowApp.Device.Pins.D12,
+                dcPin: MeadowApp.Device.Pins.D13,
+                resetPin: MeadowApp.Device.Pins.D14,
+                busyPin: MeadowApp.Device.Pins.D15);
         }
     }
 }

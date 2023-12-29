@@ -27,11 +27,13 @@ public class DisplayController
 
     protected Label Humidity { get; set; }
 
-    protected Label FeelsLike { get; set; }
+    protected Label UpcomingWeekMealA { get; set; }
 
-    protected Label WindDirection { get; set; }
+    protected Label UpcomingWeekMealB { get; set; }
 
-    protected Label WindSpeed { get; set; }
+    protected Label WeekAfterMealA { get; set; }
+
+    protected Label WeekAfterMealB { get; set; }
 
     Color backgroundColor = Color.White;
     Color foregroundColor = Color.Black;
@@ -147,25 +149,27 @@ public class DisplayController
             HorizontalAlignment = HorizontalAlignment.Left
         });
 
-        DisplayScreen.Controls.Add(new Label(padding, 250, DisplayScreen.Width / 2, font12X20.Height)
+        UpcomingWeekMealA = new Label(padding, 250, DisplayScreen.Width / 2, font12X20.Height)
         {
-            Text = $"- Japan Curry + Rice",
+            Text = $"- Meal A",
             TextColor = foregroundColor,
             BackColor = backgroundColor,
             Font = font12X20,
             VerticalAlignment = VerticalAlignment.Top,
             HorizontalAlignment = HorizontalAlignment.Left
-        });
+        };
+        DisplayScreen.Controls.Add(UpcomingWeekMealA);
 
-        DisplayScreen.Controls.Add(new Label(padding, 280, DisplayScreen.Width / 2, font12X20.Height)
+        UpcomingWeekMealB = new Label(padding, 280, DisplayScreen.Width / 2, font12X20.Height)
         {
-            Text = $"- Baked Pasta",
+            Text = $"- Meal B",
             TextColor = foregroundColor,
             BackColor = backgroundColor,
             Font = font12X20,
             VerticalAlignment = VerticalAlignment.Top,
             HorizontalAlignment = HorizontalAlignment.Left
-        });
+        };
+        DisplayScreen.Controls.Add(UpcomingWeekMealB);
 
         DisplayScreen.Controls.Add(new Label(padding, 310, DisplayScreen.Width / 2, font12X20.Height)
         {
@@ -177,25 +181,27 @@ public class DisplayController
             HorizontalAlignment = HorizontalAlignment.Left
         });
 
-        DisplayScreen.Controls.Add(new Label(padding, 340, DisplayScreen.Width / 2, font12X20.Height)
+        WeekAfterMealA = new Label(padding, 340, DisplayScreen.Width / 2, font12X20.Height)
         {
-            Text = $"- Japan Curry + Rice",
+            Text = $"- Meal A",
             TextColor = foregroundColor,
             BackColor = backgroundColor,
             Font = font12X20,
             VerticalAlignment = VerticalAlignment.Top,
             HorizontalAlignment = HorizontalAlignment.Left
-        });
+        };
+        DisplayScreen.Controls.Add(WeekAfterMealA);
 
-        DisplayScreen.Controls.Add(new Label(padding, 370, DisplayScreen.Width / 2, font12X20.Height)
+        WeekAfterMealB = new Label(padding, 370, DisplayScreen.Width / 2, font12X20.Height)
         {
-            Text = $"- Baked Pasta",
+            Text = $"- Meal B",
             TextColor = foregroundColor,
             BackColor = backgroundColor,
             Font = font12X20,
             VerticalAlignment = VerticalAlignment.Top,
             HorizontalAlignment = HorizontalAlignment.Left
-        });
+        };
+        DisplayScreen.Controls.Add(WeekAfterMealB);
 
         Resolver.Log.Info("Page Loaded!");
     }

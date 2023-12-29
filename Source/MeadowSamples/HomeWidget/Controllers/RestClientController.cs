@@ -28,9 +28,10 @@ namespace HomeWidget.Controllers
 
                     double outdoorTemperature = values.main.temp - 273;
                     double outdoorHumidity = values.main.humidity;
-                    DateTime sunrise = DateTimeOffset.FromUnixTimeSeconds(values.sys.sunrise).DateTime.AddHours(-8);
-                    DateTime sunset = DateTimeOffset.FromUnixTimeSeconds(values.sys.sunset).DateTime.AddHours(-8);
-                    bool isDayLight = DateTime.Now > sunrise && DateTime.Now < sunset;
+                    var today = DateTime.Now.AddHours(-8);
+                    var sunrise = DateTimeOffset.FromUnixTimeSeconds(values.sys.sunrise).DateTime.AddHours(-8);
+                    var sunset = DateTimeOffset.FromUnixTimeSeconds(values.sys.sunset).DateTime.AddHours(-8);
+                    bool isDayLight = today > sunrise && today < sunset;
                     string weatherIconFile = GetWeatherIcon(values.weather[0].id, isDayLight);
 
                     return (weatherIconFile, outdoorTemperature, outdoorHumidity);
