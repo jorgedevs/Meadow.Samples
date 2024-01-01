@@ -112,7 +112,7 @@ public class DisplayController
 
         Temperature = new Label(padding, 150, 135, font12X20.Height * 2)
         {
-            Text = $"--.-C",
+            Text = $"--.-°C",
             TextColor = foregroundColor,
             BackColor = backgroundColor,
             Font = font12X20,
@@ -235,7 +235,7 @@ public class DisplayController
         WeekdayDay.Text = $"{today.DayOfWeek},{today.Day}{GetOrdinalSuffix(today.Day)}";
         Time.Text = today.ToString("hh:mm");
 
-        Temperature.Text = $"{temperature:N1}C";
+        Temperature.Text = $"{temperature:N1}°C";
         Humidity.Text = $"{humidity:N0}%";
 
         DisplayScreen.EndUpdate();
