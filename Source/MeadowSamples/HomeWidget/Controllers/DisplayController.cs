@@ -1,5 +1,4 @@
-﻿using Meadow;
-using Meadow.Foundation;
+﻿using Meadow.Foundation;
 using Meadow.Foundation.Graphics;
 using Meadow.Foundation.Graphics.MicroLayout;
 using System;
@@ -39,6 +38,7 @@ public class DisplayController
     Color foregroundColor = Color.Black;
 
     Font12x20 font12X20 = new Font12x20();
+    Font6x8 font6x8 = new Font6x8();
 
     public DisplayController(IGraphicsDisplay display)
     {
@@ -56,11 +56,25 @@ public class DisplayController
             Filled = false
         });
 
+        DisplayScreen.Controls.Add(new Label(padding + 2, padding + 2, font6x8.Width * 4, font6x8.Height)
+        {
+            Text = $"5C",
+            TextColor = foregroundColor,
+            Font = font6x8
+        });
+
+        DisplayScreen.Controls.Add(new Label(84, padding + 2, font6x8.Width * 4, font6x8.Height)
+        {
+            Text = $"90%",
+            TextColor = foregroundColor,
+            Font = font6x8,
+            HorizontalAlignment = HorizontalAlignment.Right
+        });
+
         YearMonth = new Label(120, padding, 170, font12X20.Height)
         {
             Text = $"---- ----",
             TextColor = foregroundColor,
-            BackColor = backgroundColor,
             Font = font12X20,
             VerticalAlignment = VerticalAlignment.Top,
             HorizontalAlignment = HorizontalAlignment.Right
@@ -71,7 +85,6 @@ public class DisplayController
         {
             Text = $"---- ----",
             TextColor = foregroundColor,
-            BackColor = backgroundColor,
             Font = font12X20,
             VerticalAlignment = VerticalAlignment.Top,
             HorizontalAlignment = HorizontalAlignment.Right
@@ -82,7 +95,6 @@ public class DisplayController
         {
             Text = $"--:--",
             TextColor = foregroundColor,
-            BackColor = backgroundColor,
             Font = font12X20,
             ScaleFactor = ScaleFactor.X2,
             VerticalAlignment = VerticalAlignment.Top,
@@ -94,7 +106,6 @@ public class DisplayController
         {
             Text = $"TEMPERATURE",
             TextColor = foregroundColor,
-            BackColor = backgroundColor,
             Font = font12X20,
             VerticalAlignment = VerticalAlignment.Top,
             HorizontalAlignment = HorizontalAlignment.Left
@@ -104,7 +115,6 @@ public class DisplayController
         {
             Text = $"HUMIDITY",
             TextColor = foregroundColor,
-            BackColor = backgroundColor,
             Font = font12X20,
             VerticalAlignment = VerticalAlignment.Top,
             HorizontalAlignment = HorizontalAlignment.Right
@@ -114,7 +124,6 @@ public class DisplayController
         {
             Text = $"--.-°C",
             TextColor = foregroundColor,
-            BackColor = backgroundColor,
             Font = font12X20,
             ScaleFactor = ScaleFactor.X2,
             VerticalAlignment = VerticalAlignment.Top,
@@ -126,7 +135,6 @@ public class DisplayController
         {
             Text = $"--%",
             TextColor = foregroundColor,
-            BackColor = backgroundColor,
             Font = font12X20,
             ScaleFactor = ScaleFactor.X2,
             VerticalAlignment = VerticalAlignment.Top,
@@ -143,7 +151,6 @@ public class DisplayController
         {
             Text = $"UPCOMING WEEK (#2):",
             TextColor = foregroundColor,
-            BackColor = backgroundColor,
             Font = font12X20,
             VerticalAlignment = VerticalAlignment.Top,
             HorizontalAlignment = HorizontalAlignment.Left
@@ -153,7 +160,6 @@ public class DisplayController
         {
             Text = $"- Meal A",
             TextColor = foregroundColor,
-            BackColor = backgroundColor,
             Font = font12X20,
             VerticalAlignment = VerticalAlignment.Top,
             HorizontalAlignment = HorizontalAlignment.Left
@@ -164,7 +170,6 @@ public class DisplayController
         {
             Text = $"- Meal B",
             TextColor = foregroundColor,
-            BackColor = backgroundColor,
             Font = font12X20,
             VerticalAlignment = VerticalAlignment.Top,
             HorizontalAlignment = HorizontalAlignment.Left
@@ -175,7 +180,6 @@ public class DisplayController
         {
             Text = $"WEEK AFTER (#3):",
             TextColor = foregroundColor,
-            BackColor = backgroundColor,
             Font = font12X20,
             VerticalAlignment = VerticalAlignment.Top,
             HorizontalAlignment = HorizontalAlignment.Left
@@ -185,7 +189,6 @@ public class DisplayController
         {
             Text = $"- Meal A",
             TextColor = foregroundColor,
-            BackColor = backgroundColor,
             Font = font12X20,
             VerticalAlignment = VerticalAlignment.Top,
             HorizontalAlignment = HorizontalAlignment.Left
@@ -196,14 +199,11 @@ public class DisplayController
         {
             Text = $"- Meal B",
             TextColor = foregroundColor,
-            BackColor = backgroundColor,
             Font = font12X20,
             VerticalAlignment = VerticalAlignment.Top,
             HorizontalAlignment = HorizontalAlignment.Left
         };
         DisplayScreen.Controls.Add(WeekAfterMealB);
-
-        Resolver.Log.Info("Page Loaded!");
     }
 
     private static string GetOrdinalSuffix(int num)

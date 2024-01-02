@@ -36,6 +36,8 @@ internal class MainController
         displayController = new DisplayController(hardware.Display);
         restClientController = new RestClientController();
 
+        hardware.EnvironmentalSensor.StartUpdating(TimeSpan.FromMinutes(30));
+
         //displayController.ShowSplashScreen();
         //Thread.Sleep(3000);
         //displayController.ShowDataScreen();
@@ -91,7 +93,6 @@ internal class MainController
             MealB = new Recipe() { Name = "Chili + rice" }
         });
     }
-
     async Task UpdateOutdoorValues()
     {
         var outdoorConditions = await restClientController.GetWeatherForecast();
@@ -100,10 +101,12 @@ internal class MainController
         {
             firstWeatherForecast = false;
 
+            Resolver.Log.Info($"HTU21D - Temp: {hardware.EnvironmentalSensor.Temperature.Value.Celsius} | Humidity: {hardware.EnvironmentalSensor.Humidity.Value.Percent}");
+
             displayController.UpdateDisplay(
                 weatherIcon: outdoorConditions.Value.Item1,
-                temperature: outdoorConditions.Value.Item2,
-                humidity: outdoorConditions.Value.Item3);
+                temperature: hardware.EnvironmentalSensor.Temperature.Value.Celsius, // outdoorConditions.Value.Item2,
+                humidity: hardware.EnvironmentalSensor.Humidity.Value.Percent); //outdoorConditions.Value.Item3);
         }
     }
 

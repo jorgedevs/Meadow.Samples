@@ -1,6 +1,7 @@
 ﻿using Meadow.Foundation.Displays;
 using Meadow.Foundation.Graphics;
 using Meadow.Foundation.Leds;
+using Meadow.Foundation.Sensors.Atmospheric;
 using Meadow.Peripherals.Leds;
 
 namespace HomeWidget.Hardware
@@ -10,6 +11,8 @@ namespace HomeWidget.Hardware
         public IRgbPwmLed Led { get; private set; }
 
         public IGraphicsDisplay Display { get; private set; }
+
+        public Htu21d EnvironmentalSensor { get; private set; }
 
         public void Initialize()
         {
@@ -25,6 +28,8 @@ namespace HomeWidget.Hardware
                 dcPin: MeadowApp.Device.Pins.D13,
                 resetPin: MeadowApp.Device.Pins.D14,
                 busyPin: MeadowApp.Device.Pins.D15);
+
+            EnvironmentalSensor = new Htu21d(MeadowApp.Device.CreateI2cBus());
         }
     }
 }

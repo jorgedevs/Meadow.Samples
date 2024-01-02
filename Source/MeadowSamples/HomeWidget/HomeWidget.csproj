@@ -61,6 +61,7 @@
     <PackageReference Include="Meadow.Foundation" Version="*" />
     <PackageReference Include="Meadow.Foundation.Displays.ePaperWaveShare" Version="1.6.0" />
     <PackageReference Include="Meadow.Foundation.Graphics.MicroLayout" Version="1.6.0" />
+    <PackageReference Include="Meadow.Foundation.Sensors.Atmospheric.Htux1d" Version="1.6.0" />
   </ItemGroup>
   <ItemGroup>
     <None Update="meadow.config.yaml">
