@@ -1,4 +1,4 @@
-﻿using Meadow.Foundation;
+﻿using Meadow;
 using Meadow.Foundation.Graphics;
 using Meadow.Foundation.Graphics.MicroLayout;
 using System;
@@ -10,7 +10,6 @@ public class DisplayController
     Image _weatherIcon = Image.LoadFromResource("HomeWidget.Resources.w_misc.bmp");
 
     int padding = 10;
-    int small_padding = 5;
 
     protected DisplayScreen DisplayScreen { get; set; }
 
@@ -25,6 +24,10 @@ public class DisplayController
     protected Label Temperature { get; set; }
 
     protected Label Humidity { get; set; }
+
+    protected Label OutdoorTemperature { get; set; }
+
+    protected Label OutdoorHumidity { get; set; }
 
     protected Label UpcomingWeekMealA { get; set; }
 
@@ -47,29 +50,39 @@ public class DisplayController
             BackgroundColor = backgroundColor
         };
 
+        DisplayScreen.BeginUpdate();
+
+        DisplayScreen.Controls.Add(new Box(0, 0, DisplayScreen.Width, DisplayScreen.Height)
+        {
+            ForeColor = Color.Black,
+            IsFilled = false
+        });
+
         Weather = new Picture(padding, padding, 100, 100, _weatherIcon);
         DisplayScreen.Controls.Add(Weather);
 
         DisplayScreen.Controls.Add(new Box(padding, padding, 100, 100)
         {
             ForeColor = Color.Black,
-            Filled = false
+            IsFilled = false
         });
 
-        DisplayScreen.Controls.Add(new Label(padding + 2, padding + 2, font6x8.Width * 4, font6x8.Height)
+        OutdoorTemperature = new Label(padding + 2, padding + 2, font6x8.Width * 4, font6x8.Height)
         {
-            Text = $"5C",
+            Text = $"-C",
             TextColor = foregroundColor,
             Font = font6x8
-        });
+        };
+        DisplayScreen.Controls.Add(OutdoorTemperature);
 
-        DisplayScreen.Controls.Add(new Label(84, padding + 2, font6x8.Width * 4, font6x8.Height)
+        OutdoorHumidity = new Label(84, padding + 2, font6x8.Width * 4, font6x8.Height)
         {
-            Text = $"90%",
+            Text = $"-%",
             TextColor = foregroundColor,
             Font = font6x8,
             HorizontalAlignment = HorizontalAlignment.Right
-        });
+        };
+        DisplayScreen.Controls.Add(OutdoorHumidity);
 
         YearMonth = new Label(120, padding, 170, font12X20.Height)
         {
@@ -102,7 +115,7 @@ public class DisplayController
         };
         DisplayScreen.Controls.Add(Time);
 
-        DisplayScreen.Controls.Add(new Label(padding, 120, 135, font12X20.Height)
+        DisplayScreen.Controls.Add(new Label(padding, 125, 135, font12X20.Height)
         {
             Text = $"TEMPERATURE",
             TextColor = foregroundColor,
@@ -111,7 +124,7 @@ public class DisplayController
             HorizontalAlignment = HorizontalAlignment.Left
         });
 
-        DisplayScreen.Controls.Add(new Label(155, 120, 135, font12X20.Height)
+        DisplayScreen.Controls.Add(new Label(155, 125, 135, font12X20.Height)
         {
             Text = $"HUMIDITY",
             TextColor = foregroundColor,
@@ -120,7 +133,7 @@ public class DisplayController
             HorizontalAlignment = HorizontalAlignment.Right
         });
 
-        Temperature = new Label(padding, 150, 135, font12X20.Height * 2)
+        Temperature = new Label(padding, 155, 135, font12X20.Height * 2)
         {
             Text = $"--.-°C",
             TextColor = foregroundColor,
@@ -131,7 +144,7 @@ public class DisplayController
         };
         DisplayScreen.Controls.Add(Temperature);
 
-        Humidity = new Label(155, 150, 135, font12X20.Height * 2)
+        Humidity = new Label(155, 155, 135, font12X20.Height * 2)
         {
             Text = $"--%",
             TextColor = foregroundColor,
@@ -149,7 +162,7 @@ public class DisplayController
 
         DisplayScreen.Controls.Add(new Label(padding, 220, DisplayScreen.Width / 2, font12X20.Height)
         {
-            Text = $"UPCOMING WEEK (#2):",
+            Text = $"UPCOMING WEEK:",
             TextColor = foregroundColor,
             Font = font12X20,
             VerticalAlignment = VerticalAlignment.Top,
@@ -178,7 +191,7 @@ public class DisplayController
 
         DisplayScreen.Controls.Add(new Label(padding, 310, DisplayScreen.Width / 2, font12X20.Height)
         {
-            Text = $"WEEK AFTER (#3):",
+            Text = $"WEEK AFTER:",
             TextColor = foregroundColor,
             Font = font12X20,
             VerticalAlignment = VerticalAlignment.Top,
@@ -204,6 +217,8 @@ public class DisplayController
             HorizontalAlignment = HorizontalAlignment.Left
         };
         DisplayScreen.Controls.Add(WeekAfterMealB);
+
+        DisplayScreen.EndUpdate();
     }
 
     private static string GetOrdinalSuffix(int num)
@@ -219,14 +234,23 @@ public class DisplayController
     }
 
     public void UpdateDisplay(
-        string weatherIcon,
+        string outdoorIcon,
+        double outdoorTemperature,
+        double outdoorHumidity,
         double temperature,
-        double humidity)
+        double humidity,
+        string upcomingWeekMealA,
+        string upcomingWeekMealB,
+        string weekAfterMealA,
+        string weekAfterMealB)
     {
         DisplayScreen.BeginUpdate();
 
-        _weatherIcon = Image.LoadFromResource(weatherIcon);
+        _weatherIcon = Image.LoadFromResource(outdoorIcon);
         Weather.Image = _weatherIcon;
+
+        OutdoorTemperature.Text = $"{outdoorTemperature:N0}C";
+        OutdoorHumidity.Text = $"{outdoorHumidity:N0}%";
 
         int TIMEZONE_OFFSET = -8;
         var today = DateTime.Now.AddHours(TIMEZONE_OFFSET);
@@ -237,6 +261,11 @@ public class DisplayController
 
         Temperature.Text = $"{temperature:N1}°C";
         Humidity.Text = $"{humidity:N0}%";
+
+        UpcomingWeekMealA.Text = $" - {upcomingWeekMealA}";
+        UpcomingWeekMealB.Text = $" - {upcomingWeekMealB}";
+        WeekAfterMealA.Text = $" - {weekAfterMealA}";
+        WeekAfterMealB.Text = $" - {weekAfterMealB}";
 
         DisplayScreen.EndUpdate();
     }

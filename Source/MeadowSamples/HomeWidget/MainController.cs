@@ -37,61 +37,58 @@ internal class MainController
         restClientController = new RestClientController();
 
         hardware.EnvironmentalSensor.StartUpdating(TimeSpan.FromMinutes(30));
-
-        //displayController.ShowSplashScreen();
-        //Thread.Sleep(3000);
-        //displayController.ShowDataScreen();
     }
 
     public void LoadRecipes()
     {
-        recipes = new List<WeeklyMeal>();
-
-        recipes.Add(new WeeklyMeal()
+        recipes = new List<WeeklyMeal>()
         {
-            MealA = new Recipe() { Name = "Japan curry + rice" },
-            MealB = new Recipe() { Name = "Baked pasta" }
-        });
-        recipes.Add(new WeeklyMeal()
-        {
-            MealA = new Recipe() { Name = "Fried rice" },
-            MealB = new Recipe() { Name = "Mac + cheese" }
-        });
-        recipes.Add(new WeeklyMeal()
-        {
-            MealA = new Recipe() { Name = "Chicken + salad" },
-            MealB = new Recipe() { Name = "Tuna casserole" }
-        });
-        recipes.Add(new WeeklyMeal()
-        {
-            MealA = new Recipe() { Name = "Korean beef bowl" },
-            MealB = new Recipe() { Name = "Chicken + veggies" }
-        });
-        recipes.Add(new WeeklyMeal()
-        {
-            MealA = new Recipe() { Name = "Grk Yogurt Chkn" },
-            MealB = new Recipe() { Name = "Pesto Turkey Sp" }
-        });
-        recipes.Add(new WeeklyMeal()
-        {
-            MealA = new Recipe() { Name = " " },
-            MealB = new Recipe() { Name = "Meatloaf + Vggs" }
-        });
-        recipes.Add(new WeeklyMeal()
-        {
-            MealA = new Recipe() { Name = "Burrito bowl" },
-            MealB = new Recipe() { Name = "Stuffed Tender L" }
-        });
-        recipes.Add(new WeeklyMeal()
-        {
-            MealA = new Recipe() { Name = "Taco salad" },
-            MealB = new Recipe() { Name = "Plld Chkn Vggs" }
-        });
-        recipes.Add(new WeeklyMeal()
-        {
-            MealA = new Recipe() { Name = "Y+Y Chicken Salad" },
-            MealB = new Recipe() { Name = "Chili + rice" }
-        });
+            new WeeklyMeal()
+            {
+                MealA = new Recipe() { Name = "Japan curry + rice" },
+                MealB = new Recipe() { Name = "Baked pasta" }
+            },
+            new WeeklyMeal()
+            {
+                MealA = new Recipe() { Name = "Fried rice" },
+                MealB = new Recipe() { Name = "Mac + cheese" }
+            },
+            new WeeklyMeal()
+            {
+                MealA = new Recipe() { Name = "Chicken + salad" },
+                MealB = new Recipe() { Name = "Tuna casserole" }
+            },
+            new WeeklyMeal()
+            {
+                MealA = new Recipe() { Name = "Korean beef bowl" },
+                MealB = new Recipe() { Name = "Chicken + veggies" }
+            },
+            new WeeklyMeal()
+            {
+                MealA = new Recipe() { Name = "Greek yogurt chicken" },
+                MealB = new Recipe() { Name = "Pesto Turkey Spghtti" }
+            },
+            new WeeklyMeal()
+            {
+                MealA = new Recipe() { Name = "One pan chicken rice" },
+                MealB = new Recipe() { Name = "Meatloaf + veggies" }
+            },
+            new WeeklyMeal()
+            {
+                MealA = new Recipe() { Name = "Burrito bowl" },
+                MealB = new Recipe() { Name = "Stuffed tender loins" }
+            },
+            new WeeklyMeal()
+            {
+                MealA = new Recipe() { Name = "Taco salad" },
+                MealB = new Recipe() { Name = "Pulled chikn veggies" }
+            },
+            new WeeklyMeal()
+            {
+                MealA = new Recipe() { Name = "Y+Y Chicken Salad" },
+                MealB = new Recipe() { Name = "Chili + rice" }
+            }
+        };
     }
     async Task UpdateOutdoorValues()
     {
@@ -101,13 +98,47 @@ internal class MainController
         {
             firstWeatherForecast = false;
 
-            Resolver.Log.Info($"HTU21D - Temp: {hardware.EnvironmentalSensor.Temperature.Value.Celsius} | Humidity: {hardware.EnvironmentalSensor.Humidity.Value.Percent}");
+            var meals = GetWeeklyMeals();
+
+            Resolver.Log.Info($"HTU21D - " +
+                $"Temp: {hardware.EnvironmentalSensor.Temperature.Value.Celsius} | " +
+                $"Humidity: {hardware.EnvironmentalSensor.Humidity.Value.Percent}");
 
             displayController.UpdateDisplay(
-                weatherIcon: outdoorConditions.Value.Item1,
-                temperature: hardware.EnvironmentalSensor.Temperature.Value.Celsius, // outdoorConditions.Value.Item2,
-                humidity: hardware.EnvironmentalSensor.Humidity.Value.Percent); //outdoorConditions.Value.Item3);
+                outdoorIcon: outdoorConditions.Value.Item1,
+                outdoorTemperature: outdoorConditions.Value.Item2,
+                outdoorHumidity: outdoorConditions.Value.Item3,
+                temperature: hardware.EnvironmentalSensor.Temperature.Value.Celsius,
+                humidity: hardware.EnvironmentalSensor.Humidity.Value.Percent,
+                meals.Item1.MealA.Name,
+                meals.Item1.MealB.Name,
+                meals.Item2.MealA.Name,
+                meals.Item2.MealB.Name);
         }
+    }
+
+    static int GetCurrentWeek(DateTime startDate, DateTime currentDate)
+    {
+        TimeSpan timeDifference = currentDate - startDate;
+        int totalWeeks = (int)(timeDifference.TotalDays / 7);
+
+        int currentEvent = (totalWeeks % 9);
+
+        return currentEvent;
+    }
+
+    (WeeklyMeal, WeeklyMeal) GetWeeklyMeals()
+    {
+        DateTime currentDate = DateTime.Now;
+        DateTime startDate = new DateTime(currentDate.Year, 1, 1);
+
+        int week = GetCurrentWeek(startDate, currentDate);
+        int upcomingWeek = week + 2 > 9 ? 0 : week + 2;
+        int weekAfter = upcomingWeek + 1 > 9 ? 0 : upcomingWeek + 1;
+
+        Resolver.Log.Info($"Week {upcomingWeek} and {weekAfter}");
+
+        return new(recipes[upcomingWeek], recipes[weekAfter]);
     }
 
     public async Task Run()
