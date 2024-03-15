@@ -1,5 +1,5 @@
-﻿using Meadow.Foundation.Graphics;
-using Meadow.Foundation.Sensors.Atmospheric;
+﻿using Meadow.Foundation.Sensors.Atmospheric;
+using Meadow.Peripherals.Displays;
 using Meadow.Peripherals.Leds;
 
 namespace HomeWidget.Hardware
@@ -8,7 +8,7 @@ namespace HomeWidget.Hardware
     {
         IRgbPwmLed Led { get; }
 
-        IGraphicsDisplay Display { get; }
+        IPixelDisplay Display { get; }
 
         Htu21d EnvironmentalSensor { get; }
 

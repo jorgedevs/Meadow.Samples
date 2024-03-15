@@ -1,7 +1,8 @@
-﻿using Meadow.Foundation;
+﻿using Meadow;
 using Meadow.Foundation.Displays;
 using Meadow.Foundation.Graphics;
 using Meadow.Hardware;
+using Meadow.Peripherals.Displays;
 using Meadow.Units;
 using SimpleJpegDecoder;
 using System;
@@ -35,7 +36,7 @@ namespace MeadowSmartFrame.Controllers
                 spiBus: spiBus,
                 chipSelectPin: MeadowApp.Device.Pins.D02,
                 dcPin: MeadowApp.Device.Pins.D00,
-                resetPin: MeadowApp.Device.Pins.D01, 480,320
+                resetPin: MeadowApp.Device.Pins.D01, 480, 320
             );
 
             graphics = new MicroGraphics(display)

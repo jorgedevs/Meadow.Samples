@@ -1,5 +1,6 @@
 ﻿using Meadow.Foundation.Displays;
 using Meadow.Foundation.Graphics;
+using Meadow.Peripherals.Displays;
 using SimpleJpegDecoder;
 using System.Reflection;
 using WifiWeather.Models;
@@ -14,15 +15,15 @@ namespace WifiWeather.Views
         MicroGraphics graphics;
         int x_padding = 5;
 
-        MF.Color backgroundColor = MF.Color.FromHex("#F3F7FA");
-        MF.Color foregroundColor = MF.Color.Black;
+        Meadow.Color backgroundColor = Meadow.Color.FromHex("#F3F7FA");
+        Meadow.Color foregroundColor = Meadow.Color.Black;
 
         Font12x20 font12X20 = new Font12x20();
         Font8x16 font8X16 = new Font8x16();
 
         public DisplayView() { }
 
-        public void Initialize(IGraphicsDisplay display)
+        public void Initialize(IPixelDisplay display)
         {
             _display = (WinFormsDisplay)display;
 
@@ -139,7 +140,7 @@ namespace WifiWeather.Views
                 g = jpg[i + 1];
                 b = jpg[i + 2];
 
-                graphics.DrawPixel(x + xOffset, y + yOffset, MF.Color.FromRgb(r, g, b));
+                graphics.DrawPixel(x + xOffset, y + yOffset, Meadow.Color.FromRgb(r, g, b));
 
                 x++;
                 if (x % decoder.Width == 0)

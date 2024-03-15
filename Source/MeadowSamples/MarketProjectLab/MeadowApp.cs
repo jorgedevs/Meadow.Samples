@@ -1,9 +1,9 @@
 ﻿using Meadow;
 using Meadow.Devices;
-using Meadow.Foundation;
 using Meadow.Foundation.Graphics;
 using Meadow.Foundation.Graphics.Buffers;
 using Meadow.Foundation.Leds;
+using Meadow.Peripherals.Displays;
 using SimpleJpegDecoder;
 using System.IO;
 using System.Reflection;
@@ -25,7 +25,7 @@ namespace MarketProjectLab
             projectLab = ProjectLab.Create();
             Resolver.Log.Info($"Running on ProjectLab Hardware {projectLab.RevisionString}");
 
-            onboardLed = projectLab.RgbLed;
+            onboardLed = (RgbPwmLed)projectLab.RgbLed;
             onboardLed.SetColor(Color.Red);
 
             graphics = new MicroGraphics(projectLab.Display)

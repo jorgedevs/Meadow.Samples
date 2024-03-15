@@ -1,6 +1,7 @@
 ﻿using Meadow;
 using Meadow.Foundation.Graphics;
 using Meadow.Foundation.Graphics.MicroLayout;
+using Meadow.Peripherals.Displays;
 using System;
 
 namespace HomeWidget.Controllers;
@@ -43,7 +44,7 @@ public class DisplayController
     Font12x20 font12X20 = new Font12x20();
     Font6x8 font6x8 = new Font6x8();
 
-    public DisplayController(IGraphicsDisplay display)
+    public DisplayController(IPixelDisplay display)
     {
         DisplayScreen = new DisplayScreen(display, RotationType._270Degrees)
         {

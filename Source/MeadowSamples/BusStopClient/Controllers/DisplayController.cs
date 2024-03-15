@@ -1,5 +1,5 @@
 ﻿using BusStopClient.Models;
-using Meadow.Foundation;
+using Meadow;
 using Meadow.Foundation.Displays;
 using Meadow.Foundation.Graphics;
 using Meadow.Hardware;
@@ -31,7 +31,7 @@ namespace BusStopClient.Controllers
 
         static DisplayController() { }
 
-        public void Initialize() 
+        public void Initialize()
         {
             var config = new SpiClockConfiguration(
                 new Frequency(12000, Frequency.UnitType.Kilohertz),
@@ -57,7 +57,7 @@ namespace BusStopClient.Controllers
             medium = new Font8x12();
         }
 
-        public bool IsChangeThemeTime(DateTime today) 
+        public bool IsChangeThemeTime(DateTime today)
         {
             var sunset = DaylightTimes.GetDaylight(today.Month).Sunset;
             var sunrise = DaylightTimes.GetDaylight(today.Month).Sunrise;
@@ -91,7 +91,7 @@ namespace BusStopClient.Controllers
             DisplayJPG(19, 30, stopSignImage);
         }
 
-        public void DrawSplashScreen() 
+        public void DrawSplashScreen()
         {
             graphics.Clear(ColorConstants.SplashColor, false);
             DisplayJPG(105, 214, ImageConstants.SplashImage);
@@ -152,7 +152,7 @@ namespace BusStopClient.Controllers
             }
         }
 
-        public void UpdateWeatherStatus(WeatherReading weather) 
+        public void UpdateWeatherStatus(WeatherReading weather)
         {
             graphics.DrawRectangle(15, 160, 290, 180, backgroundColor, true);
             graphics.DrawText(25, 168, weather.weather[0].description.ToUpper(), fontColor, ScaleFactor.X2);
@@ -163,7 +163,7 @@ namespace BusStopClient.Controllers
             graphics.DrawText(25, 308, $"Wind Spd: {weather.wind.speed}m/s", fontColor, ScaleFactor.X2);
         }
 
-        public void Show() 
+        public void Show()
         {
             graphics.Show();
         }

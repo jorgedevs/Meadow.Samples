@@ -1,17 +1,16 @@
 ﻿using Meadow;
 using Meadow.Devices;
-using Meadow.Foundation;
 using Meadow.Foundation.Displays;
 using Meadow.Foundation.Graphics;
 using Meadow.Foundation.Leds;
 using Meadow.Hardware;
+using Meadow.Peripherals.Displays;
 using Meadow.Peripherals.Leds;
 using Meadow.Units;
 using SimpleJpegDecoder;
 using System;
 using System.IO;
 using System.Reflection;
-using System.Threading;
 using System.Threading.Tasks;
 
 namespace MarketIli9488Display
@@ -52,7 +51,7 @@ namespace MarketIli9488Display
             graphics = new MicroGraphics(display)
             {
                 IgnoreOutOfBoundsPixels = true,
-                CurrentFont = new Font8x8(), 
+                CurrentFont = new Font8x8(),
                 Rotation = RotationType._270Degrees
             };
 
@@ -113,7 +112,7 @@ namespace MarketIli9488Display
         {
             Console.WriteLine("Run...");
 
-            while (true) 
+            while (true)
             {
                 DisplayJPG(0, 0, "img_devcamp.jpg");
                 graphics.Show();

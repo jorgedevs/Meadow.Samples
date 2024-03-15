@@ -2,8 +2,8 @@
 using Meadow.Devices;
 using Meadow.Foundation.Graphics;
 using Meadow.Foundation.Graphics.MicroLayout;
+using Meadow.Peripherals.Displays;
 using System.Threading.Tasks;
-using WildernessLabs.Hardware.GnssTracker;
 
 namespace MarketGnss
 {
