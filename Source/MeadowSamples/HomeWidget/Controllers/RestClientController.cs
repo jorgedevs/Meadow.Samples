@@ -1,9 +1,9 @@
 ﻿using HomeWidget.DTOs;
 using HomeWidget.Utils;
 using Meadow;
+using Meadow.Foundation.Serialization;
 using System;
 using System.Net.Http;
-using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace HomeWidget.Controllers
@@ -24,7 +24,7 @@ namespace HomeWidget.Controllers
 
                     response.EnsureSuccessStatusCode();
                     string json = await response.Content.ReadAsStringAsync();
-                    var values = JsonSerializer.Deserialize<WeatherReadingDTO>(json);
+                    var values = MicroJson.Deserialize<WeatherReadingDTO>(json);
 
                     double outdoorTemperature = values.main.temp - 273;
                     double outdoorHumidity = values.main.humidity;

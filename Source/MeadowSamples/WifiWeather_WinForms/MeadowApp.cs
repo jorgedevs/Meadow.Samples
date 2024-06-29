@@ -4,7 +4,7 @@ using WifiWeather.Services;
 using WifiWeather.ViewModels;
 using WifiWeather.Views;
 
-public class MeadowApp : App<Windows>
+public class MeadowApp : App<Meadow.Windows>
 {
     private WinFormsDisplay _display = default!;
     private DisplayView _displayController;

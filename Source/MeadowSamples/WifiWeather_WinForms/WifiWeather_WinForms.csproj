@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net7.0-windows</TargetFramework>
+    <TargetFramework>net8.0-windows</TargetFramework>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
@@ -27,7 +27,7 @@
   <ItemGroup>
     <PackageReference Include="Meadow.Foundation.Displays.WinForms" Version="*" />
     <PackageReference Include="Meadow.Windows" Version="*" />
-    <PackageReference Include="System.Text.Json" Version="7.0.4" />
+    <PackageReference Include="System.Text.Json" Version="*" />
     <PackageReference Include="SimpleJpegDecoder" Version="*" />
   </ItemGroup>
 </Project>
