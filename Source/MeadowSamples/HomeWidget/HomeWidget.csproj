@@ -62,7 +62,7 @@
     <PackageReference Include="Meadow.Foundation.Displays.ePaperWaveShare" Version="*" />
     <PackageReference Include="Meadow.Foundation.Graphics.MicroLayout" Version="*" />
     <PackageReference Include="Meadow.Foundation.Sensors.Atmospheric.Htux1d" Version="*" />
-    <PackageReference Include="Meadow.Foundation.Serialization.MicroJson" Version="1.12.2" />
+    <PackageReference Include="Meadow.Foundation.Serialization.MicroJson" Version="*" />
   </ItemGroup>
   <ItemGroup>
     <None Update="meadow.config.yaml">

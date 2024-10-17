@@ -8,6 +8,6 @@
   <ItemGroup>
     <PackageReference Include="Meadow.F7" Version="*" />
     <PackageReference Include="Meadow.Foundation" Version="*" />
-    <PackageReference Include="Meadow.Foundation.Servos.ServoCore" Version="*" />
+    <PackageReference Include="Meadow.Foundation.Servos" Version="1.15.0" />
   </ItemGroup>
 </Project>

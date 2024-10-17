@@ -1,8 +1,8 @@
 ﻿using BusStopClient.Models;
+using Meadow.Foundation.Serialization;
 using System;
 using System.Diagnostics;
 using System.Net.Http;
-using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace BusStopClient.Services
@@ -33,7 +33,7 @@ namespace BusStopClient.Services
                     stopwatch.Start();
 
                     string json = await response.Content.ReadAsStringAsync();
-                    var values = JsonSerializer.Deserialize<DateTimeEntity>(json);
+                    var values = MicroJson.Deserialize<DateTimeEntity>(json);
 
                     stopwatch.Stop();
 

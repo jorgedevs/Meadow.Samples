@@ -1,7 +1,7 @@
 ﻿using BusStopClient.Models;
+using Meadow.Foundation.Serialization;
 using System;
 using System.Net.Http;
-using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace BusStopClient.Services
@@ -35,7 +35,7 @@ namespace BusStopClient.Services
                         return weatherReading;
 
                     string json = await response.Content.ReadAsStringAsync();
-                    var values = JsonSerializer.Deserialize<WeatherReading>(json);
+                    var values = MicroJson.Deserialize<WeatherReading>(json);
 
                     return values;
                 }

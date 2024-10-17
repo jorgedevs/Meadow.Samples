@@ -1,9 +1,9 @@
 ﻿using BusStopClient.Models;
+using Meadow.Foundation.Serialization;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace BusStopClient.Services
@@ -40,7 +40,7 @@ namespace BusStopClient.Services
                         return stop;
 
                     string json = await response.Content.ReadAsStringAsync();
-                    var stopInfo = JsonSerializer.Deserialize<Stop>(json);
+                    var stopInfo = MicroJson.Deserialize<Stop>(json);
 
                     stop.Name = stopInfo.Name;
                     stop.StopNo = stopInfo.StopNo;
@@ -82,7 +82,7 @@ namespace BusStopClient.Services
                         return schedules;
 
                     string json = await response.Content.ReadAsStringAsync();
-                    var nextBuses = JsonSerializer.Deserialize<List<NextBus>>(json);
+                    var nextBuses = MicroJson.Deserialize<List<NextBus>>(json);
 
                     foreach (var nextBus in nextBuses)
                     {

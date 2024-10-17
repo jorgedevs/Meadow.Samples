@@ -10,7 +10,6 @@
     <PackageReference Include="Meadow.Foundation" Version="*" />
     <PackageReference Include="Meadow.Foundation.Displays.TftSpi" Version="*" />
     <PackageReference Include="SimpleJpegDecoder" Version="*" />
-    <PackageReference Include="System.Text.Json" Version="7.0.4" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="img_day_bg.jpg" />
