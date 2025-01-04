@@ -1,4 +1,5 @@
-﻿using HomeWidget.Hardware;
+﻿using HomeWidget.Controllers;
+using HomeWidget.Hardware;
 using Meadow;
 using Meadow.Devices;
 using Meadow.Hardware;
