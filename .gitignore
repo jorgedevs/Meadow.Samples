@@ -195,3 +195,7 @@ Source/MeadowSamples/Project1/obj/
 Source/MeadowSamples/MoonModel/obj/
 Source/MeadowSamples/MeadowIoTHub/bin/
 Source/MeadowSamples/MeadowIoTHub/obj/
+Source/MeadowSamples/Lyra/.vs/
+Source/MeadowSamples/Lyra/Lyra/bin/Debug/netstandard2.1/meadow.config.yaml
+Source/MeadowSamples/Lyra/Lyra/bin/
+Source/MeadowSamples/Lyra/Lyra/obj/

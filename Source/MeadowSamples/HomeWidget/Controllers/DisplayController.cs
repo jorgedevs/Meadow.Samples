@@ -50,7 +50,7 @@ public class DisplayController
 
         DisplayScreen.Controls.Add(new Box(padding, padding, 108, 108)
         {
-            ForeColor = Color.Black,
+            ForegroundColor = Color.Black,
             IsFilled = false
         });
 
@@ -118,7 +118,7 @@ public class DisplayController
         Sunset = CreateWeatherValueLabel(padding, row2 + 21, DisplayScreen.Width - padding * 2, font16X24.Height, "--:--", HorizontalAlignment.Right);
         DisplayScreen.Controls.Add(Sunset);
 
-        DisplayScreen.Controls.Add(new Box(padding, 328, 280, 1) { ForeColor = Color.Black });
+        DisplayScreen.Controls.Add(new Box(padding, 328, 280, 1) { ForegroundColor = Color.Black });
 
         int row3 = 345;
         LoadWeatherReading(padding, row3, DisplayScreen.Width - padding * 2, font12X16.Height, "Temperature", HorizontalAlignment.Left);

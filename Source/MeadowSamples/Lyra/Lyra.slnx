@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="Lyra/Lyra.csproj">
+    <Deploy />
+  </Project>
+</Solution>
